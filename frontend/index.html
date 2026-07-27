@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Head-to-head Elo ranking for freshwater aquarium fish. Vote for your favorites.">
+    <meta property="og:title" content="Fish Elo">
+    <meta property="og:description" content="Vote for your favorite freshwater fish. Who comes out on top?">
+    <meta property="og:type" content="website">
+    <title>Fish Elo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">Fish Elo</h1>
+            <nav>
+                <button id="tab-vote" class="tab active">
+                    <i class="fa-solid fa-fire"></i> Vote
+                </button>
+                <button id="tab-rankings" class="tab">
+                    <i class="fa-solid fa-list-ol"></i> Rankings
+                </button>
+            </nav>
+            <div class="stats-pill" id="stats-bar">
+                <span id="stats-matches">0 votes</span>
+            </div>
+        </header>
+
+        <main>
+            <section id="vote-section">
+                <div id="matchup" class="matchup">
+                    <div class="fish-card" id="card-a">
+                        <div class="fish-image-wrap">
+                            <img id="img-a" src="" alt="">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="fish-body">
+                            <h2 id="name-a"></h2>
+                            <div class="fish-tags" id="tags-a"></div>
+                            <div class="fish-credit" id="credit-a"></div>
+                            <div class="fish-rating">
+                                <span class="fish-elo" id="elo-a">—</span>
+                                <span class="fish-elo-change" id="change-a"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vs-divider">
+                        <span class="vs-text">VS</span>
+                        <span class="outcome-label" id="outcome-label"></span>
+                        <button id="btn-skip" class="btn-skip">Skip</button>
+                        <span class="key-hint"><i class="fa-solid fa-arrow-left"></i> / <i class="fa-solid fa-arrow-right"></i> to vote &middot; <kbd>Space</kbd> to skip</span>
+                    </div>
+
+                    <div class="fish-card" id="card-b">
+                        <div class="fish-image-wrap">
+                            <img id="img-b" src="" alt="">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="fish-body">
+                            <h2 id="name-b"></h2>
+                            <div class="fish-tags" id="tags-b"></div>
+                            <div class="fish-credit" id="credit-b"></div>
+                            <div class="fish-rating">
+                                <span class="fish-elo" id="elo-b">—</span>
+                                <span class="fish-elo-change" id="change-b"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="rankings-section" style="display:none">
+                <div class="rankings-header">
+                    <h2>Elo Rankings</h2>
+                    <span id="rankings-count"></span>
+                </div>
+                <div class="table-wrap">
+                    <table id="rankings-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th></th>
+                                <th>Fish</th>
+                                <th>Elo</th>
+                                <th>W</th>
+                                <th>L</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="elo-info-section">
+                <h3 class="info-heading">How it works</h3>
+                <div id="elo-info-content"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>built with <i class="fa-solid fa-fish-fins"></i> and math</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+elo.json
+elo.json.bak
+.env
+.vercel

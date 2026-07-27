@@ -1,0 +1,1768 @@
+{
+  "fish": [
+    {
+      "id": "african-dwarf-frog",
+      "name": "African Dwarf Frog",
+      "tags": [
+        "peaceful",
+        "social",
+        "nocturnal",
+        "medium",
+        "carnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/african-dwarf-frog.jpg"
+    },
+    {
+      "id": "amano-shrimp",
+      "name": "Amano Shrimp",
+      "tags": [
+        "algae_eater",
+        "peaceful",
+        "active",
+        "social",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/amano-shrimp.jpg",
+      "imageCredit": {
+        "photographer": "Máté Molnár",
+        "sourceUrl": "https://unsplash.com/de/fotos/4Vn4UK4vyx8",
+        "license": "Unsplash",
+        "licenseUrl": "https://unsplash.com/license"
+      }
+    },
+    {
+      "id": "anomalochromis-thomasi",
+      "name": "African Butterfly Cichlid",
+      "tags": [
+        "peaceful",
+        "pair-bonding",
+        "cichlid",
+        "parental-care",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/african-butterfly-cichlid.jpg",
+      "imageCredit": {
+        "photographer": "Klaus Rudloff (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anomalochromis_thomasi_A.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "mediterranean-killifish",
+      "name": "Mediterranean Killifish",
+      "tags": [
+        "semi-aggressive",
+        "brackish",
+        "beginner",
+        "carnivore"
+      ],
+      "image": "/images/mediterranean-killifish.jpg",
+      "imageCredit": {
+        "photographer": "Natural History Museum of the University of Pisa",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aphanius_fasciatus_Natural_History_Museum_University_of_Pisa_male.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "apistogramma-agassizii",
+      "name": "Agassizs Dwarf Cichlid",
+      "tags": [
+        "territorial",
+        "pair-bonding",
+        "medium",
+        "carnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/apistogramma-agassizii.jpg",
+      "imageCredit": {
+        "photographer": "harum.koh (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Agassiz%27s_dwarf_cichlid_(Apistogramma_agassizii)_(15875959140).jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    },
+    {
+      "id": "cockatoo-dwarf-cichlid",
+      "name": "Cockatoo Dwarf Cichlid",
+      "tags": [
+        "cichlid",
+        "territorial",
+        "bottom_dweller",
+        "parental-care",
+        "substrate-sifter",
+        "medium"
+      ],
+      "image": "/images/apistogramma-cacatuoides.jpg",
+      "imageCredit": {
+        "photographer": "Britzke (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apistogramma_cacatuoides_(11120015446).jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    },
+    {
+      "id": "aplocheilus-lineatus",
+      "name": "Striped Panchax / Golden Wonder Killifish",
+      "tags": [
+        "surface_dweller",
+        "jumper",
+        "predator",
+        "semi-aggressive",
+        "territorial",
+        "beginner"
+      ],
+      "image": "/images/aplocheilus-lineatus.jpg",
+      "imageCredit": {
+        "photographer": "sapienssolutions via Flickr",
+        "sourceUrl": "https://flickr.com/photos/leonardodasilva/336896825/in/album-72157594369522490",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-2.0/"
+      }
+    },
+    {
+      "id": "scleropages-formosus",
+      "name": "Asian Arowana",
+      "tags": [
+        "jumper",
+        "surface_dweller",
+        "predator",
+        "territorial",
+        "mouthbrooder",
+        "centerpiece"
+      ],
+      "image": "/images/scleropages-formosus.jpg",
+      "imageCredit": {
+        "photographer": "Will Fisher",
+        "sourceUrl": "https://flickr.com/photos/fireatwillrva/8224972658/in/photolist-dwP8Pq-Yvydmm-9DnWsF-DyE7uD-DyE2jD-DF1XHd-E88Sbr-DYTQfp-E896LH-DWHiEE-DaK8qD-E88Jhk-E88DGt-DWGZMq-E5NNZs-DaKr82-DyDZrk-E5Pa8o-DaKoer-DaH1Vi-DWH2dG-DaK3jB-E88Vsg-E5NgbC-DaKpqV-Dap8UW-DYTSDT-DyDCgp-DF1q8u-DaJA5x-DF2dYd-DYSPTe-DYTkrH-DaJr6k-DamSwq-DF2Jnd-DWHmZA-E5N92C-DapPKh-DyBxi2-DyDnwe-DWGcsG-E882Gc-DapWDN-DanRXh-DWHgWE-DWGxHb-DaFUMi-DWEH6U-E5KT4q/",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    },
+    {
+      "id": "axolotl",
+      "name": "Axolotl / Mexican Walking Fish / Mexican Salamander",
+      "tags": [
+        "peaceful",
+        "nocturnal",
+        "medium",
+        "carnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/axolotl.jpg",
+      "imageCredit": {
+        "photographer": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/axolotl-mexican-salamander-animal-6934866/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "betta-splendens-female",
+      "name": "Siamese Fighting Fish (Female)",
+      "tags": [
+        "semi-aggressive",
+        "surface_dweller",
+        "territorial",
+        "labyrinth_fish",
+        "jumper",
+        "beginner"
+      ],
+      "image": "/images/betta-splendens-female.jpg"
+    },
+    {
+      "id": "betta-splendens",
+      "name": "Siamese Fighting Fish",
+      "tags": [
+        "jumper",
+        "surface_dweller",
+        "labyrinth_fish",
+        "territorial",
+        "semi-aggressive",
+        "beginner"
+      ],
+      "image": "/images/betta-splendens.jpg",
+      "imageCredit": {
+        "photographer": "Faris Algosaibi",
+        "sourceUrl": "https://flickr.com/photos/siraf72/49678841421/",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "black-neon-tetra",
+      "name": "Black Neon Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/black-neon-tetra.jpg",
+      "imageCredit": {
+        "photographer": "Atulbhats (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Black-Neon-Tetra.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "black-skirt-tetra",
+      "name": "Black Skirt Tetra",
+      "tags": [
+        "shoaler",
+        "semi-aggressive",
+        "midwater",
+        "active",
+        "fin_nipper",
+        "beginner"
+      ],
+      "image": "/images/black-skirt-tetra.jpg"
+    },
+    {
+      "id": "astyanax-jordani",
+      "name": "Blind Cave Tetra",
+      "tags": [
+        "schooler",
+        "active",
+        "fin_nipper",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/astyanax-jordani.jpg",
+      "imageCredit": {
+        "photographer": "Andrew Gray",
+        "sourceUrl": "https://flickr.com/photos/97534175@N00/2200366050/",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "nothobranchius-rachovii",
+      "name": "Bluefin Notho / Rainbow Killifish",
+      "tags": [
+        "bottom_dweller",
+        "predator",
+        "territorial",
+        "medium",
+        "carnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/bluefin-notho.jpg",
+      "imageCredit": {
+        "photographer": "JuanCarlosPalauDiaz on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/killi-nature-fish-6682011/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "boleophthalmus-boddarti",
+      "name": "Boddart`s Goggle-eyed Goby",
+      "tags": [
+        "jumper",
+        "territorial",
+        "brackish",
+        "algae_eater",
+        "expert",
+        "omnivore"
+      ],
+      "image": "/images/boleophthalmus-boddarti.jpg",
+      "imageCredit": {
+        "photographer": "Jin Kemoole",
+        "sourceUrl": "https://flickr.com/photos/146401137@N06/39879153164/",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "bolivian-ram",
+      "name": "Bolivian Ram",
+      "tags": [
+        "peaceful",
+        "pair-bonding",
+        "substrate-sifter",
+        "cichlid",
+        "slow_eater",
+        "beginner"
+      ],
+      "image": "/images/bolivian-ram.jpg",
+      "imageCredit": {
+        "photographer": "Elma (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Male_altispinosa_dwarf_cichlid_(3229597033).jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "bristlenose-pleco",
+      "name": "Bristlenose Pleco",
+      "tags": [
+        "peaceful",
+        "nocturnal",
+        "territorial",
+        "algae_eater",
+        "bottom_dweller",
+        "beginner"
+      ],
+      "image": "/images/bristlenose-pleco.jpg"
+    },
+    {
+      "id": "bronze-cory",
+      "name": "Bronze Corydoras",
+      "tags": [
+        "shoaler",
+        "bottom_dweller",
+        "peaceful",
+        "robust",
+        "active",
+        "scaleless"
+      ],
+      "image": "/images/bronze-cory.jpg"
+    },
+    {
+      "id": "psalidodon-anisitsi",
+      "name": "Buenos Aires Tetra",
+      "tags": [
+        "schooler",
+        "active",
+        "fin_nipper",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/psalidodon-anisitsi.jpg",
+      "imageCredit": {
+        "photographer": "Nick Sc.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hyphessobrycon_anisitsi.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "bumblebee-goby",
+      "name": "Bumblebee Goby",
+      "tags": [
+        "bottom_dweller",
+        "territorial",
+        "shy",
+        "social",
+        "diurnal",
+        "colorful"
+      ],
+      "image": "/images/bumblebee-goby.jpg",
+      "imageCredit": {
+        "photographer": "theaquariumkeeper on Pixabay",
+        "sourceUrl": "https://pixabay.com/de/photos/hummel-fisch-hummel-grundel-7793718/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "cardinal-tetra",
+      "name": "Cardinal Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "midwater",
+        "shy",
+        "diurnal",
+        "colorful"
+      ],
+      "image": "/images/cardinal-tetra.jpg"
+    },
+    {
+      "id": "black-bee-shrimp",
+      "name": "Black Bee Shrimp",
+      "tags": [
+        "peaceful",
+        "algae_eater",
+        "social",
+        "active",
+        "nano_safe",
+        "expert"
+      ],
+      "image": "/images/black-bee-shrimp.jpg"
+    },
+    {
+      "id": "blue-bolt-shrimp",
+      "name": "Blue Bolt Shrimp / Taiwan Bee Shrimp",
+      "tags": [
+        "peaceful",
+        "algae_eater",
+        "social",
+        "active",
+        "nano_safe",
+        "expert"
+      ],
+      "image": "/images/blue-bolt-shrimp.jpg"
+    },
+    {
+      "id": "celestial-pearl-danio",
+      "name": "Celestial Pearl Danio",
+      "tags": [
+        "peaceful",
+        "shoaler",
+        "nano",
+        "colorful",
+        "active",
+        "beginner"
+      ],
+      "image": "/images/celestial-pearl-danio.jpeg"
+    },
+    {
+      "id": "cherry-barb",
+      "name": "Cherry Barb",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "midwater",
+        "active",
+        "shy",
+        "beginner"
+      ],
+      "image": "/images/cherry-barb.jpg"
+    },
+    {
+      "id": "chili-rasbora",
+      "name": "Chili Rasbora",
+      "tags": [
+        "peaceful",
+        "shoaler",
+        "nano",
+        "shy",
+        "colorful",
+        "active"
+      ],
+      "image": "/images/chili-rasbora.jpg"
+    },
+    {
+      "id": "clown-killifish",
+      "name": "Clown Killifish / Banded Panchax",
+      "tags": [
+        "surface_dweller",
+        "jumper",
+        "peaceful",
+        "medium",
+        "carnivore",
+        "surface-dweller"
+      ],
+      "image": "/images/clown-killifish.jpg",
+      "imageCredit": {
+        "photographer": "Dornenwolf (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ringelhechtling_-Epiplatys_annulatus.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "clown-loach",
+      "name": "Clown Loach",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "active",
+        "scaleless",
+        "medium",
+        "omnivore"
+      ],
+      "image": "/images/clown-loach.jpg",
+      "imageCredit": {
+        "photographer": "Tylwyth Eldar (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aquarium_de_la_Porte_Dor%C3%A9e_-_Poisson_04.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "clown-pleco",
+      "name": "Clown Pleco",
+      "tags": [
+        "peaceful",
+        "nocturnal",
+        "algae_eater",
+        "shy",
+        "bottom_dweller",
+        "beginner"
+      ],
+      "image": "/images/clown-pleco.jpg"
+    },
+    {
+      "id": "carassius-auratus-auratus",
+      "name": "Common Goldfish",
+      "tags": [
+        "coldwater",
+        "schooler",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/carassius-auratus.jpg",
+      "imageCredit": {
+        "photographer": "JuanCarlosPalauDiaz on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/goldfish-fish-tank-pet-aquarium-6953313/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "congo-tetra",
+      "name": "Congo Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "midwater",
+        "active",
+        "diurnal",
+        "colorful"
+      ],
+      "image": "/images/congo-tetra.jpg"
+    },
+    {
+      "id": "corydoras-paleatus",
+      "name": "Peppered Corydoras",
+      "tags": [
+        "peaceful",
+        "shoaler",
+        "bottom_dweller",
+        "social",
+        "robust",
+        "scaleless"
+      ],
+      "image": "/images/corydoras-paleatus.jpg",
+      "imageCredit": {
+        "photographer": "Kuznetsov_Peter on Pixabay",
+        "sourceUrl": "https://pixabay.com/de/photos/corydoras-paleatus-4996632/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "danio-rerio",
+      "name": "Zebra Danio",
+      "tags": [
+        "peaceful",
+        "shoaler",
+        "active",
+        "surface_dweller",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/danio-rerio.jpg",
+      "imageCredit": {
+        "photographer": "Kuznetsov_Peter on Pixabay",
+        "sourceUrl": "https://pixabay.com/de/photos/danio-rerio-zebrafisch-%d1%80%d0%b5%d1%80%d0%b8%d0%be-fische-4996610/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "diamond-tetra",
+      "name": "Diamond Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "midwater",
+        "active",
+        "diurnal",
+        "colorful"
+      ],
+      "image": "/images/diamond-tetra.jpg"
+    },
+    {
+      "id": "discus",
+      "name": "Discus",
+      "tags": [
+        "peaceful",
+        "shoaler",
+        "midwater",
+        "shy",
+        "diurnal",
+        "colorful"
+      ],
+      "image": "/images/discus.jpg"
+    },
+    {
+      "id": "eight-banded-lizard-loach",
+      "name": "Eight Banded Lizard Loach",
+      "tags": [
+        "territorial",
+        "peaceful",
+        "active",
+        "scaleless",
+        "medium",
+        "carnivore"
+      ],
+      "image": "/images/eight-banded-lizard-loach.jpg",
+      "imageCredit": {
+        "photographer": "Bogyman (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Serpenticobitis_cingulata.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "electric-yellow-lab",
+      "name": "Electric Yellow Lab",
+      "tags": [
+        "semi-aggressive",
+        "cichlid",
+        "colorful",
+        "active",
+        "territorial",
+        "architect"
+      ],
+      "image": "/images/electric-yellow-lab.jpg",
+      "imageCredit": {
+        "photographer": "FilderAquaristik on Pixabay",
+        "sourceUrl": "https://pixabay.com/de/photos/firefish-fisch-malawibuntbarsch-3928534/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "ember-tetra",
+      "name": "Ember Tetra",
+      "tags": [
+        "peaceful",
+        "shoaler",
+        "nano",
+        "colorful",
+        "active",
+        "beginner"
+      ],
+      "image": "/images/ember-tetra.jpg",
+      "imageCredit": {
+        "photographer": "Klaus Rudloff (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hyphessobrycon_amandae_A.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "emerald-dwarf-rasbora",
+      "name": "Emerald Dwarf Rasbora / Green Neon Rasbora",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "active",
+        "nano",
+        "medium",
+        "omnivore"
+      ],
+      "image": "/images/emerald-dwarf-rasbora.jpg",
+      "imageCredit": {
+        "photographer": "BottomDog (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prachtalgenfresser_(Panda_Garra,_Garra_flavatra)_by_Marcin_Adrian.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "nematobrycon-palmeri",
+      "name": "Emperor Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "centerpiece",
+        "colorful",
+        "robust",
+        "beginner"
+      ],
+      "image": "/images/emperor-tetra.jpg",
+      "imageCredit": {
+        "photographer": "Dennis Lamczak",
+        "sourceUrl": "https://flickr.com/photos/159675085@N03/43706787731/",
+        "license": "Public Domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    },
+    {
+      "id": "endler-guppy",
+      "name": "Endler\\",
+      "tags": [
+        "livebearer",
+        "surface_dweller",
+        "active",
+        "colorful",
+        "nano",
+        "shoaler"
+      ],
+      "image": "/images/endler-guppy.jpg"
+    },
+    {
+      "id": "aulonocara-jacobfreibergi",
+      "name": "Fairy Cichlid / Eureka Red Peacock",
+      "tags": [
+        "mouthbrooder",
+        "harem",
+        "territorial",
+        "medium",
+        "carnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/aulonocara-jacobfreibergi.jpg"
+    },
+    {
+      "id": "garra-flavatra",
+      "name": "Panda Garra / Clown Garra",
+      "tags": [
+        "active",
+        "territorial",
+        "algae_eater",
+        "jumper",
+        "peaceful",
+        "medium"
+      ],
+      "image": "/images/garra-flavatra.jpg",
+      "imageCredit": {
+        "photographer": "Marcin Adrian (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prachtalgenfresser_(Panda_Garra,_Garra_flavatra)_by_Marcin_Adrian.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "glass-catfish",
+      "name": "Glass Catfish / Phantom Catfish",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "midwater",
+        "scaleless",
+        "shy",
+        "medium"
+      ],
+      "image": "/images/glass-catfish.jpg",
+      "imageCredit": {
+        "photographer": "Martin Fisch (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Glaswelse.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "danio-tinwini",
+      "name": "Gold Ring Danio",
+      "tags": [
+        "schooler",
+        "active",
+        "peaceful",
+        "nano",
+        "diurnal",
+        "robust"
+      ],
+      "image": "/images/danio-tinwini.jpg",
+      "imageCredit": {
+        "photographer": "Ruaraidh Gillies",
+        "sourceUrl": "https://flickr.com/photos/ruaraidhg/33464139765/",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    },
+    {
+      "id": "gold-spot-pleco",
+      "name": "Gold Spot Pleco",
+      "tags": [
+        "peaceful",
+        "nocturnal",
+        "algae_eater",
+        "territorial",
+        "bottom_dweller",
+        "expert"
+      ],
+      "image": "/images/gold-spot-pleco.jpg",
+      "imageCredit": {
+        "photographer": "Klaus Rudloff (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pterygoplichthys_gibbiceps.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "golden-whiptail",
+      "name": "Golden Whiptail / Gold Royal Farlowella",
+      "tags": [
+        "peaceful",
+        "algae_eater",
+        "bottom_dweller",
+        "medium",
+        "herbivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/golden-whiptail.jpg",
+      "imageCredit": {
+        "photographer": "Richard Bartz (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sturisoma_aureum_Richard_Bartz.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "guppy",
+      "name": "Guppy / Million Fish",
+      "tags": [
+        "peaceful",
+        "livebearer",
+        "schooler",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/guppy.jpg"
+    },
+    {
+      "id": "harlequin-rasbora",
+      "name": "Harlequin Rasbora",
+      "tags": [
+        "peaceful",
+        "shoaler",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/harlequin-rasbora.jpg"
+    },
+    {
+      "id": "glowlight-tetra",
+      "name": "Glowlight Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "active",
+        "midwater",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/glowlight-tetra.jpg",
+      "imageCredit": {
+        "photographer": "h080 (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hemigrammus_erythrozonus_h080.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "honey-gourami",
+      "name": "Honey Gourami",
+      "tags": [
+        "peaceful",
+        "shy",
+        "bubble_nester",
+        "labyrinth_fish",
+        "centerpiece",
+        "beginner"
+      ],
+      "image": "/images/honey-gourami.jpg"
+    },
+    {
+      "id": "hyphessobrycon-megalopterus",
+      "name": "Black Phantom Tetra",
+      "tags": [
+        "schooler",
+        "peaceful",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/hyphessobrycon-megalopterus.jpg"
+    },
+    {
+      "id": "corydoras-julii",
+      "name": "Julii Corydoras / Leopard Cory",
+      "tags": [
+        "schooler",
+        "bottom_dweller",
+        "peaceful",
+        "beginner",
+        "omnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/corydoras-julii.jpg",
+      "imageCredit": {
+        "photographer": "Annette1209 on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/aquarium-underwater-catfish-fish-7899527/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "kuhli-loach",
+      "name": "Kuhli Loach",
+      "tags": [
+        "peaceful",
+        "shy",
+        "nocturnal",
+        "social",
+        "bottom_dweller",
+        "scaleless"
+      ],
+      "image": "/images/kuhli-loach.jpg"
+    },
+    {
+      "id": "lemon-tetra",
+      "name": "Lemon Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/lemon-tetra.jpg",
+      "imageCredit": {
+        "photographer": "SOK (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Citrontetra_Hyphessobrycon_pulchripinnis.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "marbled-hatchetfish",
+      "name": "Marbled Hatchetfish",
+      "tags": [
+        "surface_dweller",
+        "jumper",
+        "schooler",
+        "shy",
+        "medium",
+        "carnivore"
+      ],
+      "image": "/images/marbled-hatchetfish.jpg",
+      "imageCredit": {
+        "photographer": "Sven Kullander (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carnegiella_strigata_lateral_view.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "lake-kutubu-rainbowfish",
+      "name": "Lake Kutubu Rainbowfish",
+      "tags": [
+        "active",
+        "peaceful",
+        "schooler",
+        "jumper",
+        "diurnal",
+        "medium"
+      ],
+      "image": "/images/lake-kutubu-rainbowfish.jpg",
+      "imageCredit": {
+        "photographer": "Klaus Rudloff (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melanotaenia_lacustris.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "boesemani-rainbowfish",
+      "name": "Boeseman\\",
+      "tags": [
+        "schooler",
+        "peaceful",
+        "active",
+        "diurnal",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/boesemani-rainbowfish.jpg",
+      "imageCredit": {
+        "photographer": "Rufus46 (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boesemans_Regenbogenfisch_Melanotaenia_boesemani_Tierpark_Hellabrunn-1.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "molly",
+      "name": "Molly",
+      "tags": [
+        "peaceful",
+        "active",
+        "livebearer",
+        "surface_dweller",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/molly.jpg"
+    },
+    {
+      "id": "cherry-shrimp",
+      "name": "Cherry Shrimp / Red Cherry Shrimp",
+      "tags": [
+        "peaceful",
+        "algae_eater",
+        "social",
+        "active",
+        "nano_safe",
+        "beginner"
+      ],
+      "image": "/images/cherry-shrimp.jpg",
+      "imageCredit": {
+        "photographer": "Holger Krisp via Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Neocaridina_davidi_var._red_2012.jpg",
+        "license": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    },
+    {
+      "id": "neon-blue-goby",
+      "name": "Neon Blue Goby",
+      "tags": [
+        "territorial",
+        "bottom_dweller",
+        "jumper",
+        "medium",
+        "herbivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/neon-blue-goby.jpg",
+      "imageCredit": {
+        "photographer": "Natural History Museum of the University of Pisa",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stiphodon_atropurpureus_Natural_History_Museum_University_of_Pisa.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "neon-tetra",
+      "name": "Neon Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "shy",
+        "colorful",
+        "active",
+        "beginner"
+      ],
+      "image": "/images/neon-tetra.jpg"
+    },
+    {
+      "id": "oscar",
+      "name": "Oscar",
+      "tags": [
+        "intelligent",
+        "predator",
+        "territorial",
+        "medium",
+        "carnivore"
+      ],
+      "image": "/images/oscar.jpg",
+      "imageCredit": {
+        "photographer": "focusdanifocus on Pixabay",
+        "sourceUrl": "https://pixabay.com/de/photos/fische-oscar-fisch-oscar-tiger-7769543/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "otocinclus-macrospilus",
+      "name": "Marbled Otocinclus",
+      "tags": [
+        "algae_eater",
+        "peaceful",
+        "shy",
+        "shoaler",
+        "diurnal",
+        "bottom_dweller"
+      ],
+      "image": "/images/otocinclus-macrospilus.jpg"
+    },
+    {
+      "id": "otocinclus",
+      "name": "Otocinclus Catfish",
+      "tags": [
+        "peaceful",
+        "shy",
+        "social",
+        "algae_eater",
+        "bottom_dweller",
+        "medium"
+      ],
+      "image": "/images/otocinclus-vittatus.jpg"
+    },
+    {
+      "id": "panda-cory",
+      "name": "Panda Corydoras",
+      "tags": [
+        "shoaler",
+        "bottom_dweller",
+        "peaceful",
+        "diurnal",
+        "shy",
+        "scaleless"
+      ],
+      "image": "/images/panda-cory.jpg"
+    },
+    {
+      "id": "pao-palembangensis",
+      "name": "Humpback Puffer",
+      "tags": [
+        "predator",
+        "scaleless",
+        "expert",
+        "carnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/pao-palembangensis.jpg",
+      "imageCredit": {
+        "photographer": "Wendy_Geers on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/tetraodon-pufferfish-humpback-7574263/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "dwarf-pufferfish",
+      "name": "Dwarf Pufferfish / Pea Puffer / Malabar Puffer",
+      "tags": [
+        "predator",
+        "intelligent",
+        "scaleless",
+        "territorial",
+        "medium",
+        "carnivore"
+      ],
+      "image": "/images/dwarf-pufferfish.jpg",
+      "imageCredit": {
+        "photographer": "Parazelsus (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carinotetraodon_travancoricus_by_Parazelsus_(cropped).jpg",
+        "license": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    },
+    {
+      "id": "geophagus-brasiliensis",
+      "name": "Pearl Cichlid",
+      "tags": [
+        "cichlid",
+        "substrate-sifter",
+        "territorial",
+        "parental-care",
+        "intelligent",
+        "medium"
+      ],
+      "image": "/images/pearl-cichlid.jpg",
+      "imageCredit": {
+        "photographer": "cuatrok77",
+        "sourceUrl": "https://flickr.com/photos/cuatrok77/16300978147/in/album-72157629238054991",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    },
+    {
+      "id": "pelvicachromis-pulcher",
+      "name": "Kribensis",
+      "tags": [
+        "pair-bonding",
+        "territorial",
+        "semi-aggressive",
+        "parental-care",
+        "medium",
+        "omnivore"
+      ],
+      "image": "/images/pelvicachromis-pulcher.jpg"
+    },
+    {
+      "id": "odessa-barb",
+      "name": "Odessa Barb",
+      "tags": [
+        "schooler",
+        "active",
+        "peaceful",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/odessa-barb.jpg",
+      "imageCredit": {
+        "photographer": "Tomas Čekanavičius",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Barbus_Puntius_ticto.JPG",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "platy",
+      "name": "Platy",
+      "tags": [
+        "peaceful",
+        "active",
+        "colorful",
+        "livebearer",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/platy.jpeg"
+    },
+    {
+      "id": "pterophyllum-scalare",
+      "name": "Freshwater Angelfish",
+      "tags": [
+        "intelligent",
+        "territorial",
+        "schooler",
+        "medium",
+        "omnivore"
+      ],
+      "image": "/images/pterophyllum-scalare.jpg",
+      "imageCredit": {
+        "photographer": "Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/angel-fish-tropical-fish-aquarium-1011451/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "puntigrus-tetrazona",
+      "name": "Tiger Barb",
+      "tags": [
+        "schooler",
+        "semi-aggressive",
+        "fin_nipper",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/puntigrus-tetrazona.jpg",
+      "imageCredit": {
+        "photographer": "Anandarajkumar",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_Male_Tiger_barb.png",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "pygmy-cory",
+      "name": "Pygmy Corydoras",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "bottom_dweller",
+        "midwater",
+        "nano",
+        "scaleless"
+      ],
+      "image": "/images/pygmy-cory.jpg",
+      "imageCredit": {
+        "photographer": "Carnat Joel",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corydoras_pygmaeus_carnat_joel_5.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "epalzeorhynchos-frenatum",
+      "name": "Rainbow Shark",
+      "tags": [
+        "territorial",
+        "algae_eater",
+        "active",
+        "semi-aggressive",
+        "bottom_dweller",
+        "medium"
+      ],
+      "image": "/images/rainbow-shark.jpg",
+      "imageCredit": {
+        "photographer": "verawald on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/rainbow-shark-fish-aquarium-6291227/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "ram-cichlid",
+      "name": "German Blue Ram",
+      "tags": [
+        "peaceful",
+        "colorful",
+        "bottom_dweller",
+        "territorial",
+        "pair-bonding",
+        "intelligent"
+      ],
+      "image": "/images/ram-cichlid.jpg"
+    },
+    {
+      "id": "procambarus-clarkii",
+      "name": "Red Swamp Crayfish",
+      "tags": [
+        "bottom_dweller",
+        "nocturnal",
+        "territorial",
+        "beginner",
+        "omnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/procambarus-clarkii.jpg",
+      "imageCredit": {
+        "photographer": "JuanCarlosPalauDiaz on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/crab-aquarium-nature-aquatic-6273654/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "red-tailed-silverside",
+      "name": "Red Tailed Silverside",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "active",
+        "jumper",
+        "medium",
+        "carnivore"
+      ],
+      "image": "/images/red-tailed-silverside.jpg",
+      "imageCredit": {
+        "photographer": "Natural History Museum University of Pisa",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bedotia_geayi_Natural_History_Museum_University_of_Pisa_(cropped).jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "mesoheros-festae",
+      "name": "Red Terror Cichlid",
+      "tags": [
+        "cichlid",
+        "predator",
+        "territorial",
+        "intelligent",
+        "parental-care",
+        "expert"
+      ],
+      "image": "/images/mesoheros-festae.jpg",
+      "imageCredit": {
+        "photographer": "Vonedaddy",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Red_Terror_Festae_Chiclid.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "red-zebra-cichlid",
+      "name": "Red Zebra Cichlid",
+      "tags": [
+        "territorial",
+        "medium",
+        "herbivore"
+      ],
+      "image": "/images/red-zebra-cichlid.jpg",
+      "imageCredit": {
+        "photographer": "Grzegorz Polak (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pyszczak.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "myleus-rubripinnis",
+      "name": "Redhook Myleus",
+      "tags": [
+        "schooler",
+        "active",
+        "fin_nipper",
+        "herbivore",
+        "medium",
+        "herbivore"
+      ],
+      "image": "/images/redhook-myleus.jpg",
+      "imageCredit": {
+        "photographer": "zoosnow on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/fish-metynnis-piranha-aquarium-3894130/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "rosy-barb",
+      "name": "Rosy Barb",
+      "tags": [
+        "active",
+        "schooler",
+        "semi-aggressive",
+        "fin_nipper",
+        "colorful",
+        "beginner"
+      ],
+      "image": "/images/rosy-barb.jpg",
+      "imageCredit": {
+        "photographer": "Andreas Hartl on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/rosy-barb-fish-aquarium-freshwater-5405584/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "rosy-tetra",
+      "name": "Rosy Tetra / Roberts Tetra",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/rosy-tetra.jpg",
+      "imageCredit": {
+        "photographer": "Holger Krisp (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Schmucksalmler_Hyphessobrycon_bentosi.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "rubber-lip-pleco",
+      "name": "Rubber Lip Pleco / Rubbernose Pleco / Bulldog Pleco",
+      "tags": [
+        "peaceful",
+        "algae_eater",
+        "bottom_dweller",
+        "territorial",
+        "beginner",
+        "herbivore"
+      ],
+      "image": "/images/rubber-lip-pleco.jpg",
+      "imageCredit": {
+        "photographer": "Chaetostoma milesi",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chaetostoma_milesi_(16495455116).jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "rudd",
+      "name": "Rudd",
+      "tags": [
+        "peaceful",
+        "shoaler",
+        "midwater",
+        "active",
+        "diurnal",
+        "beginner"
+      ],
+      "image": "/images/rudd.jpg",
+      "imageCredit": {
+        "photographer": "Klaus Rudloff (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Scardinius_erythrophthalmus_(Linnaeus,_1758)_c_2.JPG",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "rummy-nose-tetra",
+      "name": "Rummy Nose Tetra",
+      "tags": [
+        "schooler",
+        "peaceful",
+        "shy",
+        "active",
+        "midwater",
+        "beginner"
+      ],
+      "image": "/images/rummy-nose-tetra.jpg"
+    },
+    {
+      "id": "hypoptopoma-inexspectatum",
+      "name": "Sailfin Catfish / Hypoptopoma",
+      "tags": [
+        "peaceful",
+        "bottom_dweller",
+        "shy",
+        "medium",
+        "herbivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/sailfin-catfish.jpg",
+      "imageCredit": {
+        "photographer": "Fajoe (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hypoptopoma_inexspectatum.jpg",
+        "license": "Public Domain",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/"
+      }
+    },
+    {
+      "id": "sailfin-pleco",
+      "name": "Sailfin Pleco",
+      "tags": [
+        "semi-aggressive",
+        "nocturnal",
+        "territorial",
+        "algae_eater",
+        "bottom_dweller",
+        "expert"
+      ],
+      "image": "/images/sailfin-pleco.jpg"
+    },
+    {
+      "id": "serpae-tetra",
+      "name": "Serpae Tetra / Red Minor Tetra / Jewel Tetra",
+      "tags": [
+        "schooler",
+        "semi-aggressive",
+        "fin_nipper",
+        "active",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/serpae-tetra.jpg",
+      "imageCredit": {
+        "photographer": "Faucon (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Serpae_tetra.JPG",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "sewellia-lineolata",
+      "name": "Reticulated Hillstream Loach",
+      "tags": [
+        "bottom_dweller",
+        "diurnal",
+        "social",
+        "medium",
+        "herbivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/sewellia-lineolata.jpg"
+    },
+    {
+      "id": "siamese-algae-eater",
+      "name": "Siamese Algae Eater",
+      "tags": [
+        "algae_eater",
+        "active",
+        "peaceful",
+        "bottom_dweller",
+        "hillstream",
+        "medium"
+      ],
+      "image": "/images/siamese-algae-eater.jpg"
+    },
+    {
+      "id": "aspidoras-pauciradiatus",
+      "name": "Sixray Corydoras",
+      "tags": [
+        "schooler",
+        "bottom_dweller",
+        "peaceful",
+        "beginner",
+        "omnivore",
+        "bottom-dweller"
+      ],
+      "image": "/images/aspidoras-pauciradiatus.jpg",
+      "imageCredit": {
+        "photographer": "Alice_Alphabet on Pixabay",
+        "sourceUrl": "https://pixabay.com/photos/dwarf-corydoras-aquarium-fish-143885/",
+        "license": "Public Domain",
+        "licenseUrl": "https://pixabay.com/service/license/"
+      }
+    },
+    {
+      "id": "sparkling-gourami",
+      "name": "Sparkling Gourami",
+      "tags": [
+        "peaceful",
+        "territorial",
+        "bubble_nester",
+        "nano",
+        "labyrinth_fish",
+        "beginner"
+      ],
+      "image": "/images/sparkling-gourami.jpg",
+      "imageCredit": {
+        "photographer": "Dezinformator15",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sparkling_gourami.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+      }
+    },
+    {
+      "id": "splash-tetra",
+      "name": "Splash Tetra / Spraying Tetra",
+      "tags": [
+        "peaceful",
+        "jumper",
+        "surface_dweller",
+        "shy",
+        "beginner",
+        "carnivore"
+      ],
+      "image": "/images/splash-tetra.jpg",
+      "imageCredit": {
+        "photographer": "Zikamoi (via Wikimedia Commons)",
+        "sourceUrl": "https://en.wikipedia.org/wiki/File:Copella_arnoldi.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "spotted-blue-eye",
+      "name": "Spotted Blue Eye",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "jumper",
+        "predator",
+        "beginner",
+        "carnivore"
+      ],
+      "image": "/images/spotted-blue-eye.jpg",
+      "imageCredit": {
+        "photographer": "Atulbhats (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Getrudae_Rainbowfish.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "spotted-green-puffer",
+      "name": "Spotted Green Puffer",
+      "tags": [
+        "predator",
+        "territorial",
+        "intelligent",
+        "expert",
+        "carnivore"
+      ],
+      "image": "/images/spotted-green-puffer.jpg",
+      "imageCredit": {
+        "photographer": "Natural History Museum University of Pisa",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dichotomyctere_nigroviridis_Natural_History_Museum_University_of_Pisa_(cropped).jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    },
+    {
+      "id": "sterbai-cory",
+      "name": "Sterbai Corydoras",
+      "tags": [
+        "shoaler",
+        "bottom_dweller",
+        "peaceful",
+        "robust",
+        "scaleless",
+        "beginner"
+      ],
+      "image": "/images/corydoras-sterbai.jpg",
+      "imageCredit": {
+        "photographer": "Matthew Mannell (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corydoras_Sterbai.jpg",
+        "license": "Public Domain",
+        "licenseUrl": "https://en.wikipedia.org/wiki/Public_domain"
+      }
+    },
+    {
+      "id": "swordtail",
+      "name": "Swordtail",
+      "tags": [
+        "active",
+        "jumper",
+        "livebearer",
+        "semi-aggressive",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/swordtail.jpg"
+    },
+    {
+      "id": "tetraodon-mbu",
+      "name": "Giant Pufferfish",
+      "tags": [
+        "intelligent",
+        "predator",
+        "territorial",
+        "expert",
+        "carnivore"
+      ],
+      "image": "/images/tetraodon-mbu.jpg"
+    },
+    {
+      "id": "toxotes-chatareus",
+      "name": "Spotted Archerfish",
+      "tags": [
+        "jumper",
+        "surface_dweller",
+        "predator",
+        "schooler",
+        "medium",
+        "carnivore"
+      ],
+      "image": "/images/toxotes-chatareus.jpg",
+      "imageCredit": {
+        "photographer": "David Clode on Pixabay",
+        "sourceUrl": "https://unsplash.com/de/fotos/nahaufnahme-von-schwarzen-und-grauen-fischen-QamvPju80N4",
+        "license": "Unsplash",
+        "licenseUrl": "https://unsplash.com/license"
+      }
+    },
+    {
+      "id": "pearl-gourami",
+      "name": "Pearl Gourami / Lace Gourami / Mosaic Gourami",
+      "tags": [
+        "peaceful",
+        "shy",
+        "bubble_nester",
+        "labyrinth_fish",
+        "surface_dweller",
+        "beginner"
+      ],
+      "image": "/images/pearl-gourami.jpg",
+      "imageCredit": {
+        "photographer": "Zoofoto! (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:20130624_100102_Haus_des_Meeres.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "three-spot-gourami",
+      "name": "Three Spot Gourami / Blue Gourami",
+      "tags": [
+        "semi-aggressive",
+        "territorial",
+        "labyrinth_fish",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/three-spot-gourami.jpg"
+    },
+    {
+      "id": "white-cloud-minnow",
+      "name": "White Cloud Mountain Minnow",
+      "tags": [
+        "schooler",
+        "peaceful",
+        "active",
+        "coldwater",
+        "jumper",
+        "beginner"
+      ],
+      "image": "/images/white-cloud-mountain-minnow.jpg"
+    },
+    {
+      "id": "zebra-loach",
+      "name": "Zebra Loach / Striped Loach",
+      "tags": [
+        "shoaler",
+        "peaceful",
+        "active",
+        "scaleless",
+        "beginner",
+        "omnivore"
+      ],
+      "image": "/images/zebra-loach.jpg",
+      "imageCredit": {
+        "photographer": "Lerdsuwa (via Wikimedia Commons)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Agassiz%27s_dwarf_cichlid_(Apistogramma_agassizii)_(15875959140).jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    }
+  ]
+}
