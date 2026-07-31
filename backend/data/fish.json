@@ -3,28 +3,51 @@
     {
       "id": "african-dwarf-frog",
       "name": "African Dwarf Frog",
+      "scientific_name": "Hymenochirus boettgeri",
+      "image": "/images/african-dwarf-frog.jpg",
       "tags": [
-        "peaceful",
-        "social",
-        "nocturnal",
-        "medium",
-        "carnivore",
-        "bottom-dweller"
+        "amphibian",
+        "nano",
+        "community"
       ],
-      "image": "/images/african-dwarf-frog.jpg"
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 60
     },
     {
       "id": "amano-shrimp",
       "name": "Amano Shrimp",
-      "tags": [
-        "algae_eater",
-        "peaceful",
-        "active",
-        "social",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Caridina multidentata",
       "image": "/images/amano-shrimp.jpg",
+      "tags": [
+        "shrimp",
+        "community",
+        "planted",
+        "beginner"
+      ],
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 80,
       "imageCredit": {
         "photographer": "Máté Molnár",
         "sourceUrl": "https://unsplash.com/de/fotos/4Vn4UK4vyx8",
@@ -35,15 +58,25 @@
     {
       "id": "anomalochromis-thomasi",
       "name": "African Butterfly Cichlid",
-      "tags": [
-        "peaceful",
-        "pair-bonding",
-        "cichlid",
-        "parental-care",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Anomalochromis thomasi",
       "image": "/images/african-butterfly-cichlid.jpg",
+      "tags": [
+        "cichlid",
+        "community"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 8,
+      "popularity": 55,
       "imageCredit": {
         "photographer": "Klaus Rudloff (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anomalochromis_thomasi_A.jpg",
@@ -54,13 +87,26 @@
     {
       "id": "mediterranean-killifish",
       "name": "Mediterranean Killifish",
-      "tags": [
-        "semi-aggressive",
-        "brackish",
-        "beginner",
-        "carnivore"
-      ],
+      "scientific_name": "Aphanius fasciatus",
       "image": "/images/mediterranean-killifish.jpg",
+      "tags": [
+        "killifish",
+        "brackish-tolerant",
+        "advanced"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "semi-aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        7.5,
+        8.5
+      ],
+      "temp_range_c": [
+        24,
+        28
+      ],
+      "adult_size_cm": 6,
+      "popularity": 25,
       "imageCredit": {
         "photographer": "Natural History Museum of the University of Pisa",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aphanius_fasciatus_Natural_History_Museum_University_of_Pisa_male.jpg",
@@ -71,14 +117,26 @@
     {
       "id": "apistogramma-agassizii",
       "name": "Agassizs Dwarf Cichlid",
-      "tags": [
-        "territorial",
-        "pair-bonding",
-        "medium",
-        "carnivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Apistogramma agassizii",
       "image": "/images/apistogramma-agassizii.jpg",
+      "tags": [
+        "cichlid",
+        "planted",
+        "advanced"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "semi-aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        5.5,
+        6.8
+      ],
+      "temp_range_c": [
+        28,
+        30
+      ],
+      "adult_size_cm": 8,
+      "popularity": 60,
       "imageCredit": {
         "photographer": "harum.koh (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Agassiz%27s_dwarf_cichlid_(Apistogramma_agassizii)_(15875959140).jpg",
@@ -89,15 +147,25 @@
     {
       "id": "cockatoo-dwarf-cichlid",
       "name": "Cockatoo Dwarf Cichlid",
+      "scientific_name": "Apistogramma cacatuoides",
+      "image": "/images/apistogramma-cacatuoides.jpg",
       "tags": [
         "cichlid",
-        "territorial",
-        "bottom_dweller",
-        "parental-care",
-        "substrate-sifter",
-        "medium"
+        "planted"
       ],
-      "image": "/images/apistogramma-cacatuoides.jpg",
+      "min_tank_liters": 90,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 8,
+      "popularity": 68,
       "imageCredit": {
         "photographer": "Britzke (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apistogramma_cacatuoides_(11120015446).jpg",
@@ -108,15 +176,24 @@
     {
       "id": "aplocheilus-lineatus",
       "name": "Striped Panchax / Golden Wonder Killifish",
-      "tags": [
-        "surface_dweller",
-        "jumper",
-        "predator",
-        "semi-aggressive",
-        "territorial",
-        "beginner"
-      ],
+      "scientific_name": "Aplocheilus lineatus",
       "image": "/images/aplocheilus-lineatus.jpg",
+      "tags": [
+        "killifish"
+      ],
+      "min_tank_liters": 130,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 10,
+      "popularity": 45,
       "imageCredit": {
         "photographer": "sapienssolutions via Flickr",
         "sourceUrl": "https://flickr.com/photos/leonardodasilva/336896825/in/album-72157594369522490",
@@ -127,15 +204,26 @@
     {
       "id": "scleropages-formosus",
       "name": "Asian Arowana",
-      "tags": [
-        "jumper",
-        "surface_dweller",
-        "predator",
-        "territorial",
-        "mouthbrooder",
-        "centerpiece"
-      ],
+      "scientific_name": "Scleropages formosus",
       "image": "/images/scleropages-formosus.jpg",
+      "tags": [
+        "oddball",
+        "centerpiece",
+        "advanced"
+      ],
+      "min_tank_liters": 800,
+      "temperament": "aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 90,
+      "popularity": 70,
       "imageCredit": {
         "photographer": "Will Fisher",
         "sourceUrl": "https://flickr.com/photos/fireatwillrva/8224972658/in/photolist-dwP8Pq-Yvydmm-9DnWsF-DyE7uD-DyE2jD-DF1XHd-E88Sbr-DYTQfp-E896LH-DWHiEE-DaK8qD-E88Jhk-E88DGt-DWGZMq-E5NNZs-DaKr82-DyDZrk-E5Pa8o-DaKoer-DaH1Vi-DWH2dG-DaK3jB-E88Vsg-E5NgbC-DaKpqV-Dap8UW-DYTSDT-DyDCgp-DF1q8u-DaJA5x-DF2dYd-DYSPTe-DYTkrH-DaJr6k-DamSwq-DF2Jnd-DWHmZA-E5N92C-DapPKh-DyBxi2-DyDnwe-DWGcsG-E882Gc-DapWDN-DanRXh-DWHgWE-DWGxHb-DaFUMi-DWEH6U-E5KT4q/",
@@ -146,14 +234,26 @@
     {
       "id": "axolotl",
       "name": "Axolotl / Mexican Walking Fish / Mexican Salamander",
-      "tags": [
-        "peaceful",
-        "nocturnal",
-        "medium",
-        "carnivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Ambystoma mexicanum",
       "image": "/images/axolotl.jpg",
+      "tags": [
+        "amphibian",
+        "coldwater",
+        "centerpiece"
+      ],
+      "min_tank_liters": 450,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        16,
+        22
+      ],
+      "adult_size_cm": 28,
+      "popularity": 88,
       "imageCredit": {
         "photographer": "Pixabay",
         "sourceUrl": "https://pixabay.com/photos/axolotl-mexican-salamander-animal-6934866/",
@@ -164,28 +264,49 @@
     {
       "id": "betta-splendens-female",
       "name": "Siamese Fighting Fish (Female)",
+      "scientific_name": "Betta splendens",
+      "image": "/images/betta-splendens-female.jpg",
       "tags": [
-        "semi-aggressive",
-        "surface_dweller",
-        "territorial",
-        "labyrinth_fish",
-        "jumper",
+        "betta",
         "beginner"
       ],
-      "image": "/images/betta-splendens-female.jpg"
+      "min_tank_liters": 90,
+      "temperament": "semi-aggressive",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 80
     },
     {
       "id": "betta-splendens",
       "name": "Siamese Fighting Fish",
+      "scientific_name": "Betta splendens",
+      "image": "/images/betta-splendens.jpg",
       "tags": [
-        "jumper",
-        "surface_dweller",
-        "labyrinth_fish",
-        "territorial",
-        "semi-aggressive",
+        "betta",
+        "centerpiece",
         "beginner"
       ],
-      "image": "/images/betta-splendens.jpg",
+      "min_tank_liters": 90,
+      "temperament": "aggressive",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 7,
+      "popularity": 98,
       "imageCredit": {
         "photographer": "Faris Algosaibi",
         "sourceUrl": "https://flickr.com/photos/siraf72/49678841421/",
@@ -196,14 +317,28 @@
     {
       "id": "black-neon-tetra",
       "name": "Black Neon Tetra",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "active",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Hyphessobrycon herbertaxelrodi",
       "image": "/images/black-neon-tetra.jpg",
+      "tags": [
+        "tetra",
+        "nano",
+        "schooling",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 72,
       "imageCredit": {
         "photographer": "Atulbhats (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Black-Neon-Tetra.jpg",
@@ -214,27 +349,50 @@
     {
       "id": "black-skirt-tetra",
       "name": "Black Skirt Tetra",
+      "scientific_name": "Gymnocorymbus ternetzi",
+      "image": "/images/black-skirt-tetra.jpg",
       "tags": [
-        "shoaler",
-        "semi-aggressive",
-        "midwater",
-        "active",
-        "fin_nipper",
+        "tetra",
+        "schooling",
+        "community",
         "beginner"
       ],
-      "image": "/images/black-skirt-tetra.jpg"
+      "min_tank_liters": 117,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 74
     },
     {
       "id": "astyanax-jordani",
       "name": "Blind Cave Tetra",
-      "tags": [
-        "schooler",
-        "active",
-        "fin_nipper",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Astyanax mexicanus",
       "image": "/images/astyanax-jordani.jpg",
+      "tags": [
+        "tetra",
+        "schooling"
+      ],
+      "min_tank_liters": 169,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 9,
+      "popularity": 60,
       "imageCredit": {
         "photographer": "Andrew Gray",
         "sourceUrl": "https://flickr.com/photos/97534175@N00/2200366050/",
@@ -245,15 +403,25 @@
     {
       "id": "nothobranchius-rachovii",
       "name": "Bluefin Notho / Rainbow Killifish",
-      "tags": [
-        "bottom_dweller",
-        "predator",
-        "territorial",
-        "medium",
-        "carnivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Nothobranchius rachovii",
       "image": "/images/bluefin-notho.jpg",
+      "tags": [
+        "killifish",
+        "advanced"
+      ],
+      "min_tank_liters": 60,
+      "temperament": "semi-aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 55,
       "imageCredit": {
         "photographer": "JuanCarlosPalauDiaz on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/killi-nature-fish-6682011/",
@@ -264,15 +432,27 @@
     {
       "id": "boleophthalmus-boddarti",
       "name": "Boddart`s Goggle-eyed Goby",
-      "tags": [
-        "jumper",
-        "territorial",
-        "brackish",
-        "algae_eater",
-        "expert",
-        "omnivore"
-      ],
+      "scientific_name": "Boleophthalmus boddarti",
       "image": "/images/boleophthalmus-boddarti.jpg",
+      "tags": [
+        "goby",
+        "brackish-tolerant",
+        "oddball",
+        "advanced"
+      ],
+      "min_tank_liters": 300,
+      "temperament": "semi-aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        7.5,
+        8.5
+      ],
+      "temp_range_c": [
+        24,
+        28
+      ],
+      "adult_size_cm": 22,
+      "popularity": 30,
       "imageCredit": {
         "photographer": "Jin Kemoole",
         "sourceUrl": "https://flickr.com/photos/146401137@N06/39879153164/",
@@ -283,15 +463,26 @@
     {
       "id": "bolivian-ram",
       "name": "Bolivian Ram",
-      "tags": [
-        "peaceful",
-        "pair-bonding",
-        "substrate-sifter",
-        "cichlid",
-        "slow_eater",
-        "beginner"
-      ],
+      "scientific_name": "Mikrogeophagus altispinosus",
       "image": "/images/bolivian-ram.jpg",
+      "tags": [
+        "cichlid",
+        "community",
+        "planted"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 8,
+      "popularity": 78,
       "imageCredit": {
         "photographer": "Elma (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Male_altispinosa_dwarf_cichlid_(3229597033).jpg",
@@ -302,40 +493,76 @@
     {
       "id": "bristlenose-pleco",
       "name": "Bristlenose Pleco",
+      "scientific_name": "Ancistrus cirrhosus",
+      "image": "/images/bristlenose-pleco.jpg",
       "tags": [
-        "peaceful",
-        "nocturnal",
-        "territorial",
-        "algae_eater",
-        "bottom_dweller",
+        "catfish",
+        "bottom-dweller",
+        "community",
         "beginner"
       ],
-      "image": "/images/bristlenose-pleco.jpg"
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 12,
+      "popularity": 88
     },
     {
       "id": "bronze-cory",
       "name": "Bronze Corydoras",
+      "scientific_name": "Corydoras aeneus",
+      "image": "/images/bronze-cory.jpg",
       "tags": [
-        "shoaler",
-        "bottom_dweller",
-        "peaceful",
-        "robust",
-        "active",
-        "scaleless"
+        "catfish",
+        "bottom-dweller",
+        "community",
+        "beginner"
       ],
-      "image": "/images/bronze-cory.jpg"
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 85
     },
     {
       "id": "psalidodon-anisitsi",
       "name": "Buenos Aires Tetra",
-      "tags": [
-        "schooler",
-        "active",
-        "fin_nipper",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Psalidodon anisitsi",
       "image": "/images/psalidodon-anisitsi.jpg",
+      "tags": [
+        "tetra",
+        "schooling",
+        "beginner"
+      ],
+      "min_tank_liters": 117,
+      "temperament": "semi-aggressive",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 8,
+      "popularity": 55,
       "imageCredit": {
         "photographer": "Nick Sc.",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hyphessobrycon_anisitsi.jpg",
@@ -346,15 +573,26 @@
     {
       "id": "bumblebee-goby",
       "name": "Bumblebee Goby",
-      "tags": [
-        "bottom_dweller",
-        "territorial",
-        "shy",
-        "social",
-        "diurnal",
-        "colorful"
-      ],
+      "scientific_name": "Brachygobius doriae",
       "image": "/images/bumblebee-goby.jpg",
+      "tags": [
+        "goby",
+        "nano",
+        "brackish-tolerant"
+      ],
+      "min_tank_liters": 60,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        7.5,
+        8.5
+      ],
+      "temp_range_c": [
+        24,
+        28
+      ],
+      "adult_size_cm": 4,
+      "popularity": 45,
       "imageCredit": {
         "photographer": "theaquariumkeeper on Pixabay",
         "sourceUrl": "https://pixabay.com/de/photos/hummel-fisch-hummel-grundel-7793718/",
@@ -365,93 +603,180 @@
     {
       "id": "cardinal-tetra",
       "name": "Cardinal Tetra",
+      "scientific_name": "Paracheirodon axelrodi",
+      "image": "/images/cardinal-tetra.jpg",
       "tags": [
-        "shoaler",
-        "peaceful",
-        "midwater",
-        "shy",
-        "diurnal",
-        "colorful"
+        "tetra",
+        "schooling",
+        "community",
+        "planted"
       ],
-      "image": "/images/cardinal-tetra.jpg"
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 90
     },
     {
       "id": "black-bee-shrimp",
       "name": "Black Bee Shrimp",
+      "scientific_name": "Caridina cantonensis",
+      "image": "/images/black-bee-shrimp.jpg",
       "tags": [
-        "peaceful",
-        "algae_eater",
-        "social",
-        "active",
-        "nano_safe",
-        "expert"
+        "shrimp",
+        "nano",
+        "community",
+        "planted",
+        "advanced"
       ],
-      "image": "/images/black-bee-shrimp.jpg"
+      "min_tank_liters": 40,
+      "temperament": "peaceful",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 55
     },
     {
       "id": "blue-bolt-shrimp",
       "name": "Blue Bolt Shrimp / Taiwan Bee Shrimp",
+      "scientific_name": "Caridina cantonensis",
+      "image": "/images/blue-bolt-shrimp.jpg",
       "tags": [
-        "peaceful",
-        "algae_eater",
-        "social",
-        "active",
-        "nano_safe",
-        "expert"
+        "shrimp",
+        "nano",
+        "community",
+        "planted",
+        "advanced"
       ],
-      "image": "/images/blue-bolt-shrimp.jpg"
+      "min_tank_liters": 40,
+      "temperament": "peaceful",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 52
     },
     {
       "id": "celestial-pearl-danio",
       "name": "Celestial Pearl Danio",
+      "scientific_name": "Danio margaritatus",
+      "image": "/images/celestial-pearl-danio.jpeg",
       "tags": [
-        "peaceful",
-        "shoaler",
+        "danio",
         "nano",
-        "colorful",
-        "active",
-        "beginner"
+        "schooling",
+        "community",
+        "planted"
       ],
-      "image": "/images/celestial-pearl-danio.jpeg"
+      "min_tank_liters": 52,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 80
     },
     {
       "id": "cherry-barb",
       "name": "Cherry Barb",
+      "scientific_name": "Puntius titteya",
+      "image": "/images/cherry-barb.jpg",
       "tags": [
-        "shoaler",
-        "peaceful",
-        "midwater",
-        "active",
-        "shy",
+        "barb",
+        "schooling",
+        "community",
         "beginner"
       ],
-      "image": "/images/cherry-barb.jpg"
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 78
     },
     {
       "id": "chili-rasbora",
       "name": "Chili Rasbora",
+      "scientific_name": "Boraras brigittae",
+      "image": "/images/chili-rasbora.jpg",
       "tags": [
-        "peaceful",
-        "shoaler",
+        "rasbora",
         "nano",
-        "shy",
-        "colorful",
-        "active"
+        "schooling",
+        "community",
+        "planted"
       ],
-      "image": "/images/chili-rasbora.jpg"
+      "min_tank_liters": 52,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 2,
+      "popularity": 78
     },
     {
       "id": "clown-killifish",
       "name": "Clown Killifish / Banded Panchax",
-      "tags": [
-        "surface_dweller",
-        "jumper",
-        "peaceful",
-        "medium",
-        "carnivore",
-        "surface-dweller"
-      ],
+      "scientific_name": "Epiplatys annulatus",
       "image": "/images/clown-killifish.jpg",
+      "tags": [
+        "killifish",
+        "nano",
+        "community"
+      ],
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 58,
       "imageCredit": {
         "photographer": "Dornenwolf (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ringelhechtling_-Epiplatys_annulatus.jpg",
@@ -462,15 +787,26 @@
     {
       "id": "clown-loach",
       "name": "Clown Loach",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "active",
-        "scaleless",
-        "medium",
-        "omnivore"
-      ],
+      "scientific_name": "Chromobotia macracanthus",
       "image": "/images/clown-loach.jpg",
+      "tags": [
+        "loach",
+        "bottom-dweller",
+        "centerpiece"
+      ],
+      "min_tank_liters": 450,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 30,
+      "popularity": 85,
       "imageCredit": {
         "photographer": "Tylwyth Eldar (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aquarium_de_la_Porte_Dor%C3%A9e_-_Poisson_04.jpg",
@@ -481,27 +817,52 @@
     {
       "id": "clown-pleco",
       "name": "Clown Pleco",
+      "scientific_name": "Panaqolus maccus",
+      "image": "/images/clown-pleco.jpg",
       "tags": [
-        "peaceful",
-        "nocturnal",
-        "algae_eater",
-        "shy",
-        "bottom_dweller",
+        "catfish",
+        "bottom-dweller",
+        "community",
         "beginner"
       ],
-      "image": "/images/clown-pleco.jpg"
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 9,
+      "popularity": 72
     },
     {
       "id": "carassius-auratus-auratus",
       "name": "Common Goldfish",
-      "tags": [
-        "coldwater",
-        "schooler",
-        "active",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Carassius auratus",
       "image": "/images/carassius-auratus.jpg",
+      "tags": [
+        "goldfish",
+        "coldwater",
+        "centerpiece",
+        "beginner"
+      ],
+      "min_tank_liters": 300,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        7.0,
+        8.0
+      ],
+      "temp_range_c": [
+        15,
+        22
+      ],
+      "adult_size_cm": 25,
+      "popularity": 95,
       "imageCredit": {
         "photographer": "JuanCarlosPalauDiaz on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/goldfish-fish-tank-pet-aquarium-6953313/",
@@ -512,28 +873,51 @@
     {
       "id": "congo-tetra",
       "name": "Congo Tetra",
+      "scientific_name": "Phenacogrammus interruptus",
+      "image": "/images/congo-tetra.jpg",
       "tags": [
-        "shoaler",
-        "peaceful",
-        "midwater",
-        "active",
-        "diurnal",
-        "colorful"
+        "tetra",
+        "schooling",
+        "community"
       ],
-      "image": "/images/congo-tetra.jpg"
+      "min_tank_liters": 117,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 8,
+      "popularity": 74
     },
     {
       "id": "corydoras-paleatus",
       "name": "Peppered Corydoras",
-      "tags": [
-        "peaceful",
-        "shoaler",
-        "bottom_dweller",
-        "social",
-        "robust",
-        "scaleless"
-      ],
+      "scientific_name": "Corydoras paleatus",
       "image": "/images/corydoras-paleatus.jpg",
+      "tags": [
+        "catfish",
+        "bottom-dweller",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 80,
       "imageCredit": {
         "photographer": "Kuznetsov_Peter on Pixabay",
         "sourceUrl": "https://pixabay.com/de/photos/corydoras-paleatus-4996632/",
@@ -544,15 +928,27 @@
     {
       "id": "danio-rerio",
       "name": "Zebra Danio",
-      "tags": [
-        "peaceful",
-        "shoaler",
-        "active",
-        "surface_dweller",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Danio rerio",
       "image": "/images/danio-rerio.jpg",
+      "tags": [
+        "danio",
+        "schooling",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 86,
       "imageCredit": {
         "photographer": "Kuznetsov_Peter on Pixabay",
         "sourceUrl": "https://pixabay.com/de/photos/danio-rerio-zebrafisch-%d1%80%d0%b5%d1%80%d0%b8%d0%be-fische-4996610/",
@@ -563,41 +959,76 @@
     {
       "id": "diamond-tetra",
       "name": "Diamond Tetra",
+      "scientific_name": "Moenkhausia pittieri",
+      "image": "/images/diamond-tetra.jpg",
       "tags": [
-        "shoaler",
-        "peaceful",
-        "midwater",
-        "active",
-        "diurnal",
-        "colorful"
+        "tetra",
+        "schooling",
+        "community",
+        "beginner"
       ],
-      "image": "/images/diamond-tetra.jpg"
+      "min_tank_liters": 117,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 65
     },
     {
       "id": "discus",
       "name": "Discus",
+      "scientific_name": "Symphysodon aequifasciatus",
+      "image": "/images/discus.jpg",
       "tags": [
-        "peaceful",
-        "shoaler",
-        "midwater",
-        "shy",
-        "diurnal",
-        "colorful"
+        "cichlid",
+        "centerpiece",
+        "advanced"
       ],
-      "image": "/images/discus.jpg"
+      "min_tank_liters": 300,
+      "temperament": "peaceful",
+      "difficulty": "advanced",
+      "ph_range": [
+        5.5,
+        6.8
+      ],
+      "temp_range_c": [
+        28,
+        30
+      ],
+      "adult_size_cm": 20,
+      "popularity": 85
     },
     {
       "id": "eight-banded-lizard-loach",
       "name": "Eight Banded Lizard Loach",
-      "tags": [
-        "territorial",
-        "peaceful",
-        "active",
-        "scaleless",
-        "medium",
-        "carnivore"
-      ],
+      "scientific_name": "Serpenticobitis octozona",
       "image": "/images/eight-banded-lizard-loach.jpg",
+      "tags": [
+        "loach",
+        "bottom-dweller",
+        "community",
+        "advanced"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 30,
       "imageCredit": {
         "photographer": "Bogyman (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Serpenticobitis_cingulata.jpg",
@@ -608,15 +1039,24 @@
     {
       "id": "electric-yellow-lab",
       "name": "Electric Yellow Lab",
-      "tags": [
-        "semi-aggressive",
-        "cichlid",
-        "colorful",
-        "active",
-        "territorial",
-        "architect"
-      ],
+      "scientific_name": "Labidochromis caeruleus",
       "image": "/images/electric-yellow-lab.jpg",
+      "tags": [
+        "cichlid"
+      ],
+      "min_tank_liters": 130,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 10,
+      "popularity": 78,
       "imageCredit": {
         "photographer": "FilderAquaristik on Pixabay",
         "sourceUrl": "https://pixabay.com/de/photos/firefish-fisch-malawibuntbarsch-3928534/",
@@ -627,15 +1067,28 @@
     {
       "id": "ember-tetra",
       "name": "Ember Tetra",
-      "tags": [
-        "peaceful",
-        "shoaler",
-        "nano",
-        "colorful",
-        "active",
-        "beginner"
-      ],
+      "scientific_name": "Hyphessobrycon amandae",
       "image": "/images/ember-tetra.jpg",
+      "tags": [
+        "tetra",
+        "nano",
+        "schooling",
+        "community",
+        "planted"
+      ],
+      "min_tank_liters": 52,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 2,
+      "popularity": 82,
       "imageCredit": {
         "photographer": "Klaus Rudloff (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hyphessobrycon_amandae_A.jpg",
@@ -646,15 +1099,27 @@
     {
       "id": "emerald-dwarf-rasbora",
       "name": "Emerald Dwarf Rasbora / Green Neon Rasbora",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "active",
-        "nano",
-        "medium",
-        "omnivore"
-      ],
+      "scientific_name": "Danio erythromicron",
       "image": "/images/emerald-dwarf-rasbora.jpg",
+      "tags": [
+        "rasbora",
+        "nano",
+        "schooling",
+        "community"
+      ],
+      "min_tank_liters": 52,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 55,
       "imageCredit": {
         "photographer": "BottomDog (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prachtalgenfresser_(Panda_Garra,_Garra_flavatra)_by_Marcin_Adrian.jpg",
@@ -665,15 +1130,27 @@
     {
       "id": "nematobrycon-palmeri",
       "name": "Emperor Tetra",
+      "scientific_name": "Nematobrycon palmeri",
+      "image": "/images/emperor-tetra.jpg",
       "tags": [
-        "shoaler",
-        "peaceful",
-        "centerpiece",
-        "colorful",
-        "robust",
+        "tetra",
+        "schooling",
+        "community",
         "beginner"
       ],
-      "image": "/images/emperor-tetra.jpg",
+      "min_tank_liters": 117,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 70,
       "imageCredit": {
         "photographer": "Dennis Lamczak",
         "sourceUrl": "https://flickr.com/photos/159675085@N03/43706787731/",
@@ -684,41 +1161,74 @@
     {
       "id": "endler-guppy",
       "name": "Endler\\",
+      "scientific_name": "Poecilia wingei",
+      "image": "/images/endler-guppy.jpg",
       "tags": [
         "livebearer",
-        "surface_dweller",
-        "active",
-        "colorful",
         "nano",
-        "shoaler"
+        "community",
+        "beginner"
       ],
-      "image": "/images/endler-guppy.jpg"
+      "min_tank_liters": 40,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 76
     },
     {
       "id": "aulonocara-jacobfreibergi",
       "name": "Fairy Cichlid / Eureka Red Peacock",
+      "scientific_name": "Aulonocara jacobfreibergi",
+      "image": "/images/aulonocara-jacobfreibergi.jpg",
       "tags": [
-        "mouthbrooder",
-        "harem",
-        "territorial",
-        "medium",
-        "carnivore",
-        "bottom-dweller"
+        "cichlid",
+        "centerpiece"
       ],
-      "image": "/images/aulonocara-jacobfreibergi.jpg"
+      "min_tank_liters": 200,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 13,
+      "popularity": 58
     },
     {
       "id": "garra-flavatra",
       "name": "Panda Garra / Clown Garra",
-      "tags": [
-        "active",
-        "territorial",
-        "algae_eater",
-        "jumper",
-        "peaceful",
-        "medium"
-      ],
+      "scientific_name": "Garra flavatra",
       "image": "/images/garra-flavatra.jpg",
+      "tags": [
+        "loach",
+        "bottom-dweller",
+        "community"
+      ],
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 9,
+      "popularity": 48,
       "imageCredit": {
         "photographer": "Marcin Adrian (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prachtalgenfresser_(Panda_Garra,_Garra_flavatra)_by_Marcin_Adrian.jpg",
@@ -729,15 +1239,27 @@
     {
       "id": "glass-catfish",
       "name": "Glass Catfish / Phantom Catfish",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "midwater",
-        "scaleless",
-        "shy",
-        "medium"
-      ],
+      "scientific_name": "Kryptopterus vitreolus",
       "image": "/images/glass-catfish.jpg",
+      "tags": [
+        "catfish",
+        "bottom-dweller",
+        "community",
+        "schooling"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 8,
+      "popularity": 68,
       "imageCredit": {
         "photographer": "Martin Fisch (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Glaswelse.jpg",
@@ -748,15 +1270,28 @@
     {
       "id": "danio-tinwini",
       "name": "Gold Ring Danio",
-      "tags": [
-        "schooler",
-        "active",
-        "peaceful",
-        "nano",
-        "diurnal",
-        "robust"
-      ],
+      "scientific_name": "Danio tinwini",
       "image": "/images/danio-tinwini.jpg",
+      "tags": [
+        "danio",
+        "nano",
+        "schooling",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 52,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 50,
       "imageCredit": {
         "photographer": "Ruaraidh Gillies",
         "sourceUrl": "https://flickr.com/photos/ruaraidhg/33464139765/",
@@ -767,15 +1302,26 @@
     {
       "id": "gold-spot-pleco",
       "name": "Gold Spot Pleco",
-      "tags": [
-        "peaceful",
-        "nocturnal",
-        "algae_eater",
-        "territorial",
-        "bottom_dweller",
-        "expert"
-      ],
+      "scientific_name": "Pterygoplichthys joselimaianus",
       "image": "/images/gold-spot-pleco.jpg",
+      "tags": [
+        "catfish",
+        "bottom-dweller",
+        "centerpiece"
+      ],
+      "min_tank_liters": 450,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 30,
+      "popularity": 45,
       "imageCredit": {
         "photographer": "Klaus Rudloff (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pterygoplichthys_gibbiceps.jpg",
@@ -786,15 +1332,26 @@
     {
       "id": "golden-whiptail",
       "name": "Golden Whiptail / Gold Royal Farlowella",
-      "tags": [
-        "peaceful",
-        "algae_eater",
-        "bottom_dweller",
-        "medium",
-        "herbivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Sturisoma aureum",
       "image": "/images/golden-whiptail.jpg",
+      "tags": [
+        "catfish",
+        "bottom-dweller",
+        "advanced"
+      ],
+      "min_tank_liters": 300,
+      "temperament": "peaceful",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 20,
+      "popularity": 42,
       "imageCredit": {
         "photographer": "Richard Bartz (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sturisoma_aureum_Richard_Bartz.jpg",
@@ -805,40 +1362,78 @@
     {
       "id": "guppy",
       "name": "Guppy / Million Fish",
+      "scientific_name": "Poecilia reticulata",
+      "image": "/images/guppy.jpg",
       "tags": [
-        "peaceful",
         "livebearer",
-        "schooler",
-        "active",
-        "beginner",
-        "omnivore"
+        "community",
+        "beginner"
       ],
-      "image": "/images/guppy.jpg"
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 96
     },
     {
       "id": "harlequin-rasbora",
       "name": "Harlequin Rasbora",
+      "scientific_name": "Trigonostigma heteromorpha",
+      "image": "/images/harlequin-rasbora.jpg",
       "tags": [
-        "peaceful",
-        "shoaler",
-        "active",
-        "beginner",
-        "omnivore"
+        "rasbora",
+        "schooling",
+        "community",
+        "planted",
+        "beginner"
       ],
-      "image": "/images/harlequin-rasbora.jpg"
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 82
     },
     {
       "id": "glowlight-tetra",
       "name": "Glowlight Tetra",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "active",
-        "midwater",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Hemigrammus erythrozonus",
       "image": "/images/glowlight-tetra.jpg",
+      "tags": [
+        "tetra",
+        "nano",
+        "schooling",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 76,
       "imageCredit": {
         "photographer": "h080 (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hemigrammus_erythrozonus_h080.jpg",
@@ -849,40 +1444,77 @@
     {
       "id": "honey-gourami",
       "name": "Honey Gourami",
+      "scientific_name": "Trichogaster chuna",
+      "image": "/images/honey-gourami.jpg",
       "tags": [
-        "peaceful",
-        "shy",
-        "bubble_nester",
-        "labyrinth_fish",
-        "centerpiece",
+        "gourami",
+        "community",
+        "planted",
         "beginner"
       ],
-      "image": "/images/honey-gourami.jpg"
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 78
     },
     {
       "id": "hyphessobrycon-megalopterus",
       "name": "Black Phantom Tetra",
+      "scientific_name": "Hyphessobrycon megalopterus",
+      "image": "/images/hyphessobrycon-megalopterus.jpg",
       "tags": [
-        "schooler",
-        "peaceful",
-        "active",
-        "beginner",
-        "omnivore"
+        "tetra",
+        "schooling",
+        "community",
+        "beginner"
       ],
-      "image": "/images/hyphessobrycon-megalopterus.jpg"
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 68
     },
     {
       "id": "corydoras-julii",
       "name": "Julii Corydoras / Leopard Cory",
-      "tags": [
-        "schooler",
-        "bottom_dweller",
-        "peaceful",
-        "beginner",
-        "omnivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Corydoras julii",
       "image": "/images/corydoras-julii.jpg",
+      "tags": [
+        "catfish",
+        "bottom-dweller",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 72,
       "imageCredit": {
         "photographer": "Annette1209 on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/aquarium-underwater-catfish-fish-7899527/",
@@ -893,27 +1525,52 @@
     {
       "id": "kuhli-loach",
       "name": "Kuhli Loach",
+      "scientific_name": "Pangio kuhlii",
+      "image": "/images/kuhli-loach.jpg",
       "tags": [
-        "peaceful",
-        "shy",
-        "nocturnal",
-        "social",
-        "bottom_dweller",
-        "scaleless"
+        "loach",
+        "bottom-dweller",
+        "community",
+        "beginner"
       ],
-      "image": "/images/kuhli-loach.jpg"
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 10,
+      "popularity": 78
     },
     {
       "id": "lemon-tetra",
       "name": "Lemon Tetra",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "active",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Hyphessobrycon pulchripinnis",
       "image": "/images/lemon-tetra.jpg",
+      "tags": [
+        "tetra",
+        "schooling",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 70,
       "imageCredit": {
         "photographer": "SOK (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Citrontetra_Hyphessobrycon_pulchripinnis.jpg",
@@ -924,15 +1581,27 @@
     {
       "id": "marbled-hatchetfish",
       "name": "Marbled Hatchetfish",
-      "tags": [
-        "surface_dweller",
-        "jumper",
-        "schooler",
-        "shy",
-        "medium",
-        "carnivore"
-      ],
+      "scientific_name": "Carnegiella strigata",
       "image": "/images/marbled-hatchetfish.jpg",
+      "tags": [
+        "hatchetfish",
+        "nano",
+        "community",
+        "schooling"
+      ],
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 62,
       "imageCredit": {
         "photographer": "Sven Kullander (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carnegiella_strigata_lateral_view.jpg",
@@ -943,15 +1612,26 @@
     {
       "id": "lake-kutubu-rainbowfish",
       "name": "Lake Kutubu Rainbowfish",
-      "tags": [
-        "active",
-        "peaceful",
-        "schooler",
-        "jumper",
-        "diurnal",
-        "medium"
-      ],
+      "scientific_name": "Melanotaenia lacustris",
       "image": "/images/lake-kutubu-rainbowfish.jpg",
+      "tags": [
+        "rainbowfish",
+        "schooling",
+        "community"
+      ],
+      "min_tank_liters": 169,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 11,
+      "popularity": 58,
       "imageCredit": {
         "photographer": "Klaus Rudloff (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Melanotaenia_lacustris.jpg",
@@ -962,15 +1642,26 @@
     {
       "id": "boesemani-rainbowfish",
       "name": "Boeseman\\",
-      "tags": [
-        "schooler",
-        "peaceful",
-        "active",
-        "diurnal",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Melanotaenia boesemani",
       "image": "/images/boesemani-rainbowfish.jpg",
+      "tags": [
+        "rainbowfish",
+        "schooling",
+        "community"
+      ],
+      "min_tank_liters": 169,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 11,
+      "popularity": 74,
       "imageCredit": {
         "photographer": "Rufus46 (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boesemans_Regenbogenfisch_Melanotaenia_boesemani_Tierpark_Hellabrunn-1.jpg",
@@ -981,28 +1672,52 @@
     {
       "id": "molly",
       "name": "Molly",
+      "scientific_name": "Poecilia sphenops",
+      "image": "/images/molly.jpg",
       "tags": [
-        "peaceful",
-        "active",
         "livebearer",
-        "surface_dweller",
-        "beginner",
-        "omnivore"
+        "community",
+        "beginner"
       ],
-      "image": "/images/molly.jpg"
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 10,
+      "popularity": 84
     },
     {
       "id": "cherry-shrimp",
       "name": "Cherry Shrimp / Red Cherry Shrimp",
+      "scientific_name": "Neocaridina davidi",
+      "image": "/images/cherry-shrimp.jpg",
       "tags": [
-        "peaceful",
-        "algae_eater",
-        "social",
-        "active",
-        "nano_safe",
+        "shrimp",
+        "nano",
+        "community",
+        "planted",
         "beginner"
       ],
-      "image": "/images/cherry-shrimp.jpg",
+      "min_tank_liters": 40,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 90,
       "imageCredit": {
         "photographer": "Holger Krisp via Wikimedia Commons",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Neocaridina_davidi_var._red_2012.jpg",
@@ -1013,15 +1728,27 @@
     {
       "id": "neon-blue-goby",
       "name": "Neon Blue Goby",
-      "tags": [
-        "territorial",
-        "bottom_dweller",
-        "jumper",
-        "medium",
-        "herbivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Stiphodon atropurpureus",
       "image": "/images/neon-blue-goby.jpg",
+      "tags": [
+        "goby",
+        "nano",
+        "community",
+        "advanced"
+      ],
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 40,
       "imageCredit": {
         "photographer": "Natural History Museum of the University of Pisa",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Stiphodon_atropurpureus_Natural_History_Museum_University_of_Pisa.jpg",
@@ -1032,27 +1759,51 @@
     {
       "id": "neon-tetra",
       "name": "Neon Tetra",
+      "scientific_name": "Paracheirodon innesi",
+      "image": "/images/neon-tetra.jpg",
       "tags": [
-        "shoaler",
-        "peaceful",
-        "shy",
-        "colorful",
-        "active",
-        "beginner"
+        "tetra",
+        "nano",
+        "schooling",
+        "community",
+        "planted"
       ],
-      "image": "/images/neon-tetra.jpg"
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 95
     },
     {
       "id": "oscar",
       "name": "Oscar",
-      "tags": [
-        "intelligent",
-        "predator",
-        "territorial",
-        "medium",
-        "carnivore"
-      ],
+      "scientific_name": "Astronotus ocellatus",
       "image": "/images/oscar.jpg",
+      "tags": [
+        "cichlid",
+        "centerpiece"
+      ],
+      "min_tank_liters": 450,
+      "temperament": "aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 35,
+      "popularity": 82,
       "imageCredit": {
         "photographer": "focusdanifocus on Pixabay",
         "sourceUrl": "https://pixabay.com/de/photos/fische-oscar-fisch-oscar-tiger-7769543/",
@@ -1063,53 +1814,101 @@
     {
       "id": "otocinclus-macrospilus",
       "name": "Marbled Otocinclus",
+      "scientific_name": "Otocinclus macrospilus",
+      "image": "/images/otocinclus-macrospilus.jpg",
       "tags": [
-        "algae_eater",
-        "peaceful",
-        "shy",
-        "shoaler",
-        "diurnal",
-        "bottom_dweller"
+        "catfish",
+        "nano",
+        "bottom-dweller",
+        "community"
       ],
-      "image": "/images/otocinclus-macrospilus.jpg"
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 62
     },
     {
       "id": "otocinclus",
       "name": "Otocinclus Catfish",
+      "scientific_name": "Otocinclus vittatus",
+      "image": "/images/otocinclus-vittatus.jpg",
       "tags": [
-        "peaceful",
-        "shy",
-        "social",
-        "algae_eater",
-        "bottom_dweller",
-        "medium"
+        "catfish",
+        "nano",
+        "bottom-dweller",
+        "community"
       ],
-      "image": "/images/otocinclus-vittatus.jpg"
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 70
     },
     {
       "id": "panda-cory",
       "name": "Panda Corydoras",
+      "scientific_name": "Corydoras panda",
+      "image": "/images/panda-cory.jpg",
       "tags": [
-        "shoaler",
-        "bottom_dweller",
-        "peaceful",
-        "diurnal",
-        "shy",
-        "scaleless"
+        "catfish",
+        "bottom-dweller",
+        "community",
+        "beginner"
       ],
-      "image": "/images/panda-cory.jpg"
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 84
     },
     {
       "id": "pao-palembangensis",
       "name": "Humpback Puffer",
-      "tags": [
-        "predator",
-        "scaleless",
-        "expert",
-        "carnivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Pao palembangensis",
       "image": "/images/pao-palembangensis.jpg",
+      "tags": [
+        "puffer",
+        "centerpiece",
+        "advanced"
+      ],
+      "min_tank_liters": 200,
+      "temperament": "aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 15,
+      "popularity": 35,
       "imageCredit": {
         "photographer": "Wendy_Geers on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/tetraodon-pufferfish-humpback-7574263/",
@@ -1120,15 +1919,25 @@
     {
       "id": "dwarf-pufferfish",
       "name": "Dwarf Pufferfish / Pea Puffer / Malabar Puffer",
-      "tags": [
-        "predator",
-        "intelligent",
-        "scaleless",
-        "territorial",
-        "medium",
-        "carnivore"
-      ],
+      "scientific_name": "Carinotetraodon travancoricus",
       "image": "/images/dwarf-pufferfish.jpg",
+      "tags": [
+        "puffer",
+        "nano"
+      ],
+      "min_tank_liters": 40,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 74,
       "imageCredit": {
         "photographer": "Parazelsus (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carinotetraodon_travancoricus_by_Parazelsus_(cropped).jpg",
@@ -1139,15 +1948,25 @@
     {
       "id": "geophagus-brasiliensis",
       "name": "Pearl Cichlid",
+      "scientific_name": "Geophagus brasiliensis",
+      "image": "/images/pearl-cichlid.jpg",
       "tags": [
         "cichlid",
-        "substrate-sifter",
-        "territorial",
-        "parental-care",
-        "intelligent",
-        "medium"
+        "centerpiece"
       ],
-      "image": "/images/pearl-cichlid.jpg",
+      "min_tank_liters": 300,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 25,
+      "popularity": 50,
       "imageCredit": {
         "photographer": "cuatrok77",
         "sourceUrl": "https://flickr.com/photos/cuatrok77/16300978147/in/album-72157629238054991",
@@ -1158,27 +1977,51 @@
     {
       "id": "pelvicachromis-pulcher",
       "name": "Kribensis",
+      "scientific_name": "Pelvicachromis pulcher",
+      "image": "/images/pelvicachromis-pulcher.jpg",
       "tags": [
-        "pair-bonding",
-        "territorial",
-        "semi-aggressive",
-        "parental-care",
-        "medium",
-        "omnivore"
+        "cichlid",
+        "planted",
+        "beginner"
       ],
-      "image": "/images/pelvicachromis-pulcher.jpg"
+      "min_tank_liters": 130,
+      "temperament": "semi-aggressive",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 9,
+      "popularity": 74
     },
     {
       "id": "odessa-barb",
       "name": "Odessa Barb",
-      "tags": [
-        "schooler",
-        "active",
-        "peaceful",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Pethia padamya",
       "image": "/images/odessa-barb.jpg",
+      "tags": [
+        "barb",
+        "schooling",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 117,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 60,
       "imageCredit": {
         "photographer": "Tomas Čekanavičius",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Barbus_Puntius_ticto.JPG",
@@ -1189,27 +2032,49 @@
     {
       "id": "platy",
       "name": "Platy",
+      "scientific_name": "Xiphophorus maculatus",
+      "image": "/images/platy.jpeg",
       "tags": [
-        "peaceful",
-        "active",
-        "colorful",
         "livebearer",
-        "beginner",
-        "omnivore"
+        "community",
+        "beginner"
       ],
-      "image": "/images/platy.jpeg"
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 88
     },
     {
       "id": "pterophyllum-scalare",
       "name": "Freshwater Angelfish",
-      "tags": [
-        "intelligent",
-        "territorial",
-        "schooler",
-        "medium",
-        "omnivore"
-      ],
+      "scientific_name": "Pterophyllum scalare",
       "image": "/images/pterophyllum-scalare.jpg",
+      "tags": [
+        "cichlid",
+        "centerpiece"
+      ],
+      "min_tank_liters": 200,
+      "temperament": "semi-aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 15,
+      "popularity": 90,
       "imageCredit": {
         "photographer": "Pixabay",
         "sourceUrl": "https://pixabay.com/photos/angel-fish-tropical-fish-aquarium-1011451/",
@@ -1220,15 +2085,26 @@
     {
       "id": "puntigrus-tetrazona",
       "name": "Tiger Barb",
-      "tags": [
-        "schooler",
-        "semi-aggressive",
-        "fin_nipper",
-        "active",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Puntigrus tetrazona",
       "image": "/images/puntigrus-tetrazona.jpg",
+      "tags": [
+        "barb",
+        "schooling",
+        "beginner"
+      ],
+      "min_tank_liters": 117,
+      "temperament": "semi-aggressive",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 7,
+      "popularity": 80,
       "imageCredit": {
         "photographer": "Anandarajkumar",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_Male_Tiger_barb.png",
@@ -1239,15 +2115,28 @@
     {
       "id": "pygmy-cory",
       "name": "Pygmy Corydoras",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "bottom_dweller",
-        "midwater",
-        "nano",
-        "scaleless"
-      ],
+      "scientific_name": "Corydoras pygmaeus",
       "image": "/images/pygmy-cory.jpg",
+      "tags": [
+        "catfish",
+        "nano",
+        "bottom-dweller",
+        "community",
+        "schooling"
+      ],
+      "min_tank_liters": 40,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 72,
       "imageCredit": {
         "photographer": "Carnat Joel",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corydoras_pygmaeus_carnat_joel_5.jpg",
@@ -1258,15 +2147,26 @@
     {
       "id": "epalzeorhynchos-frenatum",
       "name": "Rainbow Shark",
-      "tags": [
-        "territorial",
-        "algae_eater",
-        "active",
-        "semi-aggressive",
-        "bottom_dweller",
-        "medium"
-      ],
+      "scientific_name": "Epalzeorhynchos frenatum",
       "image": "/images/rainbow-shark.jpg",
+      "tags": [
+        "oddball",
+        "centerpiece",
+        "bottom-dweller"
+      ],
+      "min_tank_liters": 200,
+      "temperament": "aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 15,
+      "popularity": 72,
       "imageCredit": {
         "photographer": "verawald on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/rainbow-shark-fish-aquarium-6291227/",
@@ -1277,28 +2177,51 @@
     {
       "id": "ram-cichlid",
       "name": "German Blue Ram",
+      "scientific_name": "Mikrogeophagus ramirezi",
+      "image": "/images/ram-cichlid.jpg",
       "tags": [
-        "peaceful",
-        "colorful",
-        "bottom_dweller",
-        "territorial",
-        "pair-bonding",
-        "intelligent"
+        "cichlid",
+        "community",
+        "planted",
+        "advanced"
       ],
-      "image": "/images/ram-cichlid.jpg"
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "advanced",
+      "ph_range": [
+        5.5,
+        6.8
+      ],
+      "temp_range_c": [
+        28,
+        30
+      ],
+      "adult_size_cm": 6,
+      "popularity": 84
     },
     {
       "id": "procambarus-clarkii",
       "name": "Red Swamp Crayfish",
-      "tags": [
-        "bottom_dweller",
-        "nocturnal",
-        "territorial",
-        "beginner",
-        "omnivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Procambarus clarkii",
       "image": "/images/procambarus-clarkii.jpg",
+      "tags": [
+        "crayfish",
+        "oddball",
+        "beginner"
+      ],
+      "min_tank_liters": 130,
+      "temperament": "aggressive",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 12,
+      "popularity": 45,
       "imageCredit": {
         "photographer": "JuanCarlosPalauDiaz on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/crab-aquarium-nature-aquatic-6273654/",
@@ -1309,15 +2232,26 @@
     {
       "id": "red-tailed-silverside",
       "name": "Red Tailed Silverside",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "active",
-        "jumper",
-        "medium",
-        "carnivore"
-      ],
+      "scientific_name": "Bedotia geayi",
       "image": "/images/red-tailed-silverside.jpg",
+      "tags": [
+        "rainbowfish",
+        "schooling",
+        "community"
+      ],
+      "min_tank_liters": 169,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 9,
+      "popularity": 40,
       "imageCredit": {
         "photographer": "Natural History Museum University of Pisa",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bedotia_geayi_Natural_History_Museum_University_of_Pisa_(cropped).jpg",
@@ -1328,15 +2262,26 @@
     {
       "id": "mesoheros-festae",
       "name": "Red Terror Cichlid",
+      "scientific_name": "Mesoheros festae",
+      "image": "/images/mesoheros-festae.jpg",
       "tags": [
         "cichlid",
-        "predator",
-        "territorial",
-        "intelligent",
-        "parental-care",
-        "expert"
+        "centerpiece",
+        "advanced"
       ],
-      "image": "/images/mesoheros-festae.jpg",
+      "min_tank_liters": 450,
+      "temperament": "aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 30,
+      "popularity": 45,
       "imageCredit": {
         "photographer": "Vonedaddy",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Red_Terror_Festae_Chiclid.jpg",
@@ -1347,12 +2292,24 @@
     {
       "id": "red-zebra-cichlid",
       "name": "Red Zebra Cichlid",
-      "tags": [
-        "territorial",
-        "medium",
-        "herbivore"
-      ],
+      "scientific_name": "Maylandia estherae",
       "image": "/images/red-zebra-cichlid.jpg",
+      "tags": [
+        "cichlid"
+      ],
+      "min_tank_liters": 130,
+      "temperament": "aggressive",
+      "difficulty": "intermediate",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 12,
+      "popularity": 60,
       "imageCredit": {
         "photographer": "Grzegorz Polak (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pyszczak.jpg",
@@ -1363,15 +2320,25 @@
     {
       "id": "myleus-rubripinnis",
       "name": "Redhook Myleus",
-      "tags": [
-        "schooler",
-        "active",
-        "fin_nipper",
-        "herbivore",
-        "medium",
-        "herbivore"
-      ],
+      "scientific_name": "Myloplus rubripinnis",
       "image": "/images/redhook-myleus.jpg",
+      "tags": [
+        "oddball",
+        "centerpiece"
+      ],
+      "min_tank_liters": 450,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 30,
+      "popularity": 42,
       "imageCredit": {
         "photographer": "zoosnow on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/fish-metynnis-piranha-aquarium-3894130/",
@@ -1382,15 +2349,27 @@
     {
       "id": "rosy-barb",
       "name": "Rosy Barb",
+      "scientific_name": "Pethia conchonius",
+      "image": "/images/rosy-barb.jpg",
       "tags": [
-        "active",
-        "schooler",
-        "semi-aggressive",
-        "fin_nipper",
-        "colorful",
+        "barb",
+        "schooling",
+        "community",
         "beginner"
       ],
-      "image": "/images/rosy-barb.jpg",
+      "min_tank_liters": 169,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 10,
+      "popularity": 68,
       "imageCredit": {
         "photographer": "Andreas Hartl on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/rosy-barb-fish-aquarium-freshwater-5405584/",
@@ -1401,14 +2380,28 @@
     {
       "id": "rosy-tetra",
       "name": "Rosy Tetra / Roberts Tetra",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "active",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Hyphessobrycon rosaceus",
       "image": "/images/rosy-tetra.jpg",
+      "tags": [
+        "tetra",
+        "nano",
+        "schooling",
+        "community",
+        "beginner"
+      ],
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 62,
       "imageCredit": {
         "photographer": "Holger Krisp (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Schmucksalmler_Hyphessobrycon_bentosi.jpg",
@@ -1419,15 +2412,26 @@
     {
       "id": "rubber-lip-pleco",
       "name": "Rubber Lip Pleco / Rubbernose Pleco / Bulldog Pleco",
-      "tags": [
-        "peaceful",
-        "algae_eater",
-        "bottom_dweller",
-        "territorial",
-        "beginner",
-        "herbivore"
-      ],
+      "scientific_name": "Chaetostoma milesi",
       "image": "/images/rubber-lip-pleco.jpg",
+      "tags": [
+        "catfish",
+        "bottom-dweller",
+        "community"
+      ],
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 12,
+      "popularity": 55,
       "imageCredit": {
         "photographer": "Chaetostoma milesi",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chaetostoma_milesi_(16495455116).jpg",
@@ -1438,15 +2442,26 @@
     {
       "id": "rudd",
       "name": "Rudd",
+      "scientific_name": "Scardinius erythrophthalmus",
+      "image": "/images/rudd.jpg",
       "tags": [
-        "peaceful",
-        "shoaler",
-        "midwater",
-        "active",
-        "diurnal",
+        "minnow",
+        "coldwater",
         "beginner"
       ],
-      "image": "/images/rudd.jpg",
+      "min_tank_liters": 300,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        7.0,
+        8.0
+      ],
+      "temp_range_c": [
+        15,
+        22
+      ],
+      "adult_size_cm": 25,
+      "popularity": 30,
       "imageCredit": {
         "photographer": "Klaus Rudloff (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Scardinius_erythrophthalmus_(Linnaeus,_1758)_c_2.JPG",
@@ -1457,28 +2472,51 @@
     {
       "id": "rummy-nose-tetra",
       "name": "Rummy Nose Tetra",
+      "scientific_name": "Hemigrammus rhodostomus",
+      "image": "/images/rummy-nose-tetra.jpg",
       "tags": [
-        "schooler",
-        "peaceful",
-        "shy",
-        "active",
-        "midwater",
-        "beginner"
+        "tetra",
+        "schooling",
+        "community",
+        "planted"
       ],
-      "image": "/images/rummy-nose-tetra.jpg"
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 5,
+      "popularity": 82
     },
     {
       "id": "hypoptopoma-inexspectatum",
       "name": "Sailfin Catfish / Hypoptopoma",
-      "tags": [
-        "peaceful",
-        "bottom_dweller",
-        "shy",
-        "medium",
-        "herbivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Hypoptopoma inexspectatum",
       "image": "/images/sailfin-catfish.jpg",
+      "tags": [
+        "catfish",
+        "bottom-dweller",
+        "community"
+      ],
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 8,
+      "popularity": 40,
       "imageCredit": {
         "photographer": "Fajoe (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hypoptopoma_inexspectatum.jpg",
@@ -1489,28 +2527,51 @@
     {
       "id": "sailfin-pleco",
       "name": "Sailfin Pleco",
+      "scientific_name": "Pterygoplichthys gibbiceps",
+      "image": "/images/sailfin-pleco.jpg",
       "tags": [
-        "semi-aggressive",
-        "nocturnal",
-        "territorial",
-        "algae_eater",
-        "bottom_dweller",
-        "expert"
+        "catfish",
+        "bottom-dweller",
+        "centerpiece"
       ],
-      "image": "/images/sailfin-pleco.jpg"
+      "min_tank_liters": 800,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 40,
+      "popularity": 55
     },
     {
       "id": "serpae-tetra",
       "name": "Serpae Tetra / Red Minor Tetra / Jewel Tetra",
-      "tags": [
-        "schooler",
-        "semi-aggressive",
-        "fin_nipper",
-        "active",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Hyphessobrycon eques",
       "image": "/images/serpae-tetra.jpg",
+      "tags": [
+        "tetra",
+        "nano",
+        "schooling",
+        "beginner"
+      ],
+      "min_tank_liters": 78,
+      "temperament": "semi-aggressive",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 70,
       "imageCredit": {
         "photographer": "Faucon (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Serpae_tetra.JPG",
@@ -1521,41 +2582,74 @@
     {
       "id": "sewellia-lineolata",
       "name": "Reticulated Hillstream Loach",
+      "scientific_name": "Sewellia lineolata",
+      "image": "/images/sewellia-lineolata.jpg",
       "tags": [
-        "bottom_dweller",
-        "diurnal",
-        "social",
-        "medium",
-        "herbivore",
-        "bottom-dweller"
+        "loach",
+        "bottom-dweller",
+        "community"
       ],
-      "image": "/images/sewellia-lineolata.jpg"
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 6,
+      "popularity": 62
     },
     {
       "id": "siamese-algae-eater",
       "name": "Siamese Algae Eater",
+      "scientific_name": "Crossocheilus oblongus",
+      "image": "/images/siamese-algae-eater.jpg",
       "tags": [
-        "algae_eater",
-        "active",
-        "peaceful",
-        "bottom_dweller",
-        "hillstream",
-        "medium"
+        "minnow",
+        "bottom-dweller"
       ],
-      "image": "/images/siamese-algae-eater.jpg"
+      "min_tank_liters": 200,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 15,
+      "popularity": 66
     },
     {
       "id": "aspidoras-pauciradiatus",
       "name": "Sixray Corydoras",
-      "tags": [
-        "schooler",
-        "bottom_dweller",
-        "peaceful",
-        "beginner",
-        "omnivore",
-        "bottom-dweller"
-      ],
+      "scientific_name": "Aspidoras pauciradiatus",
       "image": "/images/aspidoras-pauciradiatus.jpg",
+      "tags": [
+        "catfish",
+        "nano",
+        "bottom-dweller",
+        "community"
+      ],
+      "min_tank_liters": 40,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 3,
+      "popularity": 45,
       "imageCredit": {
         "photographer": "Alice_Alphabet on Pixabay",
         "sourceUrl": "https://pixabay.com/photos/dwarf-corydoras-aquarium-fish-143885/",
@@ -1566,15 +2660,27 @@
     {
       "id": "sparkling-gourami",
       "name": "Sparkling Gourami",
-      "tags": [
-        "peaceful",
-        "territorial",
-        "bubble_nester",
-        "nano",
-        "labyrinth_fish",
-        "beginner"
-      ],
+      "scientific_name": "Trichopsis pumila",
       "image": "/images/sparkling-gourami.jpg",
+      "tags": [
+        "gourami",
+        "nano",
+        "community",
+        "planted"
+      ],
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 66,
       "imageCredit": {
         "photographer": "Dezinformator15",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sparkling_gourami.jpg",
@@ -1585,15 +2691,26 @@
     {
       "id": "splash-tetra",
       "name": "Splash Tetra / Spraying Tetra",
-      "tags": [
-        "peaceful",
-        "jumper",
-        "surface_dweller",
-        "shy",
-        "beginner",
-        "carnivore"
-      ],
+      "scientific_name": "Copella arnoldi",
       "image": "/images/splash-tetra.jpg",
+      "tags": [
+        "tetra",
+        "schooling",
+        "community"
+      ],
+      "min_tank_liters": 117,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 8,
+      "popularity": 45,
       "imageCredit": {
         "photographer": "Zikamoi (via Wikimedia Commons)",
         "sourceUrl": "https://en.wikipedia.org/wiki/File:Copella_arnoldi.jpg",
@@ -1604,15 +2721,27 @@
     {
       "id": "spotted-blue-eye",
       "name": "Spotted Blue Eye",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "jumper",
-        "predator",
-        "beginner",
-        "carnivore"
-      ],
+      "scientific_name": "Pseudomugil gertrudae",
       "image": "/images/spotted-blue-eye.jpg",
+      "tags": [
+        "rainbowfish",
+        "nano",
+        "schooling",
+        "community"
+      ],
+      "min_tank_liters": 78,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 4,
+      "popularity": 52,
       "imageCredit": {
         "photographer": "Atulbhats (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Getrudae_Rainbowfish.jpg",
@@ -1623,14 +2752,27 @@
     {
       "id": "spotted-green-puffer",
       "name": "Spotted Green Puffer",
-      "tags": [
-        "predator",
-        "territorial",
-        "intelligent",
-        "expert",
-        "carnivore"
-      ],
+      "scientific_name": "Dichotomyctere nigroviridis",
       "image": "/images/spotted-green-puffer.jpg",
+      "tags": [
+        "puffer",
+        "brackish-tolerant",
+        "centerpiece",
+        "advanced"
+      ],
+      "min_tank_liters": 200,
+      "temperament": "aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        7.5,
+        8.5
+      ],
+      "temp_range_c": [
+        24,
+        28
+      ],
+      "adult_size_cm": 15,
+      "popularity": 55,
       "imageCredit": {
         "photographer": "Natural History Museum University of Pisa",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dichotomyctere_nigroviridis_Natural_History_Museum_University_of_Pisa_(cropped).jpg",
@@ -1641,15 +2783,28 @@
     {
       "id": "sterbai-cory",
       "name": "Sterbai Corydoras",
+      "scientific_name": "Corydoras sterbai",
+      "image": "/images/corydoras-sterbai.jpg",
       "tags": [
-        "shoaler",
-        "bottom_dweller",
-        "peaceful",
-        "robust",
-        "scaleless",
+        "catfish",
+        "bottom-dweller",
+        "community",
+        "planted",
         "beginner"
       ],
-      "image": "/images/corydoras-sterbai.jpg",
+      "min_tank_liters": 90,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 7,
+      "popularity": 80,
       "imageCredit": {
         "photographer": "Matthew Mannell (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corydoras_Sterbai.jpg",
@@ -1660,40 +2815,75 @@
     {
       "id": "swordtail",
       "name": "Swordtail",
+      "scientific_name": "Xiphophorus hellerii",
+      "image": "/images/swordtail.jpg",
       "tags": [
-        "active",
-        "jumper",
         "livebearer",
-        "semi-aggressive",
-        "beginner",
-        "omnivore"
+        "community",
+        "beginner"
       ],
-      "image": "/images/swordtail.jpg"
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        7.2,
+        8.4
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 12,
+      "popularity": 82
     },
     {
       "id": "tetraodon-mbu",
       "name": "Giant Pufferfish",
+      "scientific_name": "Tetraodon mbu",
+      "image": "/images/tetraodon-mbu.jpg",
       "tags": [
-        "intelligent",
-        "predator",
-        "territorial",
-        "expert",
-        "carnivore"
+        "puffer",
+        "centerpiece",
+        "advanced"
       ],
-      "image": "/images/tetraodon-mbu.jpg"
+      "min_tank_liters": 800,
+      "temperament": "aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 60,
+      "popularity": 48
     },
     {
       "id": "toxotes-chatareus",
       "name": "Spotted Archerfish",
-      "tags": [
-        "jumper",
-        "surface_dweller",
-        "predator",
-        "schooler",
-        "medium",
-        "carnivore"
-      ],
+      "scientific_name": "Toxotes chatareus",
       "image": "/images/toxotes-chatareus.jpg",
+      "tags": [
+        "archerfish",
+        "brackish-tolerant",
+        "centerpiece",
+        "advanced"
+      ],
+      "min_tank_liters": 450,
+      "temperament": "semi-aggressive",
+      "difficulty": "advanced",
+      "ph_range": [
+        7.5,
+        8.5
+      ],
+      "temp_range_c": [
+        24,
+        28
+      ],
+      "adult_size_cm": 30,
+      "popularity": 45,
       "imageCredit": {
         "photographer": "David Clode on Pixabay",
         "sourceUrl": "https://unsplash.com/de/fotos/nahaufnahme-von-schwarzen-und-grauen-fischen-QamvPju80N4",
@@ -1704,15 +2894,27 @@
     {
       "id": "pearl-gourami",
       "name": "Pearl Gourami / Lace Gourami / Mosaic Gourami",
+      "scientific_name": "Trichopodus leerii",
+      "image": "/images/pearl-gourami.jpg",
       "tags": [
-        "peaceful",
-        "shy",
-        "bubble_nester",
-        "labyrinth_fish",
-        "surface_dweller",
+        "gourami",
+        "community",
+        "planted",
         "beginner"
       ],
-      "image": "/images/pearl-gourami.jpg",
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 12,
+      "popularity": 80,
       "imageCredit": {
         "photographer": "Zoofoto! (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:20130624_100102_Haus_des_Meeres.jpg",
@@ -1723,40 +2925,76 @@
     {
       "id": "three-spot-gourami",
       "name": "Three Spot Gourami / Blue Gourami",
+      "scientific_name": "Trichopodus trichopterus",
+      "image": "/images/three-spot-gourami.jpg",
       "tags": [
-        "semi-aggressive",
-        "territorial",
-        "labyrinth_fish",
-        "beginner",
-        "omnivore"
+        "gourami",
+        "centerpiece",
+        "beginner"
       ],
-      "image": "/images/three-spot-gourami.jpg"
+      "min_tank_liters": 200,
+      "temperament": "semi-aggressive",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 15,
+      "popularity": 68
     },
     {
       "id": "white-cloud-minnow",
       "name": "White Cloud Mountain Minnow",
+      "scientific_name": "Tanichthys albonubes",
+      "image": "/images/white-cloud-mountain-minnow.jpg",
       "tags": [
-        "schooler",
-        "peaceful",
-        "active",
+        "minnow",
+        "nano",
         "coldwater",
-        "jumper",
-        "beginner"
+        "community",
+        "schooling"
       ],
-      "image": "/images/white-cloud-mountain-minnow.jpg"
+      "min_tank_liters": 60,
+      "temperament": "peaceful",
+      "difficulty": "beginner",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        16,
+        22
+      ],
+      "adult_size_cm": 4,
+      "popularity": 74
     },
     {
       "id": "zebra-loach",
       "name": "Zebra Loach / Striped Loach",
-      "tags": [
-        "shoaler",
-        "peaceful",
-        "active",
-        "scaleless",
-        "beginner",
-        "omnivore"
-      ],
+      "scientific_name": "Botia striata",
       "image": "/images/zebra-loach.jpg",
+      "tags": [
+        "loach",
+        "bottom-dweller",
+        "community"
+      ],
+      "min_tank_liters": 130,
+      "temperament": "peaceful",
+      "difficulty": "intermediate",
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "temp_range_c": [
+        23,
+        27
+      ],
+      "adult_size_cm": 9,
+      "popularity": 64,
       "imageCredit": {
         "photographer": "Lerdsuwa (via Wikimedia Commons)",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Agassiz%27s_dwarf_cichlid_(Apistogramma_agassizii)_(15875959140).jpg",

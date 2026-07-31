@@ -4,93 +4,124 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Fish Elo is a "which fish do you prefer" voting site for freshwater aquarium species.
-Users are shown two random fish and pick one; each vote updates both fish's Elo ratings,
-which drive a live leaderboard. A FastAPI backend serves both the JSON API and the static
-frontend from a single process; it deploys to Vercel as one Python serverless function.
+Aqua Elo is a "which fish do you prefer" voting site for freshwater aquarium species.
+Visitors are shown two fish and pick one; each vote updates both fish's Elo ratings, which
+drive a live leaderboard, a stats ticker, and a separate **Daily Battle** sandbox tournament.
+A FastAPI backend serves both the JSON API and the static frontend from a single process,
+deployed to Vercel as one Python serverless function (Fluid Compute) with Upstash Redis.
+
+**The single most important non-feature requirement is cost:** a vote and a page load must
+each cost as few Upstash commands as possible. Treat the per-action command budget below as
+a contract, not a suggestion — if a change would raise any hot-path command count, justify it.
 
 ## Commands
 
-Run the app locally (from repo root):
-
 ```bash
-pip install -r backend/requirements.txt
-uvicorn backend.app.main:app --reload
+pip install -r backend/requirements.txt          # runtime
+pip install -r backend/requirements-dev.txt      # pytest + httpx (tests)
+uvicorn backend.app.main:app --reload            # serves API + frontend at http://localhost:8000/
+
+python -m pytest backend/tests/ -q               # full suite
+python -m pytest backend/tests/test_analytics.py::test_rank_delta_uses_snapshot_scale_not_standard_k
+node --check frontend/script.js                  # frontend has no build; syntax-check only
+python -m backend.app.seed                        # regenerate fish.json from the enrichment table
 ```
 
-The server serves the API under `/api/*` and mounts the `frontend/` directory at `/`,
-so the whole app is at `http://localhost:8000/`. There is no separate frontend build,
-bundler, dev server, linter, or test suite — the frontend is plain static
-`index.html` + `script.js` + `style.css`.
+There is no frontend build, bundler, or linter — `index.html` + `script.js` + `style.css` are
+plain static files (dependency-free vanilla JS, no CDN).
 
-`backend/app/seed_images.py` regenerates `backend/data/fish.json` and copies images from
-an external `aquaguide` project. It hardcodes Windows author paths (`C:\Users\...`) and is
-**not runnable in this environment** — treat `fish.json` and `frontend/images/` as committed
-source data, and edit `fish.json` by hand for content changes.
+## Catalog / images
+
+`backend/data/fish.json` is the read-only catalog. **The image files in `frontend/images/` and
+their `imageCredit` blocks are committed source data** — don't re-source them. `seed.py` holds a
+per-`id` enrichment table (scientific name, genre, size, temperament, difficulty, water type,
+popularity) and *derives* tags, tank size, and pH/temp ranges from it, preserving each entry's
+`image`/`imageCredit`. Editing catalog content means editing the `ENRICH` table and re-running
+`python -m backend.app.seed` (idempotent), not hand-editing `fish.json`.
 
 ## Architecture
 
-**Single deployable unit.** `vercel.json` routes every request to `backend/app/main.py`
-and bundles `frontend/**` and `backend/data/**` as included files. `main.py` resolves
-`FRONTEND_DIR` by walking up from its own path, so the directory layout (`backend/app/`
-next to `frontend/`) is load-bearing — don't move files without updating those `Path`
-computations in `main.py`, `elo.py`, and `storage.py`.
+**Single deployable unit.** `vercel.json` routes every request to `backend/app/main.py` and
+bundles `frontend/**` + `backend/data/**`. `main.py` resolves `FRONTEND_DIR` by walking up from
+its own path, so the `backend/app/` next-to-`frontend/` layout is load-bearing — moving files
+means updating the `Path` computations in `main.py`, `elo.py`, `storage.py`, and `daily.py`.
 
-**Storage is environment-switched, not injected.** `storage.py` is the single abstraction
-over persistence and picks its backend at call time based on `os.environ["KV_REST_API_URL"]`:
+**`storage.py` — the persistence + cost layer.** Backend is chosen at call time by the presence
+of an Upstash REST URL env var, accepting **both** `KV_REST_API_*` and `UPSTASH_REDIS_REST_*`
+naming schemes (a Vercel integration may set only one; missing both would silently fall back to
+ephemeral local files and reset all data every deploy). Local dev uses JSON files in
+`backend/data/`. Key design points, all in service of the command budget:
+- **State is split.** `ratings` (`{id: {rating, wins, losses}}`) is a tiny dict rewritten per
+  vote; `matches` is an append-only list (`RPUSH`, never rewritten). A vote never serializes
+  history. **Never reintroduce a single `{ratings, matches}` blob.**
+- **Single-command atomics.** Matchup tokens redeem with `GETDEL` (not GET+DEL). The write lock
+  releases with a Lua compare-and-delete `EVAL` (race-free). Acquire with `SET NX EX 3`.
+- **In-process read cache** (`_cache`, 60s short / 600s long TTL). Vercel Fluid keeps instances
+  warm so a module-level cache survives across requests. Writers invalidate it (`acquire_lock`
+  drops the ratings cache so the read-modify-write starts fresh). **Caches are for cost, never
+  correctness** — cold deploys start empty and instances don't share memory; Redis is the source
+  of truth. Any new persisted state must implement **both** the Redis and local-file paths.
 
-- **Local:** JSON files in `backend/data/` (`elo.json`, plus a `.json.bak` written on each
-  save), an in-process `threading.Lock`, and an in-memory dict for matchup tokens.
-- **Vercel:** Upstash Redis (`upstash-redis`) — key `elo_data` for ratings/matches, `elo_lock`
-  for a 3-second `SET NX EX` lock, and `matchup:<token>` keys with TTL.
+**`elo.py` — ratings + snapshot analytics.** `K_FACTOR=32`, provisional `K_PROVISIONAL=64` for a
+fish's first `PLACEMENT_GAMES=10` matches (marked `placing`/`NEW`). Catalog fish are seeded from
+`popularity` (log-scaled into 1000–2200); genuinely new fish debut at 1500. `record_match` is the
+only writer of ratings — lock, read-modify-write the small `ratings` key, append one match, unlock.
+Each match stores **per-fish rating snapshots** (`winner_rating`, `loser_rating`, `winner_change`,
+`loser_change`, `timestamp`).
 
-Both backends expose the same functions (`read_elo`/`write_elo`, `acquire_lock`/`release_lock`,
-`save_matchup`/`get_matchup`/`delete_matchup`). Any new persisted state must implement **both**
-paths or it will silently work locally and break in production.
+> **Analytics correctness invariant (do not violate):** 24h trend deltas and `rank_delta` are
+> reconstructed by **undoing the stored per-match *changes*** — the same scale as the persisted
+> "now" ratings. Because placement uses a higher K, actual swings differ from a standard-K
+> recompute; mixing a standard-K replay for the past with provisional-K values for the present
+> produces phantom movement (e.g. the day's biggest gainer shown *losing* rank). `_match_change`
+> prefers the stored snapshot and only falls back to a standard-K recompute for legacy
+> pre-snapshot records. Fish still placing (<10 games) have `rank_delta = None` (arrow suppressed).
+> The Elo arrow (▲/▼) and rank arrow follow the **sign of their own value** — they can legitimately
+> disagree. `test_rank_delta_uses_snapshot_scale_not_standard_k` pins this and fails if the replay
+> reverts to standard-K.
 
-**Elo domain logic** lives in `elo.py`. `INITIAL_RATING = 1500`, `K_FACTOR = 32`.
-`record_match()` is the only writer of ratings: it acquires the storage lock, does a
-read-modify-write of the full `elo_data` blob (ratings + append-only match log), and releases
-the lock, retrying up to 5 times with jittered backoff before raising `ValueError("Server busy")`.
-Ratings for a fish are lazily created on first appearance rather than pre-seeded.
+**`daily.py` — Daily Battle sandbox** (never touches global Elo). Lineup for a UTC date is curated
+via `daily_battles.json` (keyed `YYYY-MM-DD`) or auto-generated deterministically by hashing the
+date (stable all day, no RNG). Only theme tags with ≥10 catalog fish are eligible, so the
+"≥10 per theme" rule self-enforces across catalog edits. Sandbox votes go to `daily:<date>` (TTL,
+3 days); standings count only votes where **both** fish are in that day's lineup and rank by the
+**Wilson score lower bound** so a proven record beats a lucky 1–0.
 
-**`load_fish()` (static roster) vs `load_ratings()` (mutable scores)** are deliberately
-separate. `fish.json` is the source of truth for *which* fish exist and their metadata;
-ratings live only in storage. `get_rankings` and `get_matchup` join the two at request time,
-defaulting any fish absent from ratings to a fresh 1500 record.
+## Vote flow and integrity
 
-## Vote flow and its integrity checks
+`GET /api/matchup` mints a single-use `token` (Redis `SET EX`, 600s) storing the pair. `POST /api/vote`
+rejects winner==loser (400), votes faster than `RATE_LIMIT_SECS=0.5`/IP (429, IP from `X-Forwarded-For`),
+unknown/expired tokens (400, consumed via `GETDEL`), and votes whose pair ≠ the token's pair (400).
+`503` means the rating lock was contended; the frontend retries with backoff. `_recent_pairs` and
+`_vote_ratelimit` are **per-process, best-effort** (not shared across serverless instances) — the
+Redis-backed single-use token is the real anti-fraud guarantee.
 
-The vote path is designed so a client can't fabricate matchups or spam:
+## Per-action Redis command budget (hold to these)
 
-1. `GET /api/matchup` picks two distinct fish (avoiding the last ~50 pairs via the
-   in-process `_recent_pairs` list), mints a `matchup_token`, and stores `token -> (a_id, b_id)`
-   with a 600s TTL.
-2. `POST /api/vote` requires that token. It rejects: winner == loser (400), votes faster than
-   `RATE_LIMIT_SECS = 0.5` per client IP (429, IP from `X-Forwarded-For`), unknown/expired tokens
-   (400), and votes whose `{winner, loser}` set doesn't match the token's stored pair (400).
-   On success the token is deleted (single-use), then `record_match` runs.
-3. `503` from `/api/vote` means the rating lock was contended; the frontend retries with backoff.
-
-Note `_recent_pairs` and `_vote_ratelimit` are **per-process, in-memory** — on Vercel's
-serverless model they don't persist or share across invocations, so they're best-effort only.
-The token check (backed by Redis) is the real integrity guarantee.
+- **Global vote** ≈ 6: `GETDEL` token + `SET NX` lock + `GET` ratings + `SET` ratings + `RPUSH` match + `EVAL` unlock.
+- **Daily vote** ≈ 2: `GETDEL` token + `RPUSH` day list (+ one-time `EXPIRE`).
+- **Matchup served** ≈ 1: token `SET`.
+- **`/stats`** ≈ 0–1: served from caches between votes; `total_votes` is derived from the already-loaded match list (no `LLEN`).
+- **`/track`** ≈ 2: `ZADD` + `ZREMRANGEBYSCORE`; throttled client-side to ≤1/30min (with new-UTC-day override).
 
 ## API surface
 
-- `GET /api/rankings` — all fish joined with ratings, sorted by Elo desc.
-- `GET /api/matchup` — two fish + `matchup_token` + `elo_diff`.
-- `POST /api/vote` — body `{winner_id, loser_id, matchup_token}`; returns each fish's new rating and change.
-- `GET /api/elo-info` — human + technical explanation of the Elo math (rendered directly in the frontend).
-- `GET /api/health`
+`GET /api/matchup` · `POST /api/vote` · `GET /api/rankings` (elo + `rank_delta` + 24h trend + W/L) ·
+`GET /api/stats` (total votes, visitors online 24h, best/worst 24h mover) · `GET /api/daily` ·
+`GET /api/daily/matchup` · `POST /api/daily/vote` · `POST /api/track` · `GET /api/elo-info` · `GET /api/health`.
 
-The frontend (`script.js`) is a single-file vanilla-JS SPA with two tabs (Vote / Rankings),
-keyboard controls (←/→ to vote, space to skip), and optimistic UI that shows rating deltas
-before loading the next matchup.
+## Frontend efficiency rules (`script.js`)
 
-## Conventions
+Vanilla single-file SPA, three tabs (Vote / Rankings / Daily). **Do not poll `/stats` on a timer** —
+refresh on load and after a vote only. The Daily countdown is client-side `setInterval` and must
+never fetch per tick. `trackVisitor()` throttles via `localStorage` (≤1/30min, override on a new UTC
+day, timestamp set before firing so reloads dedupe) with a stable `visitor_id`.
 
+## Deploy / env
+
+- Set `KV_REST_API_URL`/`KV_REST_API_TOKEN` **or** `UPSTASH_REDIS_REST_URL`/`UPSTASH_REDIS_REST_TOKEN`
+  for production Redis; neither set → local-file dev mode. Recommend **Upstash pay-as-you-go** so
+  exceeding the free command budget degrades to cents of overage instead of a hard cutoff that rejects votes.
 - `elo.json`, `elo.json.bak`, and `.env` are gitignored — never commit rating state or secrets.
-- Fish entries in `fish.json` use `id` (slug), `name`, `tags` (max 6), `image` path, and an
-  optional `imageCredit` object; the frontend surfaces the credit as a camera-icon tooltip, so
-  preserve it when editing fish that have it.
+- Upstash bills separately from Vercel (Fluid Active CPU / memory / invocations). Caching analytics is
+  also the main CPU saver: don't replay the whole match log per request.
