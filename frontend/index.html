@@ -4,46 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Head-to-head Elo ranking for freshwater aquarium fish. Vote for your favorites.">
-    <meta property="og:title" content="Fish Elo">
+    <meta property="og:title" content="Aqua Elo">
     <meta property="og:description" content="Vote for your favorite freshwater fish. Who comes out on top?">
     <meta property="og:type" content="website">
-    <title>Fish Elo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Aqua Elo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="logo">Fish Elo</h1>
-            <nav>
-                <button id="tab-vote" class="tab active">
-                    <i class="fa-solid fa-fire"></i> Vote
-                </button>
-                <button id="tab-rankings" class="tab">
-                    <i class="fa-solid fa-list-ol"></i> Rankings
-                </button>
-            </nav>
-            <div class="stats-pill" id="stats-bar">
-                <span id="stats-matches">0 votes</span>
+            <div class="brand">
+                <h1 class="logo">Aqua<span>Elo</span></h1>
+                <nav>
+                    <button id="tab-vote" class="tab active">Vote</button>
+                    <button id="tab-rankings" class="tab">Rankings</button>
+                    <button id="tab-daily" class="tab">Daily Battle</button>
+                </nav>
+            </div>
+            <div class="ticker" id="ticker">
+                <div class="ticker-item"><span class="ticker-label">Votes</span><span id="stat-votes">—</span></div>
+                <div class="ticker-item"><span class="ticker-label">Online 24h</span><span id="stat-online">—</span></div>
+                <div class="ticker-item mover-up"><span class="ticker-label">Top mover</span><span id="stat-best">—</span></div>
+                <div class="ticker-item mover-down"><span class="ticker-label">Biggest drop</span><span id="stat-worst">—</span></div>
             </div>
         </header>
 
         <main>
+            <!-- VOTE -->
             <section id="vote-section">
-                <div id="matchup" class="matchup">
+                <div class="matchup">
                     <div class="fish-card" id="card-a">
-                        <div class="fish-image-wrap">
-                            <img id="img-a" src="" alt="">
-                            <div class="image-overlay"></div>
-                        </div>
+                        <div class="fish-image-wrap"><img id="img-a" src="" alt=""><span class="new-badge" id="new-a">NEW</span></div>
                         <div class="fish-body">
                             <h2 id="name-a"></h2>
+                            <div class="sci" id="sci-a"></div>
                             <div class="fish-tags" id="tags-a"></div>
                             <div class="fish-credit" id="credit-a"></div>
-                            <div class="fish-rating">
-                                <span class="fish-elo" id="elo-a">—</span>
-                                <span class="fish-elo-change" id="change-a"></span>
-                            </div>
+                            <div class="fish-rating"><span class="fish-elo" id="elo-a">—</span><span class="fish-elo-change" id="change-a"></span></div>
                         </div>
                     </div>
 
@@ -51,57 +48,78 @@
                         <span class="vs-text">VS</span>
                         <span class="outcome-label" id="outcome-label"></span>
                         <button id="btn-skip" class="btn-skip">Skip</button>
-                        <span class="key-hint"><i class="fa-solid fa-arrow-left"></i> / <i class="fa-solid fa-arrow-right"></i> to vote &middot; <kbd>Space</kbd> to skip</span>
+                        <span class="key-hint"><kbd>←</kbd> / <kbd>→</kbd> vote · <kbd>space</kbd> skip</span>
                     </div>
 
                     <div class="fish-card" id="card-b">
-                        <div class="fish-image-wrap">
-                            <img id="img-b" src="" alt="">
-                            <div class="image-overlay"></div>
-                        </div>
+                        <div class="fish-image-wrap"><img id="img-b" src="" alt=""><span class="new-badge" id="new-b">NEW</span></div>
                         <div class="fish-body">
                             <h2 id="name-b"></h2>
+                            <div class="sci" id="sci-b"></div>
                             <div class="fish-tags" id="tags-b"></div>
                             <div class="fish-credit" id="credit-b"></div>
-                            <div class="fish-rating">
-                                <span class="fish-elo" id="elo-b">—</span>
-                                <span class="fish-elo-change" id="change-b"></span>
-                            </div>
+                            <div class="fish-rating"><span class="fish-elo" id="elo-b">—</span><span class="fish-elo-change" id="change-b"></span></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="rankings-section" style="display:none">
-                <div class="rankings-header">
+            <!-- RANKINGS -->
+            <section id="rankings-section" hidden>
+                <div class="section-head">
                     <h2>Elo Rankings</h2>
-                    <span id="rankings-count"></span>
+                    <span class="muted" id="rankings-count"></span>
                 </div>
                 <div class="table-wrap">
                     <table id="rankings-table">
                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th></th>
-                                <th>Fish</th>
-                                <th>Elo</th>
-                                <th>W</th>
-                                <th>L</th>
-                            </tr>
+                            <tr><th>#</th><th></th><th></th><th>Fish</th><th class="num">Elo</th><th class="num">24h</th><th class="num">W</th><th class="num">L</th></tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                 </div>
             </section>
 
+            <!-- DAILY BATTLE -->
+            <section id="daily-section" hidden>
+                <div class="daily-head">
+                    <div>
+                        <span class="daily-kicker">Daily Battle · sandbox, doesn't affect global Elo</span>
+                        <h2 id="daily-theme">—</h2>
+                    </div>
+                    <div class="countdown"><span class="muted">Next battle in</span><span id="daily-countdown">—</span></div>
+                </div>
+                <div class="daily-champion" id="daily-champion" hidden></div>
+
+                <div class="matchup daily-matchup">
+                    <div class="fish-card small" id="dcard-a">
+                        <div class="fish-image-wrap"><img id="dimg-a" src="" alt=""></div>
+                        <div class="fish-body"><h3 id="dname-a"></h3><div class="fish-tags" id="dtags-a"></div></div>
+                    </div>
+                    <div class="vs-divider"><span class="vs-text">VS</span><button id="dbtn-skip" class="btn-skip">Skip</button></div>
+                    <div class="fish-card small" id="dcard-b">
+                        <div class="fish-image-wrap"><img id="dimg-b" src="" alt=""></div>
+                        <div class="fish-body"><h3 id="dname-b"></h3><div class="fish-tags" id="dtags-b"></div></div>
+                    </div>
+                </div>
+
+                <div class="section-head"><h3>Standings <span class="muted">(Wilson score)</span></h3></div>
+                <div class="table-wrap">
+                    <table id="daily-table">
+                        <thead><tr><th>#</th><th></th><th>Fish</th><th class="num">W</th><th class="num">L</th><th class="num">Score</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
             <section id="elo-info-section">
-                <h3 class="info-heading">How it works</h3>
+                <h3 class="info-heading">How the rating works</h3>
                 <div id="elo-info-content"></div>
             </section>
         </main>
 
         <footer>
-            <p>built with <i class="fa-solid fa-fish-fins"></i> and math</p>
+            <p>Aqua Elo · a freshwater fish ranking sandbox. Fish photos are used under their respective licenses — credits shown per image.</p>
         </footer>
     </div>
 
