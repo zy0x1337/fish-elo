@@ -27,7 +27,9 @@ const SHELL_ASSETS = [
 
 // GET endpoints worth keeping a copy of; everything else under /api goes to the network.
 const CACHEABLE_API = ['/api/rankings', '/api/daily', '/api/elo-info', '/api/stats'];
-const PHOTO_CACHE_LIMIT = 140;
+// Full photos and the 106 small thumbnails share this cache; the headroom keeps a
+// rankings sweep from evicting the photos a voter just looked at.
+const PHOTO_CACHE_LIMIT = 240;
 
 self.addEventListener('install', (event) => {
     event.waitUntil(

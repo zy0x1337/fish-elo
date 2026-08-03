@@ -24,8 +24,9 @@ const state = {
     dailyVoting: false,
     countdown: null,
     rankings: [],
+    nameToId: {},
     online: navigator.onLine,
-    session: { votes: 0, upsets: 0 },
+    session: { votes: 0, upsets: 0, streak: 0 },
 };
 
 // ---------------------------------------------------------------------------
@@ -38,6 +39,22 @@ const signed = (n) => (n >= 0 ? `+${n}` : `${n}`);
 const num = (n) => Number(n).toLocaleString('en-US');
 const pct = (n) => `${Math.round(n * 100)}%`;
 const titleCase = (s) => String(s || '').replace(/(^|[\s-])\w/g, (m) => m.toUpperCase());
+const utcDay = (d = new Date()) => d.toISOString().slice(0, 10);
+
+// Small square thumbnails (rendered by tools/thumbs.mjs) for tables and the favourites
+// list — a fraction of the full photo's weight, and there are 106 of them per rankings view.
+const thumb = (fish) => (fish && fish.id ? `/images/thumbs/${fish.id}.jpg` : '');
+
+// Loads a photo with a paper-toned skeleton until it decodes, then fades it in.
+function setPhoto(img, src) {
+    const wrap = img.closest('.plate-photo');
+    if (wrap) wrap.classList.add('loading');
+    const done = () => { if (wrap) wrap.classList.remove('loading'); };
+    img.onload = done;
+    img.onerror = done;
+    img.src = src || '';
+    if (img.complete && img.naturalWidth) done();
+}
 
 function readStore(key, fallback) {
     try {
@@ -113,11 +130,26 @@ const BADGES = [
     { id: 'ten', label: 'Ten votes', test: (y) => y.votes >= 10 },
     { id: 'fifty', label: 'Fifty votes', test: (y) => y.votes >= 50 },
     { id: 'hundred', label: 'Hundred votes', test: (y) => y.votes >= 100 },
+    { id: 'marathon', label: 'Two hundred votes', test: (y) => y.votes >= 200 },
     { id: 'underdog', label: 'Underdog backer', test: (y) => y.upsets >= 10 },
+    { id: 'upsetter', label: 'Upset specialist', test: (y) => y.upsets >= 25 },
     { id: 'contrarian', label: 'Against the grain', test: (y) => y.againstCrowd >= 10 },
     { id: 'regular', label: 'Three days in', test: (y) => y.days.length >= 3 },
+    { id: 'streak7', label: 'Seven-day streak', test: () => currentStreak() >= 7 },
     { id: 'explorer', label: 'Forty species seen', test: (y) => Object.keys(y.species).length >= 40 },
+    { id: 'wholetank', label: 'Every species seen', test: (y) => Object.keys(y.species).length >= 106 },
 ];
+
+/** Consecutive UTC days visited, counting back from today (or yesterday if not yet today). */
+function currentStreak() {
+    if (!you.days.length) return 0;
+    const seen = new Set(you.days);
+    const d = new Date();
+    if (!seen.has(utcDay(d))) d.setUTCDate(d.getUTCDate() - 1);
+    let streak = 0;
+    while (seen.has(utcDay(d))) { streak += 1; d.setUTCDate(d.getUTCDate() - 1); }
+    return streak;
+}
 
 function recordPick(winner, loser, wasUpset, crowdShare) {
     you.votes += 1;
@@ -136,7 +168,7 @@ function recordPick(winner, loser, wasUpset, crowdShare) {
     you.species[winner.id] = 1;
     you.species[loser.id] = 1;
 
-    const today = new Date().toISOString().slice(0, 10);
+    const today = utcDay();
     if (!you.days.includes(today)) you.days.push(today);
 
     const fresh = BADGES.filter((b) => !you.badges.includes(b.id) && b.test(you));
@@ -176,10 +208,16 @@ async function nextMatchup() {
     }
 }
 
+// Skipping breaks a run — a streak only counts pairs you actually judged.
+function skipMatchup() {
+    if (state.session.streak) { state.session.streak = 0; renderSessionLine(); }
+    nextMatchup();
+}
+
 function renderPlate(side, fish) {
     const img = $(`#img-${side}`);
-    img.src = fish.image || '';
     img.alt = fish.name;
+    setPhoto(img, fish.image);
     $(`#name-${side}`).textContent = fish.name;
     $(`#sci-${side}`).textContent = fish.scientific_name || '';
     $(`#tags-${side}`).innerHTML = (fish.tags || []).slice(0, 3).map((t) => `<span>${esc(t)}</span>`).join('');
@@ -307,6 +345,7 @@ function finishVote(winner, loser, matchup) {
     $('#verdict').innerHTML = `<span class="lead">${esc(lead)}</span> ${esc(crowd)}`;
 
     state.session.votes += 1;
+    state.session.streak += 1;
     if (upset) state.session.upsets += 1;
     recordPick(winner, loser, upset, share);
     renderSessionLine();
@@ -315,8 +354,11 @@ function finishVote(winner, loser, matchup) {
 function renderSessionLine() {
     const s = state.session;
     if (!s.votes) { $('#session-line').textContent = ''; return; }
-    const upsets = s.upsets === 1 ? '1 upset' : `${s.upsets} upsets`;
-    $('#session-line').textContent = `${s.votes} this session · ${upsets} · ${num(you.votes)} all time on this device`;
+    const parts = [`${s.votes} this session`];
+    if (s.streak >= 3) parts.push(`${s.streak} in a row`);
+    if (s.upsets) parts.push(s.upsets === 1 ? '1 upset' : `${s.upsets} upsets`);
+    parts.push(`${num(you.votes)} all time on this device`);
+    $('#session-line').textContent = parts.join(' · ');
 }
 
 // Offline outbox: matchup tokens live 10 minutes, so anything older is dropped.
@@ -379,6 +421,7 @@ async function loadRankings() {
         state.rankings = data.fish;
         $('#rankings-count').textContent = `${data.fish.length} species · ${num(data.total_votes)} votes counted`;
         fillTagFilter(data.fish);
+        fillCompareList(data.fish);
         renderRankings();
         setOnline(true);
     } catch {
@@ -393,23 +436,36 @@ function fillTagFilter(fish) {
     select.insertAdjacentHTML('beforeend', tags.map((t) => `<option value="${esc(t)}">${esc(titleCase(t))}</option>`).join(''));
 }
 
+const winRate = (f) => { const g = f.wins + f.losses; return g ? f.wins / g : -1; };
+const SORTERS = {
+    // '#' always stays the Elo rank; sorting only reorders the rows on screen.
+    elo: (a, b) => b.elo - a.elo,
+    move: (a, b) => Math.abs(b.elo_delta_24h || 0) - Math.abs(a.elo_delta_24h || 0),
+    games: (a, b) => (b.wins + b.losses) - (a.wins + a.losses),
+    winrate: (a, b) => winRate(b) - winRate(a),
+};
+
 function renderRankings() {
     const query = $('#rank-search').value.trim().toLowerCase();
     const tag = $('#rank-tag').value;
+    const sort = $('#rank-sort').value;
 
     const rows = state.rankings
-        .map((f, i) => ({ ...f, position: i + 1 }))
+        .map((f, i) => ({ ...f, position: i + 1 }))   // position = Elo rank, fixed
         .filter((f) => (!tag || (f.tags || []).includes(tag))
             && (!query
                 || f.name.toLowerCase().includes(query)
-                || (f.scientific_name || '').toLowerCase().includes(query)));
+                || (f.scientific_name || '').toLowerCase().includes(query)))
+        .sort(SORTERS[sort] || SORTERS.elo);
 
     $('#rankings-empty').hidden = rows.length > 0;
-    $('#rankings-table').tBodies[0].innerHTML = rows.map((f) => `
-        <tr data-id="${esc(f.id)}" class="${f.position <= 3 ? `medal-${f.position}` : ''}" tabindex="0">
+    $('#rankings-table').tBodies[0].innerHTML = rows.map((f) => {
+        const cls = [f.position <= 3 ? `medal-${f.position}` : '', you.picks[f.id] ? 'is-fav' : ''].join(' ').trim();
+        return `
+        <tr data-id="${esc(f.id)}" class="${cls}" tabindex="0">
             <td class="col-rank">${f.position}</td>
             <td class="move ${moveClass(f.rank_delta)}">${moveText(f.rank_delta)}</td>
-            <td class="col-thumb">${f.image ? `<img class="thumb" src="${esc(f.image)}" alt="" loading="lazy" decoding="async">` : ''}</td>
+            <td class="col-thumb"><img class="thumb" src="${esc(thumb(f))}" alt="" loading="lazy" decoding="async"></td>
             <td>
                 <div class="species-name">${esc(f.name)}</div>
                 <div class="species-sci">${esc(f.scientific_name || '')}</div>
@@ -418,7 +474,57 @@ function renderRankings() {
             <td class="num trend ${trendClass(f.elo_delta_24h)}">${trendText(f.elo_delta_24h)}</td>
             <td class="num">${f.wins}</td>
             <td class="num">${f.losses}</td>
-        </tr>`).join('');
+        </tr>`;
+    }).join('');
+}
+
+// ---------------------------------------------------------------------------
+// Compare two fish (read-only head-to-head, no vote)
+// ---------------------------------------------------------------------------
+function fillCompareList(fish) {
+    state.nameToId = {};
+    $('#cmp-list').innerHTML = fish.map((f) => {
+        state.nameToId[f.name.toLowerCase()] = f.id;
+        return `<option value="${esc(f.name)}"></option>`;
+    }).join('');
+}
+
+async function runCompare() {
+    const box = $('#cmp-result');
+    const aId = state.nameToId[$('#cmp-a').value.trim().toLowerCase()];
+    const bId = state.nameToId[$('#cmp-b').value.trim().toLowerCase()];
+    if (!aId || !bId || aId === bId) { box.hidden = true; return; }
+    try {
+        renderCompare(await getJSON(`/compare?a=${encodeURIComponent(aId)}&b=${encodeURIComponent(bId)}`));
+    } catch { box.hidden = true; }
+}
+
+function renderCompare(d) {
+    const a = d.fish_a;
+    const b = d.fish_b;
+    const h2h = d.head_to_head || {};
+    const aw = h2h[a.id] || 0;
+    const bw = h2h[b.id] || 0;
+
+    let line;
+    if (aw + bw === 0) line = 'These two have never been paired yet.';
+    else if (aw === bw) line = `Dead even, ${aw}–${bw}.`;
+    else if (aw > bw) line = `${a.name} leads their head-to-head, ${aw}–${bw}.`;
+    else line = `${b.name} leads their head-to-head, ${bw}–${aw}.`;
+
+    const card = (f) => `
+        <div class="cmp-fish" data-id="${esc(f.id)}" tabindex="0" role="button" aria-label="Details for ${esc(f.name)}">
+            <img src="${esc(thumb(f))}" alt="" loading="lazy" decoding="async">
+            <div>
+                <div class="species-name">${esc(f.name)}</div>
+                <div class="cmp-elo">${Math.round(f.elo)} Elo${f.placing ? ' · placing' : ''}</div>
+            </div>
+        </div>`;
+
+    $('#cmp-result').innerHTML = `
+        <div class="cmp-cards">${card(a)}<span class="cmp-mid">vs</span>${card(b)}</div>
+        <p class="cmp-line">${esc(line)}</p>`;
+    $('#cmp-result').hidden = false;
 }
 
 const moveText = (d) => (d === null || d === undefined ? '·' : d > 0 ? `▲ ${d}` : d < 0 ? `▼ ${Math.abs(d)}` : '–');
@@ -485,16 +591,18 @@ async function loadDaily() {
         if (d.yesterday_champion) {
             const c = d.yesterday_champion;
             champ.hidden = false;
-            champ.innerHTML = `${c.image ? `<img src="${esc(c.image)}" alt="">` : ''}
+            champ.innerHTML = `<img src="${esc(thumb(c))}" alt="">
                 <span><b>Yesterday:</b> ${esc(c.name)} took it, ${c.wins}–${c.losses}.</span>`;
         } else {
             champ.hidden = true;
         }
 
+        renderDailyProgress(d);
+
         $('#daily-table').tBodies[0].innerHTML = d.contenders.map((f, i) => `
             <tr data-id="${esc(f.id)}" class="${i < 3 ? `medal-${i + 1}` : ''}" tabindex="0">
                 <td class="col-rank">${i + 1}</td>
-                <td class="col-thumb">${f.image ? `<img class="thumb" src="${esc(f.image)}" alt="" loading="lazy" decoding="async">` : ''}</td>
+                <td class="col-thumb"><img class="thumb" src="${esc(thumb(f))}" alt="" loading="lazy" decoding="async"></td>
                 <td><div class="species-name">${esc(f.name)}</div></td>
                 <td class="num">${f.wins}</td>
                 <td class="num">${f.losses}</td>
@@ -520,8 +628,8 @@ async function loadDailyMatchup() {
 
 function renderDailyPlate(side, fish) {
     const img = $(`#dimg-${side}`);
-    img.src = fish.image || '';
     img.alt = fish.name;
+    setPhoto(img, fish.image);
     $(`#dname-${side}`).textContent = fish.name;
     $(`#dtags-${side}`).innerHTML = (fish.tags || []).slice(0, 3).map((t) => `<span>${esc(t)}</span>`).join('');
     $(`#dcredit-${side}`).innerHTML = creditHTML(fish);
@@ -540,6 +648,7 @@ async function dailyVote(winnerId) {
     $(`#dplate-${winSide}`).classList.add('picked');
     $(`#dplate-${winSide === 'a' ? 'b' : 'a'}`).classList.add('dropped');
     buzz(12);
+    recordDailyVote(m.date, winnerId, loserId);
 
     try {
         const res = await fetch(`${API}/daily/vote`, {
@@ -553,6 +662,33 @@ async function dailyVote(winnerId) {
     } catch {
         state.dailyVoting = false;
     }
+}
+
+// How much of today's lineup you've weighed in on — device-local, resets with the day.
+const DAILY_KEY = 'aqua_daily_v1';
+
+function dailyState(date) {
+    const p = readStore(DAILY_KEY, { date: '', voted: [] });
+    return p.date === date ? p : { date, voted: [] };
+}
+
+function recordDailyVote(date, a, b) {
+    const p = dailyState(date);
+    for (const id of [a, b]) if (!p.voted.includes(id)) p.voted.push(id);
+    p.date = date;
+    writeStore(DAILY_KEY, p);
+    if (state.daily && state.daily.date === date) renderDailyProgress(state.daily);
+}
+
+function renderDailyProgress(d) {
+    const lineup = new Set(d.contenders.map((f) => f.id));
+    const voted = dailyState(d.date).voted.filter((id) => lineup.has(id)).length;
+    const el = $('#daily-progress');
+    if (!lineup.size) { el.hidden = true; return; }
+    el.hidden = false;
+    el.textContent = voted >= lineup.size
+        ? `You've weighed in on all ${lineup.size} of today's fish.`
+        : `You've seen ${voted} of today's ${lineup.size} fish.`;
 }
 
 function startCountdown(seconds) {
@@ -581,12 +717,13 @@ function renderYou() {
     const agreement = you.crowdVotes ? pct(you.withCrowd / you.crowdVotes) : '—';
     const upsetRate = you.votes ? pct(you.upsets / you.votes) : '—';
 
+    const streak = currentStreak();
     $('#you-stats').innerHTML = [
         ['Votes cast', num(you.votes)],
-        ['Species seen', num(Object.keys(you.species).length)],
+        ['Species seen', `${num(Object.keys(you.species).length)}/106`],
         ['Underdog picks', upsetRate],
         ['With the crowd', agreement],
-        ['Days visited', num(you.days.length)],
+        ['Day streak', streak ? `${streak}` : '—'],
     ].map(([label, value]) => `<div class="stat"><b>${esc(value)}</b><span>${esc(label)}</span></div>`).join('');
 
     const favourites = Object.entries(you.picks)
@@ -595,8 +732,8 @@ function renderYou() {
 
     $('#you-favourites').innerHTML = favourites.length
         ? favourites.map(([id, p]) => `
-            <li data-id="${esc(id)}">
-                ${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy">` : ''}
+            <li data-id="${esc(id)}" tabindex="0" role="button">
+                <img src="${esc(thumb({ id }))}" alt="" loading="lazy">
                 <span>${esc(p.name)}</span>
                 <span class="count">${p.n}×</span>
             </li>`).join('')
@@ -608,18 +745,78 @@ function renderYou() {
     }).join('');
 }
 
+// A self-contained SVG card of your local stats — no photos (keeps the canvas clean),
+// field-guide palette baked in so it reads the same wherever it's shared.
+function shareCardSVG() {
+    const top = (Object.values(you.picks).sort((a, b) => b.n - a.n)[0] || {}).name || '—';
+    const cells = [
+        ['Votes cast', num(you.votes)],
+        ['Species seen', `${Object.keys(you.species).length}/106`],
+        ['Underdog picks', you.votes ? pct(you.upsets / you.votes) : '—'],
+        ['Day streak', String(currentStreak())],
+    ];
+    const cell = (c, i) => {
+        const x = 90 + (i % 2) * 465;
+        const y = 470 + Math.floor(i / 2) * 200;
+        return `<g transform="translate(${x} ${y})">
+            <text x="0" y="0" font-family="Georgia, 'Times New Roman', serif" font-size="86" fill="#182830">${esc(c[1])}</text>
+            <text x="4" y="44" font-family="Helvetica, Arial, sans-serif" font-size="24" letter-spacing="3" fill="#5a6a71">${esc(c[0].toUpperCase())}</text>
+        </g>`;
+    };
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+        <rect width="1080" height="1080" fill="#f4efe4"/>
+        <g transform="translate(90 130)">
+            <g transform="scale(1.7)"><path d="M22 30 Q52 6 84 30 Q52 54 22 30 Z" fill="#c04d26"/><path d="M23 30 L2 14 Q8 30 2 46 Z" fill="#c04d26"/><circle cx="72" cy="26.5" r="3.2" fill="#f4efe4"/></g>
+        </g>
+        <text x="285" y="150" font-family="Helvetica, Arial, sans-serif" font-size="26" letter-spacing="8" fill="#0b6b72">AQUA ELO</text>
+        <text x="285" y="205" font-family="Georgia, 'Times New Roman', serif" font-size="58" fill="#182830">My tank record</text>
+        <line x1="90" y1="300" x2="990" y2="300" stroke="#ddd3bf" stroke-width="2"/>
+        ${cells.map(cell).join('')}
+        <line x1="90" y1="900" x2="990" y2="900" stroke="#ddd3bf" stroke-width="2"/>
+        <text x="90" y="955" font-family="Georgia, 'Times New Roman', serif" font-size="34" fill="#182830">Most picked: <tspan fill="#c04d26">${esc(top)}</tspan></text>
+        <text x="90" y="1010" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#8b978f">Pick the fish you like better · a just-for-fun aquarium poll</text>
+    </svg>`;
+}
+
+async function shareCardImage() {
+    const svg = shareCardSVG();
+    const img = new Image();
+    img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+    await img.decode();
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1080;
+    canvas.getContext('2d').drawImage(img, 0, 0);
+    return new Promise((resolve) => canvas.toBlob((b) => resolve(b), 'image/png'));
+}
+
 async function share() {
     const top = Object.values(you.picks).sort((a, b) => b.n - a.n)[0];
     const text = top
-        ? `${you.votes} fish matchups voted on Aqua Elo. Most picked: ${top.name}.`
-        : `Ranking freshwater fish on Aqua Elo.`;
-    const data = { title: 'Aqua Elo', text, url: location.origin };
+        ? `My Aqua Elo card: ${you.votes} votes, most picked ${top.name}.`
+        : 'Ranking freshwater fish on Aqua Elo.';
+
+    // Best case: share the generated card as an image file.
     try {
-        if (navigator.share) await navigator.share(data);
-        else {
-            await navigator.clipboard.writeText(`${text} ${location.origin}`);
-            toast('Copied to clipboard.');
+        const blob = await shareCardImage();
+        const file = new File([blob], 'aqua-elo.png', { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: 'Aqua Elo', text });
+            return;
         }
+        // No file share (desktop): offer the card as a download.
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'aqua-elo.png';
+        a.click();
+        URL.revokeObjectURL(url);
+        toast('Saved your card as an image.');
+        return;
+    } catch { /* fall through to text/URL share */ }
+
+    try {
+        if (navigator.share) await navigator.share({ title: 'Aqua Elo', text, url: location.origin });
+        else { await navigator.clipboard.writeText(`${text} ${location.origin}`); toast('Copied to clipboard.'); }
     } catch { /* dismissed */ }
 }
 
@@ -630,6 +827,7 @@ function resetYou() {
         picks: {}, species: {}, days: [], badges: [],
     });
     writeStore(YOU_KEY, you);
+    try { localStorage.removeItem(DAILY_KEY); } catch { /* private mode */ }
     renderYou();
     renderSessionLine();
     toast('Cleared.');
@@ -724,7 +922,12 @@ $('#plate-a').addEventListener('click', () => state.matchup && vote(state.matchu
 $('#plate-b').addEventListener('click', () => state.matchup && vote(state.matchup.fish_b.id));
 $('#info-a').addEventListener('click', () => openDossier(state.matchup && state.matchup.fish_a));
 $('#info-b').addEventListener('click', () => openDossier(state.matchup && state.matchup.fish_b));
-$('#btn-skip').addEventListener('click', () => { if (!state.voting) nextMatchup(); });
+$('#btn-skip').addEventListener('click', () => { if (!state.voting) skipMatchup(); });
+
+$('#intro-dismiss').addEventListener('click', () => {
+    $('#intro').hidden = true;
+    writeStore('aqua_seen_intro', true);
+});
 
 $('#dplate-a').addEventListener('click', () => state.dailyMatchup && dailyVote(state.dailyMatchup.fish_a.id));
 $('#dplate-b').addEventListener('click', () => state.dailyMatchup && dailyVote(state.dailyMatchup.fish_b.id));
@@ -732,6 +935,21 @@ $('#dbtn-skip').addEventListener('click', () => { if (!state.dailyVoting) loadDa
 
 $('#rank-search').addEventListener('input', renderRankings);
 $('#rank-tag').addEventListener('change', renderRankings);
+$('#rank-sort').addEventListener('change', renderRankings);
+
+$('#cmp-a').addEventListener('change', runCompare);
+$('#cmp-b').addEventListener('change', runCompare);
+$('#cmp-a').addEventListener('input', runCompare);
+$('#cmp-b').addEventListener('input', runCompare);
+$('#cmp-result').addEventListener('click', (e) => {
+    const el = e.target.closest('.cmp-fish[data-id]');
+    if (el) openDossier(state.rankings.find((f) => f.id === el.dataset.id));
+});
+$('#cmp-result').addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const el = e.target.closest('.cmp-fish[data-id]');
+    if (el) { e.preventDefault(); openDossier(state.rankings.find((f) => f.id === el.dataset.id)); }
+});
 
 function rowHandler(tableId, lookup) {
     const table = $(tableId);
@@ -745,9 +963,12 @@ rowHandler('#rankings-table', (id) => state.rankings.find((f) => f.id === id));
 rowHandler('#daily-table', (id) => state.rankings.find((f) => f.id === id)
     || (state.daily && state.daily.contenders.find((f) => f.id === id)));
 
-$('#you-favourites').addEventListener('click', (e) => {
-    const li = e.target.closest('li[data-id]');
+function openFavourite(li) {
     if (li) openDossier(state.rankings.find((f) => f.id === li.dataset.id));
+}
+$('#you-favourites').addEventListener('click', (e) => openFavourite(e.target.closest('li[data-id]')));
+$('#you-favourites').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFavourite(e.target.closest('li[data-id]')); }
 });
 $('#btn-share').addEventListener('click', share);
 $('#btn-reset').addEventListener('click', resetYou);
@@ -779,7 +1000,7 @@ document.addEventListener('keydown', (e) => {
     if ($('#panel-vote').hidden || !state.matchup || state.voting) return;
     if (e.key === 'ArrowLeft') vote(state.matchup.fish_a.id);
     else if (e.key === 'ArrowRight') vote(state.matchup.fish_b.id);
-    else if (e.key === ' ') { e.preventDefault(); nextMatchup(); }
+    else if (e.key === ' ') { e.preventDefault(); skipMatchup(); }
 });
 
 window.addEventListener('hashchange', () => showTab(location.hash.slice(1), { focus: true }));
@@ -811,6 +1032,7 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme
 
 setOnline(navigator.onLine);
 showTab(location.hash.slice(1) || 'vote');
+if (!readStore('aqua_seen_intro', false) && !you.votes) $('#intro').hidden = false;
 trackVisitor();
 nextMatchup();
 refreshStats();

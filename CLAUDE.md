@@ -107,6 +107,7 @@ Redis-backed single-use token is the real anti-fraud guarantee.
 ## API surface
 
 `GET /api/matchup` (both fish + token + `elo_diff` + `head_to_head`) · `POST /api/vote` · `GET /api/rankings` (elo + `rank_delta` + 24h trend + W/L) ·
+`GET /api/compare` (`?a=&b=`, read-only head-to-head for any two fish — no token, reuses the cached analytics pass) ·
 `GET /api/stats` (total votes, visitors online 24h, best/worst 24h mover) · `GET /api/daily` ·
 `GET /api/daily/matchup` · `POST /api/daily/vote` · `POST /api/track` · `GET /api/elo-info` · `GET /api/health`.
 
@@ -121,27 +122,33 @@ reloads dedupe) with a stable `visitor_id`. Exactly **one** matchup is prefetche
 so the next pair is instant — that is the same number of `/matchup` calls, just earlier, and the
 queue must not grow (each unused token is a wasted `SET`).
 
-**Everything personal is device-local.** Vote counts, favourites, badges and theme live in
-`localStorage` (`aqua_you_v1`, `aqua_settings`) and are never sent to the server — no endpoint and
-no Redis key exists for them, and none should be added. The post-vote "crowd agreed / upset" line
-is computed client-side from `head_to_head` (built in the cached analytics pass, zero extra
-commands) plus the local Elo of both fish. **Ratings are sealed until you vote** — the Elo number
-and the odds label reveal only after a pick, so the vote is about the fish, not the number.
+**Everything personal is device-local.** Vote counts, favourites, badges, day streak, daily
+progress and theme live in `localStorage` (`aqua_you_v1`, `aqua_settings`, `aqua_daily_v1`) and are
+never sent to the server — no endpoint and no Redis key exists for them, and none should be added.
+The post-vote "crowd agreed / upset" line and the **Compare** block both read `head_to_head` from
+the cached analytics pass (zero extra commands). The share card is a self-contained SVG rasterised
+to PNG on the client — no photos in it, so the canvas never taints. **Ratings are sealed until you
+vote** — the Elo number and the odds label reveal only after a pick, so the vote is about the fish,
+not the number. Rankings/daily tables and the favourites list use small **thumbnails**
+(`/images/thumbs/<id>.jpg`), not the full photos.
 
 See **Design & voice** below before touching any of this.
 
 ## PWA (`sw.js` + `manifest.webmanifest`)
 
 Three caches: shell (precached on install, then stale-while-revalidate so a deploy lands on the
-next load without a manual `VERSION` bump), photos (cache-first, capped at 140), and read-only API
-GETs (`/rankings`, `/daily`, `/elo-info`, `/stats`, stale-while-revalidate so the app opens
-offline). **`/api/matchup` and `/api/vote` are never cached** — a matchup token is single-use.
+next load without a manual `VERSION` bump), photos (cache-first, capped at 240 — full photos and
+the 106 thumbnails share it), and read-only API GETs (`/rankings`, `/daily`, `/elo-info`, `/stats`,
+stale-while-revalidate so the app opens offline). **`/api/matchup` and `/api/vote` are never
+cached** — a matchup token is single-use. `/api/compare` is not in the cached set (network-only).
 Because the SW answers API reads from cache, a successful fetch is not proof of a connection:
 `setOnline()` always ANDs with `navigator.onLine`. Failed votes go to a local outbox and retry on
 `online`, dropped after 9 minutes since the token TTL is 10.
 
-Icons in `frontend/icons/` are rendered from `tools/assets/*.svg` by `tools/render.mjs` (headless
-Chromium) and **committed** — `tools/` is dev-only and never deployed.
+Icons in `frontend/icons/` are rendered from `tools/assets/*.svg` by `tools/render.mjs`; the
+per-species thumbnails in `frontend/images/thumbs/` are rendered from the full photos by
+`tools/thumbs.mjs` (both headless Chromium) and **committed** — `tools/` is dev-only, never
+deployed. Re-run `tools/thumbs.mjs` after adding a fish photo.
 
 `main.py` sets the security headers and the cache policy for static files: photos and icons get a
 year (`immutable`), the shell must revalidate, and `/api/*` is `no-store`. `mimetypes.add_type`
