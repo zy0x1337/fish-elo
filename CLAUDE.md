@@ -106,16 +106,49 @@ Redis-backed single-use token is the real anti-fraud guarantee.
 
 ## API surface
 
-`GET /api/matchup` · `POST /api/vote` · `GET /api/rankings` (elo + `rank_delta` + 24h trend + W/L) ·
+`GET /api/matchup` (both fish + token + `elo_diff` + `head_to_head`) · `POST /api/vote` · `GET /api/rankings` (elo + `rank_delta` + 24h trend + W/L) ·
 `GET /api/stats` (total votes, visitors online 24h, best/worst 24h mover) · `GET /api/daily` ·
 `GET /api/daily/matchup` · `POST /api/daily/vote` · `POST /api/track` · `GET /api/elo-info` · `GET /api/health`.
 
-## Frontend efficiency rules (`script.js`)
+## Frontend (`index.html` + `style.css` + `script.js` + `sw.js`)
 
-Vanilla single-file SPA, three tabs (Vote / Rankings / Daily). **Do not poll `/stats` on a timer** —
-refresh on load and after a vote only. The Daily countdown is client-side `setInterval` and must
-never fetch per tick. `trackVisitor()` throttles via `localStorage` (≤1/30min, override on a new UTC
-day, timestamp set before firing so reloads dedupe) with a stable `visitor_id`.
+Vanilla single-file SPA, four hash-routed tabs (Vote / Rankings / Daily / Your picks).
+
+**Efficiency rules.** **Do not poll `/stats` on a timer** — refresh on load and after a vote only.
+The Daily countdown is client-side `setInterval` and must never fetch per tick. `trackVisitor()`
+throttles via `localStorage` (≤1/30min, override on a new UTC day, timestamp set before firing so
+reloads dedupe) with a stable `visitor_id`. Exactly **one** matchup is prefetched (`topUpQueue`)
+so the next pair is instant — that is the same number of `/matchup` calls, just earlier, and the
+queue must not grow (each unused token is a wasted `SET`).
+
+**Everything personal is device-local.** Vote counts, favourites, badges, theme and sound live in
+`localStorage` (`aqua_you_v1`, `aqua_settings`) and are never sent to the server — no endpoint and
+no Redis key exists for them, and none should be added. The post-vote "crowd agreed / upset" line
+is computed client-side from `head_to_head` (built in the cached analytics pass, zero extra
+commands) plus the local Elo of both fish.
+
+**Design.** Printed field-guide look: warm paper, serif display type, hairline rules, one coral
+accent. Light and dark come from a single token set via CSS `light-dark()`, so the theme toggle
+only pins `color-scheme` and there is no flash on load. `[hidden] { display: none !important }` is
+load-bearing — several components set `display`, which would otherwise beat the attribute.
+
+## PWA (`sw.js` + `manifest.webmanifest`)
+
+Three caches: shell (precached on install, then stale-while-revalidate so a deploy lands on the
+next load without a manual `VERSION` bump), photos (cache-first, capped at 140), and read-only API
+GETs (`/rankings`, `/daily`, `/elo-info`, `/stats`, stale-while-revalidate so the app opens
+offline). **`/api/matchup` and `/api/vote` are never cached** — a matchup token is single-use.
+Because the SW answers API reads from cache, a successful fetch is not proof of a connection:
+`setOnline()` always ANDs with `navigator.onLine`. Failed votes go to a local outbox and retry on
+`online`, dropped after 9 minutes since the token TTL is 10.
+
+Icons in `frontend/icons/` are rendered from `tools/assets/*.svg` by `tools/render.mjs` (headless
+Chromium) and **committed** — `tools/` is dev-only and never deployed.
+
+`main.py` sets the security headers and the cache policy for static files: photos and icons get a
+year (`immutable`), the shell must revalidate, and `/api/*` is `no-store`. `mimetypes.add_type`
+for `.webmanifest` is required — without it the manifest is served as octet-stream and the install
+prompt never appears.
 
 ## Deploy / env
 

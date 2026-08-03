@@ -7,6 +7,7 @@ write paths (``/vote``, ``/daily/vote``) hold to the per-action Redis command bu
 documented in ``storage.py`` and ``elo.py``.
 """
 
+import mimetypes
 import random
 import time
 import uuid
@@ -15,23 +16,55 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from starlette.responses import Response
 
 from . import daily as daily_mod
 from . import storage
-from .elo import compute_analytics, get_elo_info, get_rankings, load_fish, record_match
+from .elo import compute_analytics, get_elo_info, get_rankings, head_to_head, load_fish, record_match
+
+# Not in every Python's mimetypes table; without this the manifest is served as
+# application/octet-stream and the install prompt never appears.
+mimetypes.add_type("application/manifest+json", ".webmanifest")
 
 app = FastAPI(title="Aqua Elo")
 
+app.add_middleware(GZipMiddleware, minimum_size=800)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
 )
 
 FRONTEND_DIR = Path(__file__).resolve().parent.parent.parent / "frontend"
+
+CSP = (
+    "default-src 'self'; "
+    "img-src 'self' data:; "
+    "style-src 'self' 'unsafe-inline'; "
+    "script-src 'self'; "
+    "connect-src 'self'; "
+    "font-src 'self'; "
+    "object-src 'none'; "
+    "base-uri 'self'; "
+    "form-action 'self'; "
+    "frame-ancestors 'none'"
+)
+
+
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers.setdefault("Content-Security-Policy", CSP)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    response.headers.setdefault("Permissions-Policy", "geolocation=(), microphone=(), camera=()")
+    if request.url.path.startswith("/api/"):
+        response.headers.setdefault("Cache-Control", "no-store")
+    return response
 
 MATCHUP_TTL = 600
 RATE_LIMIT_SECS = 0.5
@@ -100,7 +133,8 @@ async def matchup():
         raise HTTPException(status_code=503, detail="Not enough fish")
 
     ratings = storage.read_ratings()
-    trends = compute_analytics()["trends"]
+    analytics = compute_analytics()
+    trends = analytics["trends"]
 
     pair = None
     a = b = None
@@ -123,6 +157,8 @@ async def matchup():
         "fish_b": fb,
         "token": token,
         "elo_diff": round(abs(fa["elo"] - fb["elo"]), 1),
+        # From the same cached analytics pass — no extra Redis commands.
+        "head_to_head": head_to_head(analytics.get("pairs", {}), a["id"], b["id"]),
     }
 
 
@@ -231,4 +267,24 @@ async def health():
     return {"status": "ok", "fish": len(load_fish())}
 
 
-app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+class FrontendFiles(StaticFiles):
+    """Static frontend with cache headers tuned for a single-function deploy.
+
+    Photos and icons never change under their own name, so they get a year at the edge.
+    The shell (HTML/CSS/JS) and the service worker must revalidate, otherwise a deploy
+    can leave a stale app cached on the client.
+    """
+
+    IMMUTABLE_SUFFIXES = (".jpg", ".jpeg", ".png", ".webp", ".svg", ".ico")
+
+    def file_response(self, full_path, stat_result, scope, status_code=200) -> Response:
+        response = super().file_response(full_path, stat_result, scope, status_code)
+        path = str(full_path)
+        if ("/images/" in path or "/icons/" in path) and path.endswith(self.IMMUTABLE_SUFFIXES):
+            response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        else:
+            response.headers["Cache-Control"] = "public, max-age=0, must-revalidate"
+        return response
+
+
+app.mount("/", FrontendFiles(directory=FRONTEND_DIR, html=True), name="frontend")

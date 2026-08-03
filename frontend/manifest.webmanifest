@@ -1,0 +1,26 @@
+{
+  "name": "Aqua Elo",
+  "short_name": "Aqua Elo",
+  "description": "Pick the freshwater aquarium fish you like better and watch the leaderboard move.",
+  "id": "/",
+  "start_url": "/?src=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#0d1b22",
+  "theme_color": "#0d1b22",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["entertainment", "games", "education"],
+  "icons": [
+    { "src": "/icons/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Rankings", "url": "/#rankings" },
+    { "name": "Daily battle", "url": "/#daily" },
+    { "name": "Your picks", "url": "/#you" }
+  ]
+}
