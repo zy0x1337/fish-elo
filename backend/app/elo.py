@@ -231,6 +231,15 @@ def compute_analytics(now: float | None = None, use_cache: bool = True) -> dict:
             if ts >= cut_1h:
                 delta_1h[fid] += ch
 
+    # Head-to-head tallies, keyed by the sorted pair. Built in the same pass over the
+    # already-loaded match list, so this costs zero extra Redis commands.
+    pairs: dict[str, list[int]] = {}
+    for m in matches:
+        w, l = m["winner"], m["loser"]
+        lo, hi = (w, l) if w < l else (l, w)
+        rec = pairs.setdefault(f"{lo}|{hi}", [0, 0])
+        rec[0 if w == lo else 1] += 1
+
     rank_now = _ranks(current)
     rank_past = _ranks(rating_24h_ago)
 
@@ -252,12 +261,20 @@ def compute_analytics(now: float | None = None, use_cache: bool = True) -> dict:
 
     result = {
         "trends": trends,
+        "pairs": pairs,
         "total_votes": len(matches),  # derived from the already-loaded list, no LLEN
         "best_mover": _mover(best),
         "worst_mover": _mover(worst),
     }
     storage._cache_set(_ANALYTICS_CACHE_KEY, result)
     return result
+
+
+def head_to_head(pairs: dict, a_id: str, b_id: str) -> dict:
+    """Historical record between two fish, as ``{a: wins, b: wins}``."""
+    lo, hi = (a_id, b_id) if a_id < b_id else (b_id, a_id)
+    lo_wins, hi_wins = pairs.get(f"{lo}|{hi}", [0, 0])
+    return {a_id: lo_wins, b_id: hi_wins} if a_id == lo else {a_id: hi_wins, b_id: lo_wins}
 
 
 def _ranks(rating_map: dict) -> dict:

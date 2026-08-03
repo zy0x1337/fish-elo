@@ -1,128 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Head-to-head Elo ranking for freshwater aquarium fish. Vote for your favorites.">
-    <meta property="og:title" content="Aqua Elo">
-    <meta property="og:description" content="Vote for your favorite freshwater fish. Who comes out on top?">
-    <meta property="og:type" content="website">
-    <title>Aqua Elo</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aqua Elo — freshwater fish, head to head</title>
+<meta name="description" content="Pick the freshwater aquarium fish you like better. Every vote moves an Elo leaderboard of 106 species.">
+
+<meta name="theme-color" content="#f2ece0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1b22" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Aqua Elo">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta property="og:title" content="Aqua Elo">
+<meta property="og:description" content="Pick the freshwater aquarium fish you like better. 106 species, one leaderboard.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/icons/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/icons/og.png">
+
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="brand">
-                <h1 class="logo">Aqua<span>Elo</span></h1>
-                <nav>
-                    <button id="tab-vote" class="tab active">Vote</button>
-                    <button id="tab-rankings" class="tab">Rankings</button>
-                    <button id="tab-daily" class="tab">Daily Battle</button>
-                </nav>
-            </div>
-            <div class="ticker" id="ticker">
-                <div class="ticker-item"><span class="ticker-label">Votes</span><span id="stat-votes">—</span></div>
-                <div class="ticker-item"><span class="ticker-label">Online 24h</span><span id="stat-online">—</span></div>
-                <div class="ticker-item mover-up"><span class="ticker-label">Top mover</span><span id="stat-best">—</span></div>
-                <div class="ticker-item mover-down"><span class="ticker-label">Biggest drop</span><span id="stat-worst">—</span></div>
-            </div>
-        </header>
 
-        <main>
-            <!-- VOTE -->
-            <section id="vote-section">
-                <div class="matchup">
-                    <div class="fish-card" id="card-a">
-                        <div class="fish-image-wrap"><img id="img-a" src="" alt=""><span class="new-badge" id="new-a">NEW</span></div>
-                        <div class="fish-body">
-                            <h2 id="name-a"></h2>
-                            <div class="sci" id="sci-a"></div>
-                            <div class="fish-tags" id="tags-a"></div>
-                            <div class="fish-credit" id="credit-a"></div>
-                            <div class="fish-rating"><span class="fish-elo" id="elo-a">—</span><span class="fish-elo-change" id="change-a"></span></div>
-                        </div>
-                    </div>
+<svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-fish" viewBox="0 0 100 60">
+        <path d="M22 30 Q52 6 84 30 Q52 54 22 30 Z" fill="currentColor"/>
+        <path d="M23 30 L2 14 Q8 30 2 46 Z" fill="currentColor"/>
+        <circle cx="72" cy="26.5" r="3.4" fill="var(--plate)"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+        <circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5Z"/>
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.6"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="m6 6 12 12M18 6 6 18"/>
+    </symbol>
+    <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M5 13v6.5h14V13"/>
+    </symbol>
+    <symbol id="i-install" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3v11"/><path d="m8 10 4 4 4-4"/><path d="M5 18h14"/>
+    </symbol>
+</svg>
 
-                    <div class="vs-divider">
-                        <span class="vs-text">VS</span>
-                        <span class="outcome-label" id="outcome-label"></span>
-                        <button id="btn-skip" class="btn-skip">Skip</button>
-                        <span class="key-hint"><kbd>←</kbd> / <kbd>→</kbd> vote · <kbd>space</kbd> skip</span>
-                    </div>
+<a class="skip-link" href="#main">Skip to content</a>
 
-                    <div class="fish-card" id="card-b">
-                        <div class="fish-image-wrap"><img id="img-b" src="" alt=""><span class="new-badge" id="new-b">NEW</span></div>
-                        <div class="fish-body">
-                            <h2 id="name-b"></h2>
-                            <div class="sci" id="sci-b"></div>
-                            <div class="fish-tags" id="tags-b"></div>
-                            <div class="fish-credit" id="credit-b"></div>
-                            <div class="fish-rating"><span class="fish-elo" id="elo-b">—</span><span class="fish-elo-change" id="change-b"></span></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<div class="wrap">
 
-            <!-- RANKINGS -->
-            <section id="rankings-section" hidden>
-                <div class="section-head">
-                    <h2>Elo Rankings</h2>
-                    <span class="muted" id="rankings-count"></span>
-                </div>
-                <div class="table-wrap">
-                    <table id="rankings-table">
-                        <thead>
-                            <tr><th>#</th><th></th><th></th><th>Fish</th><th class="num">Elo</th><th class="num">24h</th><th class="num">W</th><th class="num">L</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- DAILY BATTLE -->
-            <section id="daily-section" hidden>
-                <div class="daily-head">
-                    <div>
-                        <span class="daily-kicker">Daily Battle · sandbox, doesn't affect global Elo</span>
-                        <h2 id="daily-theme">—</h2>
-                    </div>
-                    <div class="countdown"><span class="muted">Next battle in</span><span id="daily-countdown">—</span></div>
-                </div>
-                <div class="daily-champion" id="daily-champion" hidden></div>
-
-                <div class="matchup daily-matchup">
-                    <div class="fish-card small" id="dcard-a">
-                        <div class="fish-image-wrap"><img id="dimg-a" src="" alt=""></div>
-                        <div class="fish-body"><h3 id="dname-a"></h3><div class="fish-tags" id="dtags-a"></div></div>
-                    </div>
-                    <div class="vs-divider"><span class="vs-text">VS</span><button id="dbtn-skip" class="btn-skip">Skip</button></div>
-                    <div class="fish-card small" id="dcard-b">
-                        <div class="fish-image-wrap"><img id="dimg-b" src="" alt=""></div>
-                        <div class="fish-body"><h3 id="dname-b"></h3><div class="fish-tags" id="dtags-b"></div></div>
-                    </div>
-                </div>
-
-                <div class="section-head"><h3>Standings <span class="muted">(Wilson score)</span></h3></div>
-                <div class="table-wrap">
-                    <table id="daily-table">
-                        <thead><tr><th>#</th><th></th><th>Fish</th><th class="num">W</th><th class="num">L</th><th class="num">Score</th></tr></thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section id="elo-info-section">
-                <h3 class="info-heading">How the rating works</h3>
-                <div id="elo-info-content"></div>
-            </section>
-        </main>
-
-        <footer>
-            <p>Aqua Elo · a freshwater fish ranking sandbox. Fish photos are used under their respective licenses — credits shown per image.</p>
-        </footer>
+<header class="masthead">
+    <div class="masthead-row">
+        <a class="brand" href="#vote">
+            <span class="brand-mark"><svg viewBox="0 0 100 60" aria-hidden="true"><use href="#i-fish"/></svg></span>
+            <span class="brand-text">
+                <span class="wordmark">Aqua Elo</span>
+                <span class="brand-sub">Freshwater fish, head to head</span>
+            </span>
+        </a>
+        <div class="tools">
+            <button id="btn-install" class="tool" type="button" hidden>
+                <svg aria-hidden="true"><use href="#i-install"/></svg><span>Install</span>
+            </button>
+            <button id="btn-theme" class="tool icon-only" type="button" title="Switch theme" aria-label="Switch theme">
+                <svg aria-hidden="true"><use href="#i-moon"/></svg>
+            </button>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <p class="dateline" id="dateline"><span class="dateline-item">Loading the tank…</span></p>
+
+    <nav class="tabs" role="tablist" aria-label="Sections">
+        <button class="tab" id="tab-vote" role="tab" aria-selected="true" aria-controls="panel-vote" type="button">Vote</button>
+        <button class="tab" id="tab-rankings" role="tab" aria-selected="false" aria-controls="panel-rankings" type="button">Rankings</button>
+        <button class="tab" id="tab-daily" role="tab" aria-selected="false" aria-controls="panel-daily" type="button">Daily</button>
+        <button class="tab" id="tab-you" role="tab" aria-selected="false" aria-controls="panel-you" type="button">Your picks</button>
+    </nav>
+</header>
+
+<p class="offline-bar" id="offline-bar" hidden>You're offline. Showing the last data this device saw.</p>
+
+<main id="main">
+
+<!-- ------------------------------------------------------------------ VOTE -->
+<section id="panel-vote" role="tabpanel" aria-labelledby="tab-vote" tabindex="-1">
+    <div class="arena" id="arena">
+        <div class="plate-wrap">
+            <button class="plate" id="plate-a" type="button">
+                <span class="plate-photo">
+                    <img id="img-a" alt="" decoding="async">
+                    <span class="tag-new" id="new-a">New</span>
+                    <span class="stamp" id="stamp-a">Your pick</span>
+                </span>
+                <span class="plate-body">
+                    <span class="plate-name" id="name-a"></span>
+                    <span class="plate-sci" id="sci-a"></span>
+                    <span class="chips" id="tags-a"></span>
+                    <span class="plate-foot">
+                        <span class="rating"><span class="rating-num" id="elo-a">—</span><span class="rating-label">Elo</span></span>
+                        <span class="delta" id="change-a"></span>
+                    </span>
+                </span>
+            </button>
+            <button class="info-btn" id="info-a" type="button" aria-label="Details">
+                <svg aria-hidden="true"><use href="#i-info"/></svg>
+            </button>
+            <p class="credit" id="credit-a"></p>
+        </div>
+
+        <div class="versus">
+            <span class="medallion">vs</span>
+            <p class="odds" id="odds"></p>
+            <button class="ghost-btn" id="btn-skip" type="button">Skip this pair</button>
+            <p class="keys"><kbd>←</kbd><kbd>→</kbd> vote · <kbd>space</kbd> skip</p>
+        </div>
+
+        <div class="plate-wrap">
+            <button class="plate" id="plate-b" type="button">
+                <span class="plate-photo">
+                    <img id="img-b" alt="" decoding="async">
+                    <span class="tag-new" id="new-b">New</span>
+                    <span class="stamp" id="stamp-b">Your pick</span>
+                </span>
+                <span class="plate-body">
+                    <span class="plate-name" id="name-b"></span>
+                    <span class="plate-sci" id="sci-b"></span>
+                    <span class="chips" id="tags-b"></span>
+                    <span class="plate-foot">
+                        <span class="rating"><span class="rating-num" id="elo-b">—</span><span class="rating-label">Elo</span></span>
+                        <span class="delta" id="change-b"></span>
+                    </span>
+                </span>
+            </button>
+            <button class="info-btn" id="info-b" type="button" aria-label="Details">
+                <svg aria-hidden="true"><use href="#i-info"/></svg>
+            </button>
+            <p class="credit" id="credit-b"></p>
+        </div>
+    </div>
+
+    <p class="verdict" id="verdict" role="status" aria-live="polite"></p>
+    <p class="session-line" id="session-line"></p>
+</section>
+
+<!-- -------------------------------------------------------------- RANKINGS -->
+<section id="panel-rankings" role="tabpanel" aria-labelledby="tab-rankings" tabindex="-1" hidden>
+    <div class="panel-head">
+        <h2>Rankings</h2>
+        <p class="sub" id="rankings-count"></p>
+    </div>
+    <div class="filters">
+        <input type="search" id="rank-search" placeholder="Search species…" aria-label="Search species" autocomplete="off">
+        <select id="rank-tag" aria-label="Filter by tag"><option value="">All tags</option></select>
+    </div>
+    <div class="table-wrap">
+        <table class="ledger" id="rankings-table">
+            <thead>
+                <tr>
+                    <th class="col-rank">#</th>
+                    <th class="col-move"><span class="sr-only">Rank change</span></th>
+                    <th class="col-thumb"><span class="sr-only">Photo</span></th>
+                    <th>Species</th>
+                    <th class="num">Elo</th>
+                    <th class="num">24h</th>
+                    <th class="num">W</th>
+                    <th class="num">L</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <p class="empty" id="rankings-empty" hidden>Nothing matches that.</p>
+
+    <section class="explainer">
+        <h3>How the rating works</h3>
+        <div id="elo-info-content"></div>
+    </section>
+</section>
+
+<!-- ----------------------------------------------------------------- DAILY -->
+<section id="panel-daily" role="tabpanel" aria-labelledby="tab-daily" tabindex="-1" hidden>
+    <div class="panel-head">
+        <div>
+            <p class="kicker">Today's theme · separate board, the main ranking stays untouched</p>
+            <h2 id="daily-theme">—</h2>
+        </div>
+        <p class="countdown">Resets in <span id="daily-countdown">—</span></p>
+    </div>
+
+    <p class="champion" id="daily-champion" hidden></p>
+
+    <div class="arena arena-small">
+        <div class="plate-wrap">
+            <button class="plate" id="dplate-a" type="button">
+                <span class="plate-photo"><img id="dimg-a" alt="" decoding="async"><span class="stamp" id="dstamp-a">Your pick</span></span>
+                <span class="plate-body">
+                    <span class="plate-name" id="dname-a"></span>
+                    <span class="chips" id="dtags-a"></span>
+                </span>
+            </button>
+            <p class="credit" id="dcredit-a"></p>
+        </div>
+        <div class="versus">
+            <span class="medallion">vs</span>
+            <button class="ghost-btn" id="dbtn-skip" type="button">Skip</button>
+        </div>
+        <div class="plate-wrap">
+            <button class="plate" id="dplate-b" type="button">
+                <span class="plate-photo"><img id="dimg-b" alt="" decoding="async"><span class="stamp" id="dstamp-b">Your pick</span></span>
+                <span class="plate-body">
+                    <span class="plate-name" id="dname-b"></span>
+                    <span class="chips" id="dtags-b"></span>
+                </span>
+            </button>
+            <p class="credit" id="dcredit-b"></p>
+        </div>
+    </div>
+
+    <div class="panel-head sub-head">
+        <h3>Standings</h3>
+        <p class="sub">Ranked by Wilson score, so a 6–2 beats a lucky 1–0</p>
+    </div>
+    <div class="table-wrap">
+        <table class="ledger" id="daily-table">
+            <thead>
+                <tr>
+                    <th class="col-rank">#</th>
+                    <th class="col-thumb"><span class="sr-only">Photo</span></th>
+                    <th>Species</th>
+                    <th class="num">W</th>
+                    <th class="num">L</th>
+                    <th class="num">Score</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+
+<!-- ------------------------------------------------------------------- YOU -->
+<section id="panel-you" role="tabpanel" aria-labelledby="tab-you" tabindex="-1" hidden>
+    <div class="panel-head">
+        <h2>Your picks</h2>
+        <p class="sub">Kept on this device only. Nothing is sent anywhere.</p>
+    </div>
+
+    <div class="stat-grid" id="you-stats"></div>
+
+    <div class="you-columns">
+        <section>
+            <h3>Your favourites</h3>
+            <ol class="fav-list" id="you-favourites"></ol>
+        </section>
+        <section>
+            <h3>Badges</h3>
+            <ul class="badges" id="you-badges"></ul>
+        </section>
+    </div>
+
+    <div class="you-actions">
+        <button class="ghost-btn" id="btn-share" type="button">
+            <svg aria-hidden="true"><use href="#i-share"/></svg> Share
+        </button>
+        <button class="ghost-btn danger" id="btn-reset" type="button">Reset my data</button>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>A just-for-fun poll for the aquarium community. Ratings move with every vote, so the board is never final.</p>
+    <p class="fine">Photos belong to their photographers — credit is shown under each one.</p>
+</footer>
+</div>
+
+<!-- Species dossier -->
+<div class="modal" id="dossier" hidden>
+    <div class="modal-backdrop" id="dossier-backdrop"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="dossier-name">
+        <button class="modal-close" id="dossier-close" type="button" aria-label="Close">
+            <svg aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+        <div class="modal-photo"><img id="dossier-img" alt=""></div>
+        <div class="modal-body">
+            <h2 id="dossier-name"></h2>
+            <p class="plate-sci" id="dossier-sci"></p>
+            <div class="chips" id="dossier-tags"></div>
+            <dl class="specs" id="dossier-specs"></dl>
+            <p class="credit" id="dossier-credit"></p>
+        </div>
+    </div>
+</div>
+
+<p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+<script src="/script.js" defer></script>
 </body>
 </html>

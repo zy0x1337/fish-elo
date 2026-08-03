@@ -102,3 +102,27 @@ def test_placement_fish_have_suppressed_rank_arrow():
     trends = elo.compute_analytics(now=now, use_cache=False)["trends"]
     assert trends["neon-tetra"]["placing"] is True
     assert trends["neon-tetra"]["rank_delta"] is None
+
+
+def test_head_to_head_pairs_are_counted_per_direction():
+    """The matchup payload's crowd split comes from this map, built in the same pass
+    over the match log — so it must never depend on which id is 'a' and which is 'b'."""
+    now = 1_000_000.0
+    for _ in range(3):
+        storage.append_match({
+            "winner": "guppy", "loser": "neon-tetra",
+            "winner_rating": 1510.0, "loser_rating": 1490.0,
+            "winner_change": 10.0, "loser_change": -10.0,
+            "timestamp": _iso(now - 600),
+        })
+    storage.append_match({
+        "winner": "neon-tetra", "loser": "guppy",
+        "winner_rating": 1500.0, "loser_rating": 1500.0,
+        "winner_change": 10.0, "loser_change": -10.0,
+        "timestamp": _iso(now - 300),
+    })
+
+    pairs = elo.compute_analytics(now=now, use_cache=False)["pairs"]
+    assert elo.head_to_head(pairs, "guppy", "neon-tetra") == {"guppy": 3, "neon-tetra": 1}
+    assert elo.head_to_head(pairs, "neon-tetra", "guppy") == {"neon-tetra": 1, "guppy": 3}
+    assert elo.head_to_head(pairs, "guppy", "discus") == {"guppy": 0, "discus": 0}

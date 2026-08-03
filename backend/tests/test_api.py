@@ -100,3 +100,34 @@ def test_daily_vote_rejects_global_token(client):
     m = client.get("/api/matchup").json()
     r = _vote(client, "/api/daily/vote", winner_id=m["fish_a"]["id"], loser_id=m["fish_b"]["id"], token=m["token"])
     assert r.status_code == 400
+
+
+def test_matchup_carries_head_to_head(client):
+    m = client.get("/api/matchup").json()
+    assert set(m["head_to_head"]) == {m["fish_a"]["id"], m["fish_b"]["id"]}
+
+
+def test_manifest_is_served_with_the_right_type(client):
+    r = client.get("/manifest.webmanifest")
+    assert r.status_code == 200
+    assert r.headers["content-type"].startswith("application/manifest+json")
+
+
+def test_service_worker_is_served_from_the_root_scope(client):
+    assert client.get("/sw.js").status_code == 200
+
+
+def test_photos_are_cached_but_the_shell_revalidates(client):
+    photo = client.get("/images/neon-tetra.jpg")
+    assert "immutable" in photo.headers["cache-control"]
+    assert "must-revalidate" in client.get("/script.js").headers["cache-control"]
+
+
+def test_api_responses_are_not_cached(client):
+    assert client.get("/api/stats").headers["cache-control"] == "no-store"
+
+
+def test_security_headers_are_set(client):
+    h = client.get("/").headers
+    assert "default-src 'self'" in h["content-security-policy"]
+    assert h["x-content-type-options"] == "nosniff"
