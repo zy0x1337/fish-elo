@@ -131,3 +131,24 @@ def test_security_headers_are_set(client):
     h = client.get("/").headers
     assert "default-src 'self'" in h["content-security-policy"]
     assert h["x-content-type-options"] == "nosniff"
+
+
+def test_compare_returns_head_to_head_for_two_fish(client):
+    fish = client.get("/api/rankings").json()["fish"]
+    a, b = fish[0]["id"], fish[1]["id"]
+    r = client.get(f"/api/compare?a={a}&b={b}")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["fish_a"]["id"] == a and body["fish_b"]["id"] == b
+    assert set(body["head_to_head"]) == {a, b}
+    assert "elo" in body["fish_a"]
+
+
+def test_compare_rejects_same_fish(client):
+    a = client.get("/api/rankings").json()["fish"][0]["id"]
+    assert client.get(f"/api/compare?a={a}&b={a}").status_code == 400
+
+
+def test_compare_rejects_unknown_fish(client):
+    a = client.get("/api/rankings").json()["fish"][0]["id"]
+    assert client.get(f"/api/compare?a={a}&b=not-a-fish").status_code == 404

@@ -54,6 +54,7 @@ them with headless Chromium and committed:
 
 ```bash
 node tools/render.mjs '[{"src":"tools/assets/mark.svg","out":"frontend/icons/icon-512.png","w":512,"h":512}]'
+node tools/thumbs.mjs     # re-render frontend/images/thumbs/ from the full photos
 ```
 
 Playwright is not a project dependency; point `PLAYWRIGHT_MODULE` at an installed copy if it

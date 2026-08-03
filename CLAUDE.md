@@ -107,6 +107,7 @@ Redis-backed single-use token is the real anti-fraud guarantee.
 ## API surface
 
 `GET /api/matchup` (both fish + token + `elo_diff` + `head_to_head`) · `POST /api/vote` · `GET /api/rankings` (elo + `rank_delta` + 24h trend + W/L) ·
+`GET /api/compare` (`?a=&b=`, read-only head-to-head for any two fish — no token, reuses the cached analytics pass) ·
 `GET /api/stats` (total votes, visitors online 24h, best/worst 24h mover) · `GET /api/daily` ·
 `GET /api/daily/matchup` · `POST /api/daily/vote` · `POST /api/track` · `GET /api/elo-info` · `GET /api/health`.
 
@@ -121,34 +122,77 @@ reloads dedupe) with a stable `visitor_id`. Exactly **one** matchup is prefetche
 so the next pair is instant — that is the same number of `/matchup` calls, just earlier, and the
 queue must not grow (each unused token is a wasted `SET`).
 
-**Everything personal is device-local.** Vote counts, favourites, badges, theme and sound live in
-`localStorage` (`aqua_you_v1`, `aqua_settings`) and are never sent to the server — no endpoint and
-no Redis key exists for them, and none should be added. The post-vote "crowd agreed / upset" line
-is computed client-side from `head_to_head` (built in the cached analytics pass, zero extra
-commands) plus the local Elo of both fish.
+**Everything personal is device-local.** Vote counts, favourites, badges, day streak, daily
+progress and theme live in `localStorage` (`aqua_you_v1`, `aqua_settings`, `aqua_daily_v1`) and are
+never sent to the server — no endpoint and no Redis key exists for them, and none should be added.
+The post-vote "crowd agreed / upset" line and the **Compare** block both read `head_to_head` from
+the cached analytics pass (zero extra commands). The share card is a self-contained SVG rasterised
+to PNG on the client — no photos in it, so the canvas never taints. **Ratings are sealed until you
+vote** — the Elo number and the odds label reveal only after a pick, so the vote is about the fish,
+not the number. Rankings/daily tables and the favourites list use small **thumbnails**
+(`/images/thumbs/<id>.jpg`), not the full photos.
 
-**Design.** Printed field-guide look: warm paper, serif display type, hairline rules, one coral
-accent. Light and dark come from a single token set via CSS `light-dark()`, so the theme toggle
-only pins `color-scheme` and there is no flash on load. `[hidden] { display: none !important }` is
-load-bearing — several components set `display`, which would otherwise beat the attribute.
+See **Design & voice** below before touching any of this.
 
 ## PWA (`sw.js` + `manifest.webmanifest`)
 
 Three caches: shell (precached on install, then stale-while-revalidate so a deploy lands on the
-next load without a manual `VERSION` bump), photos (cache-first, capped at 140), and read-only API
-GETs (`/rankings`, `/daily`, `/elo-info`, `/stats`, stale-while-revalidate so the app opens
-offline). **`/api/matchup` and `/api/vote` are never cached** — a matchup token is single-use.
+next load without a manual `VERSION` bump), photos (cache-first, capped at 240 — full photos and
+the 106 thumbnails share it), and read-only API GETs (`/rankings`, `/daily`, `/elo-info`, `/stats`,
+stale-while-revalidate so the app opens offline). **`/api/matchup` and `/api/vote` are never
+cached** — a matchup token is single-use. `/api/compare` is not in the cached set (network-only).
 Because the SW answers API reads from cache, a successful fetch is not proof of a connection:
 `setOnline()` always ANDs with `navigator.onLine`. Failed votes go to a local outbox and retry on
 `online`, dropped after 9 minutes since the token TTL is 10.
 
-Icons in `frontend/icons/` are rendered from `tools/assets/*.svg` by `tools/render.mjs` (headless
-Chromium) and **committed** — `tools/` is dev-only and never deployed.
+Icons in `frontend/icons/` are rendered from `tools/assets/*.svg` by `tools/render.mjs`; the
+per-species thumbnails in `frontend/images/thumbs/` are rendered from the full photos by
+`tools/thumbs.mjs` (both headless Chromium) and **committed** — `tools/` is dev-only, never
+deployed. Re-run `tools/thumbs.mjs` after adding a fish photo.
 
 `main.py` sets the security headers and the cache policy for static files: photos and icons get a
 year (`immutable`), the shell must revalidate, and `/api/*` is `no-store`. `mimetypes.add_type`
 for `.webmanifest` is required — without it the manifest is served as octet-stream and the install
 prompt never appears.
+
+## Design & voice (read before touching the UI)
+
+This is a **just-for-fun poll for the aquarium community** — treat it as one. It doesn't need to
+sound big, and it must never read as machine-made. **The bar: nobody who lands here should think
+"AI" or "slop."** That is a hard requirement, not a nice-to-have. When you add or change anything
+visible, hold it to the rules below; if a change would fail them, don't ship it.
+
+**The identity is a printed field guide, not a web dashboard.** Warm paper, ink-coloured serif
+display type (a *system* serif stack — never download a web font), hairline and hairline-double
+rules, tabular numbers, one coral accent plus one muted teal. The fish **photos are the hero**;
+every bit of chrome recedes so they carry the page. Match this when adding components — reuse the
+existing CSS tokens and idiom rather than importing a new look.
+
+**Concrete tells to avoid (this is what "AI slop" looks like — do not produce it):**
+- Neon-on-near-black "dashboard" palettes, glowing accents, or a cyan/purple/indigo gradient hero.
+- Glassmorphism (blurred translucent cards), heavy drop shadows, or everything on a gradient.
+- Emoji in headings, buttons, stat labels, or nav; three-emoji "✨ feature ✨" bullet rows.
+- Generic bold sans-serif everywhere with wide letter-spacing standing in for design.
+- Marketing hype: "revolutionary", "seamless", "powered by AI", superlatives, exclamation marks,
+  invented testimonials or fake counts. If a sentence is trying to impress, cut it.
+- Filler and hedging in copy. Say the concrete thing once.
+
+**Voice.** Plain, dry, a little understated. Short sentences. British-ish spelling matches the
+existing copy (favourite, colour). Own that it's a sandbox — e.g. "ratings move with every vote,
+so the board is never final." Always credit the photographers. No hype, no emoji.
+
+**Restraint and motion.** One accent colour does the work; if you reach for a second, stop.
+Motion is subtle and earns its place — the pick stamp, the water ring, the loser fading to
+grayscale — and **every animation must be gated behind `@media (prefers-reduced-motion: reduce)`**.
+
+**Accessibility is part of not-being-slop, not a separate checkbox.** Real `:focus-visible` rings,
+correct `aria-*` on tabs/dialog, full keyboard paths (arrow-key voting, Enter/Space on rows, Esc
+closes the dossier), `sr-only` labels, and a theme that is styled deliberately in **both**
+directions. `[hidden] { display: none !important }` is load-bearing — several components set
+`display`, which would otherwise beat the attribute.
+
+**No dependencies, no CDN, no build.** Vanilla HTML/CSS/JS stays vanilla. Anything pulled from a
+third-party origin is both a slop tell and a privacy/perf regression — inline it or don't add it.
 
 ## Deploy / env
 

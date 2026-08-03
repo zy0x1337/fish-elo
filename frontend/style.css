@@ -179,9 +179,19 @@ svg { width: 1.15em; height: 1.15em; }
 }
 .plate-photo img {
     width: 100%; height: 100%; object-fit: cover;
-    transition: transform .5s ease, filter .3s;
+    transition: transform .5s ease, filter .3s, opacity .4s ease;
 }
 .plate:hover .plate-photo img { transform: scale(1.03); }
+
+/* Skeleton while the photo decodes: paper-toned sweep, then the image fades in. */
+.plate-photo.loading img { opacity: 0; }
+.plate-photo.loading::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(100deg, var(--plate-2) 30%, var(--rule-soft) 50%, var(--plate-2) 70%);
+    background-size: 220% 100%;
+    animation: shimmer 1.1s ease-in-out infinite;
+}
+@keyframes shimmer { from { background-position: 180% 0; } to { background-position: -80% 0; } }
 
 /* Water ring on pick — one expanding circle, nothing more. */
 .plate-photo::after {
@@ -467,6 +477,60 @@ footer {
     font-size: .78rem; color: var(--ink-faint);
 }
 footer .fine { margin-top: 4px; }
+
+/* ------------------------------------------------------- intro / additions */
+.intro {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    border: 1px solid var(--rule); border-left: 3px solid var(--teal);
+    background: var(--plate); padding: 12px 16px; margin-bottom: 22px;
+    font-size: .9rem;
+}
+.intro button {
+    margin-left: auto; background: none; border: 1px solid var(--rule); border-radius: 999px;
+    padding: 5px 14px; cursor: pointer; color: var(--ink-dim); font-size: .8rem;
+}
+.intro button:hover { color: var(--ink); border-color: var(--ink-dim); }
+
+/* Rows you've picked before get a quiet coral tick — no glyph, just a hairline mark. */
+.ledger tr.is-fav .col-rank { position: relative; }
+.ledger tr.is-fav .col-rank::before {
+    content: ""; position: absolute; left: 0; top: 20%; bottom: 20%; width: 2px; background: var(--coral);
+}
+.ledger tr.is-fav .species-name::after {
+    content: "· your pick"; color: var(--coral); font-weight: 400; font-size: .72rem; margin-left: 6px;
+}
+
+/* Compare block */
+.compare { border: 1px solid var(--rule); border-radius: var(--radius); margin-bottom: 14px; background: var(--plate); }
+.compare > summary {
+    cursor: pointer; padding: 11px 16px; font-family: var(--font-display); font-size: 1rem;
+    list-style: none;
+}
+.compare > summary::-webkit-details-marker { display: none; }
+.compare > summary::before { content: "+ "; color: var(--teal); }
+.compare[open] > summary::before { content: "– "; }
+.compare-body { padding: 0 16px 16px; }
+.compare-picks { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.compare-picks input {
+    flex: 1 1 180px; min-width: 0; background: var(--paper); border: 1px solid var(--rule);
+    border-radius: var(--radius); padding: 8px 12px; font-size: .85rem;
+}
+.compare-vs { font-family: var(--font-display); font-style: italic; color: var(--ink-dim); }
+.compare-result { margin-top: 16px; }
+.cmp-cards { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.cmp-fish {
+    display: flex; align-items: center; gap: 10px; flex: 1 1 200px; min-width: 0;
+    border: 1px solid var(--rule-soft); border-radius: var(--radius); padding: 8px 10px;
+    cursor: pointer; background: var(--paper);
+}
+.cmp-fish:hover { border-color: var(--ink-dim); }
+.cmp-fish img { width: 46px; height: 46px; object-fit: cover; border-radius: 2px; flex: none; }
+.cmp-elo { font-size: .76rem; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+.cmp-mid { font-family: var(--font-display); font-style: italic; color: var(--ink-dim); }
+.cmp-line { margin-top: 12px; font-family: var(--font-display); font-size: 1.02rem; }
+
+.daily-progress { font-size: .82rem; color: var(--ink-dim); margin-bottom: 14px; }
+.fav-list li { cursor: pointer; }
 
 /* ------------------------------------------------------------------ mobile */
 @media (max-width: 760px) {

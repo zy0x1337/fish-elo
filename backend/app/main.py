@@ -23,7 +23,15 @@ from starlette.responses import Response
 
 from . import daily as daily_mod
 from . import storage
-from .elo import compute_analytics, get_elo_info, get_rankings, head_to_head, load_fish, record_match
+from .elo import (
+    compute_analytics,
+    fish_by_id,
+    get_elo_info,
+    get_rankings,
+    head_to_head,
+    load_fish,
+    record_match,
+)
 
 # Not in every Python's mimetypes table; without this the manifest is served as
 # application/octet-stream and the install prompt never appears.
@@ -184,6 +192,32 @@ async def vote(payload: VoteRequest, request: Request):
 @app.get("/api/rankings")
 async def rankings():
     return get_rankings()
+
+
+@app.get("/api/compare")
+async def compare(a: str, b: str):
+    """Head-to-head between any two fish. Read-only, no token: it never records a vote.
+
+    Reuses the cached analytics pass (the ``pairs`` map and trends), so between votes this
+    costs no extra Redis commands beyond the shared ratings/matches reads already cached.
+    """
+    if a == b:
+        raise HTTPException(status_code=400, detail="Pick two different fish")
+    fa, fb = fish_by_id(a), fish_by_id(b)
+    if fa is None or fb is None:
+        raise HTTPException(status_code=404, detail="Unknown fish")
+
+    ratings = storage.read_ratings()
+    analytics = compute_analytics()
+    trends = analytics["trends"]
+    pa = _public_fish(fa, ratings, trends)
+    pb = _public_fish(fb, ratings, trends)
+    return {
+        "fish_a": pa,
+        "fish_b": pb,
+        "head_to_head": head_to_head(analytics.get("pairs", {}), a, b),
+        "elo_diff": round(abs(pa["elo"] - pb["elo"]), 1),
+    }
 
 
 @app.get("/api/stats")
