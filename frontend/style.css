@@ -240,8 +240,16 @@ svg { width: 1.15em; height: 1.15em; }
 .rating-num {
     font-family: var(--font-display); font-size: 1.5rem;
     font-variant-numeric: tabular-nums; line-height: 1;
+    animation: reveal .35s ease both;
 }
+@keyframes reveal { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
 .rating-label { font-size: .6rem; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-faint); }
+
+/* Rating is sealed until the vote is cast. */
+.plate.sealed .rating-num { color: var(--ink-faint); letter-spacing: .18em; animation: none; }
+.plate.sealed .rating-label { visibility: hidden; }
+.plate.sealed .delta { visibility: hidden; }
+
 .delta { font-size: .95rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 .delta.up { color: var(--up); }
 .delta.down { color: var(--down); }

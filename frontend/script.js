@@ -80,9 +80,9 @@ function toast(message, actionLabel, onAction) {
 }
 
 // ---------------------------------------------------------------------------
-// Settings: theme + sound
+// Settings: theme
 // ---------------------------------------------------------------------------
-const settings = readStore('aqua_settings', { theme: 'auto', sound: true });
+const settings = readStore('aqua_settings', { theme: 'auto' });
 
 function applyTheme() {
     const root = document.documentElement;
@@ -93,33 +93,6 @@ function applyTheme() {
         || (settings.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
     $('#btn-theme').firstElementChild.firstElementChild.setAttribute('href', dark ? '#i-sun' : '#i-moon');
     $('#btn-theme').title = dark ? 'Switch to light' : 'Switch to dark';
-}
-
-function applySound() {
-    const btn = $('#btn-sound');
-    btn.setAttribute('aria-pressed', String(settings.sound));
-    btn.firstElementChild.firstElementChild.setAttribute('href', settings.sound ? '#i-sound-on' : '#i-sound-off');
-}
-
-let audio = null;
-function plop(up) {
-    if (!settings.sound) return;
-    try {
-        audio = audio || new (window.AudioContext || window.webkitAudioContext)();
-        if (audio.state === 'suspended') audio.resume();
-        const now = audio.currentTime;
-        const osc = audio.createOscillator();
-        const gain = audio.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(up ? 520 : 300, now);
-        osc.frequency.exponentialRampToValueAtTime(up ? 190 : 120, now + 0.13);
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.09, now + 0.012);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
-        osc.connect(gain).connect(audio.destination);
-        osc.start(now);
-        osc.stop(now + 0.24);
-    } catch { /* audio is optional */ }
 }
 
 function buzz(ms) {
@@ -210,11 +183,13 @@ function renderPlate(side, fish) {
     $(`#name-${side}`).textContent = fish.name;
     $(`#sci-${side}`).textContent = fish.scientific_name || '';
     $(`#tags-${side}`).innerHTML = (fish.tags || []).slice(0, 3).map((t) => `<span>${esc(t)}</span>`).join('');
-    $(`#elo-${side}`).textContent = Math.round(fish.elo);
+    // The rating stays hidden until you pick, so the vote is about the fish, not the number.
+    $(`#elo-${side}`).textContent = '···';
     $(`#new-${side}`).classList.toggle('show', !!fish.placing);
     $(`#credit-${side}`).innerHTML = creditHTML(fish);
     const plate = $(`#plate-${side}`);
     plate.classList.remove('picked', 'dropped');
+    plate.classList.add('sealed');
     plate.setAttribute('aria-label', `Vote for ${fish.name}`);
     $(`#change-${side}`).textContent = '';
 }
@@ -233,7 +208,8 @@ function renderMatchup() {
     const m = state.matchup;
     renderPlate('a', m.fish_a);
     renderPlate('b', m.fish_b);
-    $('#odds').textContent = oddsLabel(m.elo_diff);
+    // The odds would give away the favourite, so they're revealed with the ratings.
+    $('#odds').textContent = '';
     $('#verdict').textContent = '';
     state.voting = false;
 }
@@ -257,7 +233,6 @@ async function vote(winnerId, retries = 0) {
     state.voting = true;
     $(`#plate-${winSide}`).classList.add('picked');
     $(`#plate-${loseSide}`).classList.add('dropped');
-    plop(true);
     buzz(12);
 
     try {
@@ -279,10 +254,11 @@ async function vote(winnerId, retries = 0) {
         }
 
         const result = await res.json();
-        $(`#elo-${winSide}`).textContent = Math.round(result.winner.rating);
-        $(`#elo-${loseSide}`).textContent = Math.round(result.loser.rating);
+        revealRating(winSide, result.winner.rating);
+        revealRating(loseSide, result.loser.rating);
         showDelta(winSide, result.winner.change);
         showDelta(loseSide, result.loser.change);
+        $('#odds').textContent = oddsLabel(m.elo_diff);
 
         finishVote(winner, loser, m);
         refreshStats();
@@ -294,6 +270,11 @@ async function vote(winnerId, retries = 0) {
         state.matchup = null;
         setTimeout(nextMatchup, RESULT_PAUSE);
     }
+}
+
+function revealRating(side, rating) {
+    $(`#elo-${side}`).textContent = Math.round(rating);
+    $(`#plate-${side}`).classList.remove('sealed');
 }
 
 function showDelta(side, change) {
@@ -558,7 +539,6 @@ async function dailyVote(winnerId) {
     const loserId = winSide === 'a' ? m.fish_b.id : m.fish_a.id;
     $(`#dplate-${winSide}`).classList.add('picked');
     $(`#dplate-${winSide === 'a' ? 'b' : 'a'}`).classList.add('dropped');
-    plop(true);
     buzz(12);
 
     try {
@@ -740,13 +720,6 @@ $('#btn-theme').addEventListener('click', () => {
     applyTheme();
 });
 
-$('#btn-sound').addEventListener('click', () => {
-    settings.sound = !settings.sound;
-    writeStore('aqua_settings', settings);
-    applySound();
-    if (settings.sound) plop(true);
-});
-
 $('#plate-a').addEventListener('click', () => state.matchup && vote(state.matchup.fish_a.id));
 $('#plate-b').addEventListener('click', () => state.matchup && vote(state.matchup.fish_b.id));
 $('#info-a').addEventListener('click', () => openDossier(state.matchup && state.matchup.fish_a));
@@ -834,7 +807,6 @@ window.addEventListener('appinstalled', () => { $('#btn-install').hidden = true;
 // Boot
 // ---------------------------------------------------------------------------
 applyTheme();
-applySound();
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
 
 setOnline(navigator.onLine);
