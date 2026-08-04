@@ -123,7 +123,7 @@ def record_match(winner_id: str, loser_id: str) -> dict:
                 loser["losses"] += 1
 
                 storage.write_ratings(ratings)
-                storage.append_match(
+                total_votes = storage.append_match(
                     {
                         "winner": winner_id,
                         "loser": loser_id,
@@ -139,6 +139,9 @@ def record_match(winner_id: str, loser_id: str) -> dict:
                 return {
                     "winner": {"id": winner_id, "rating": new_w, "change": round(new_w - old_w, 1)},
                     "loser": {"id": loser_id, "rating": new_l, "change": round(new_l - old_l, 1)},
+                    # Authoritative as of this write — the frontend bumps the live count from
+                    # this so it never lags the /stats cache on another warm instance.
+                    "total_votes": total_votes,
                 }
             finally:
                 storage.release_lock(token)

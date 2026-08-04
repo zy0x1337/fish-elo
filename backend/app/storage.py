@@ -180,15 +180,22 @@ def write_ratings(ratings: dict) -> None:
 # ---------------------------------------------------------------------------
 # Matches (append-only log of per-vote snapshots)
 # ---------------------------------------------------------------------------
-def append_match(match: dict) -> None:
-    """Append one match snapshot. One ``RPUSH`` in production; never rewrites history."""
+def append_match(match: dict) -> int:
+    """Append one match snapshot and return the new total match count.
+
+    One ``RPUSH`` in production (whose reply *is* the new length, so the count is free);
+    never rewrites history. The count lets ``/vote`` report the fresh total without a
+    separate read, sidestepping cross-instance staleness in the ``/stats`` cache.
+    """
     if _is_redis():
-        _get_redis().rpush(MATCHES_KEY, json.dumps(match, ensure_ascii=False))
+        length = _get_redis().rpush(MATCHES_KEY, json.dumps(match, ensure_ascii=False))
     else:
         data = _read_local()
         data.setdefault("matches", []).append(match)
         _write_local(data)
+        length = len(data["matches"])
     invalidate_cache(MATCHES_KEY)
+    return int(length)
 
 
 def read_matches(use_cache: bool = True) -> list[dict]:

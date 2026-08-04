@@ -26,6 +26,8 @@ const state = {
     rankings: [],
     nameToId: {},
     online: navigator.onLine,
+    stats: null,
+    totalVotes: 0,   // monotonic: never shows a lower count than we've already seen
     session: { votes: 0, upsets: 0, streak: 0 },
 };
 
@@ -298,6 +300,11 @@ async function vote(winnerId, retries = 0) {
         showDelta(loseSide, result.loser.change);
         $('#odds').textContent = oddsLabel(m.elo_diff);
 
+        // Bump the live count from the write itself, then reconcile movers via /stats.
+        if (typeof result.total_votes === 'number') {
+            state.totalVotes = Math.max(state.totalVotes, result.total_votes);
+            renderDateline();
+        }
         finishVote(winner, loser, m);
         refreshStats();
         setTimeout(nextMatchup, RESULT_PAUSE);
@@ -395,21 +402,31 @@ async function flushOutbox() {
 async function refreshStats() {
     try {
         const s = await getJSON('/stats');
-        const parts = [
-            `<span class="dateline-item"><b>${num(s.total_votes)}</b> votes</span>`,
-            `<span class="dateline-item"><b>${num(s.visitors_online)}</b> here today</span>`,
-        ];
-        if (s.best_mover) {
-            parts.push(`<span class="dateline-item">Riser <b class="up">${esc(s.best_mover.name)} ${signed(Math.round(s.best_mover.change))}</b></span>`);
-        }
-        if (s.worst_mover) {
-            parts.push(`<span class="dateline-item">Faller <b class="down">${esc(s.worst_mover.name)} ${signed(Math.round(s.worst_mover.change))}</b></span>`);
-        }
-        $('#dateline').innerHTML = parts.join('');
+        state.stats = s;
+        state.totalVotes = Math.max(state.totalVotes, s.total_votes || 0);
+        renderDateline();
         setOnline(true);
     } catch {
         setOnline(navigator.onLine);
     }
+}
+
+// The count comes from state.totalVotes, not the raw /stats field, so a just-cast vote
+// (which returns the fresh total) is reflected immediately and never regresses.
+function renderDateline() {
+    const s = state.stats;
+    if (!s) return;
+    const parts = [
+        `<span class="dateline-item"><b>${num(state.totalVotes)}</b> votes</span>`,
+        `<span class="dateline-item"><b>${num(s.visitors_online)}</b> here today</span>`,
+    ];
+    if (s.best_mover) {
+        parts.push(`<span class="dateline-item">Riser <b class="up">${esc(s.best_mover.name)} ${signed(Math.round(s.best_mover.change))}</b></span>`);
+    }
+    if (s.worst_mover) {
+        parts.push(`<span class="dateline-item">Faller <b class="down">${esc(s.worst_mover.name)} ${signed(Math.round(s.worst_mover.change))}</b></span>`);
+    }
+    $('#dateline').innerHTML = parts.join('');
 }
 
 // ---------------------------------------------------------------------------

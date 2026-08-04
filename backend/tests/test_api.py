@@ -159,3 +159,14 @@ def test_health_reports_local_storage_without_credentials(client):
     assert h["storage"] == "local"        # conftest strips all Redis env vars
     assert h["env_present"] == []
     assert "redis_ok" not in h
+
+
+def test_vote_response_carries_the_fresh_total(client):
+    m = client.get("/api/matchup").json()
+    r = _vote(client, "/api/vote", winner_id=m["fish_a"]["id"], loser_id=m["fish_b"]["id"], token=m["token"])
+    assert r.status_code == 200
+    assert r.json()["total_votes"] == 1
+
+    m2 = client.get("/api/matchup").json()
+    r2 = _vote(client, "/api/vote", winner_id=m2["fish_a"]["id"], loser_id=m2["fish_b"]["id"], token=m2["token"])
+    assert r2.json()["total_votes"] == 2
