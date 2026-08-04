@@ -9,14 +9,14 @@ in place, so it is idempotent: the enrichment table below is keyed by fish ``id`
 Numeric water parameters and minimum tank sizes are derived from a compact
 per-species table (scientific name, genre, adult size, temperament, difficulty,
 water type, popularity) so the file stays maintainable rather than hand-tuning
-every field. ``popularity`` (a 0-100 keepership/interest proxy) seeds the initial
-Elo in ``elo.py``.
+every field. ``popularity`` (a 0-100 keepership/interest proxy) is kept as
+descriptive catalog data; it no longer influences ratings — every fish starts
+level and its Elo comes only from votes.
 
 Run: ``python -m backend.app.seed``
 """
 
 import json
-import math
 from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
@@ -27,7 +27,7 @@ FISH_FILE = DATA_DIR / "fish.json"
 #   temperament: peaceful | semi-aggressive | aggressive
 #   difficulty : beginner | intermediate | advanced
 #   water      : soft | neut | hard | brack | warm | cold | coldhard
-#   popularity : 0-100 interest proxy -> seeds initial Elo (log-scaled into ~1000-2200)
+#   popularity : 0-100 interest proxy, descriptive only (no longer affects Elo)
 #   extra_tags : additional controlled tags (planted, centerpiece, ...)
 ENRICH = {
     "african-dwarf-frog": ("Hymenochirus boettgeri", "amphibian", 4, "peaceful", "intermediate", "neut", 60, []),

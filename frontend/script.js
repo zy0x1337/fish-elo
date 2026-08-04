@@ -866,9 +866,9 @@ async function loadEloInfo() {
                     <div class="formula"><b>Rating update</b><code>${esc(info.update_formula)}</code></div>
                 </div>
                 <div class="params">
+                    <div><span>Starting rating</span> <b>${info.base_rating}</b></div>
                     <div><span>K-factor</span> <b>${info.k_factor}</b></div>
                     <div><span>Placement K</span> <b>${info.k_provisional}</b> <span>(first ${info.placement_games})</span></div>
-                    <div><span>Seed range</span> <b>${info.seed_range[0]}–${info.seed_range[1]}</b></div>
                 </div>
                 <p>${esc(info.technical)}</p>
             </details>`;

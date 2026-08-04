@@ -63,9 +63,10 @@ ephemeral local files and reset all data every deploy). Local dev uses JSON file
   of truth. Any new persisted state must implement **both** the Redis and local-file paths.
 
 **`elo.py` — ratings + snapshot analytics.** `K_FACTOR=32`, provisional `K_PROVISIONAL=64` for a
-fish's first `PLACEMENT_GAMES=10` matches (marked `placing`/`NEW`). Catalog fish are seeded from
-`popularity` (log-scaled into 1000–2200); genuinely new fish debut at 1500. `record_match` is the
-only writer of ratings — lock, read-modify-write the small `ratings` key, append one match, unlock.
+fish's first `PLACEMENT_GAMES=10` matches (marked `placing`/`NEW`). **Every fish — catalog or newly
+added — debuts level at `INITIAL_RATING=1500`; ratings come only from votes** (no popularity seed;
+`popularity` stays in the catalog as descriptive data only). `record_match` is the only writer of
+ratings — lock, read-modify-write the small `ratings` key, append one match, unlock.
 Each match stores **per-fish rating snapshots** (`winner_rating`, `loser_rating`, `winner_change`,
 `loser_change`, `timestamp`).
 

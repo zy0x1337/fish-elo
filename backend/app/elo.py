@@ -10,7 +10,6 @@ biggest gainer shown *losing* rank). Undoing stored changes never mixes scales.
 """
 
 import json
-import math
 import random
 import time
 from datetime import datetime, timezone
@@ -24,8 +23,7 @@ FISH_FILE = DATA_DIR / "fish.json"
 K_FACTOR = 32          # settled fish
 K_PROVISIONAL = 64     # during the placement phase
 PLACEMENT_GAMES = 10   # matches before a fish settles
-INITIAL_RATING = 1500  # debut for fish not present at seed time
-SEED_MIN, SEED_MAX = 1000, 2200  # popularity-seeded initial rating range
+INITIAL_RATING = 1500  # every fish debuts here — ratings come only from votes
 
 TREND_1H = 3600
 TREND_24H = 24 * 3600
@@ -59,17 +57,9 @@ def fish_by_id(fish_id: str) -> dict | None:
     return _fish_by_id_cache.get(fish_id)
 
 
-def seed_rating(fish: dict) -> float:
-    """Map ``popularity`` (0-100) monotonically, log-scaled, into ``SEED_MIN..SEED_MAX``."""
-    pop = max(0, fish.get("popularity", 0))
-    frac = math.log1p(pop) / math.log1p(100)
-    return round(SEED_MIN + frac * (SEED_MAX - SEED_MIN), 1)
-
-
 def _default_record(fish_id: str) -> dict:
-    fish = fish_by_id(fish_id)
-    rating = seed_rating(fish) if fish else INITIAL_RATING
-    return {"rating": rating, "wins": 0, "losses": 0}
+    """Every fish — catalog or newly added — starts level at ``INITIAL_RATING``."""
+    return {"rating": INITIAL_RATING, "wins": 0, "losses": 0}
 
 
 # ---------------------------------------------------------------------------
@@ -333,24 +323,23 @@ def get_elo_info() -> dict:
         "k_factor": K_FACTOR,
         "k_provisional": K_PROVISIONAL,
         "placement_games": PLACEMENT_GAMES,
-        "seed_range": [SEED_MIN, SEED_MAX],
+        "base_rating": INITIAL_RATING,
         "expected_formula": "E_A = 1 / (1 + 10^((R_B - R_A) / 400))",
         "update_formula": "R_A_new = R_A + K * (S_A - E_A)",
         "simple": (
-            "Fish are seeded by how popular they are, then every vote nudges the ratings. "
-            "Beating a stronger fish earns more points than beating a weaker one - upsets pay big, "
-            "safe bets pay little. Win = up, lose = down; the bigger the gap, the bigger the swing."
+            f"Every fish starts level at {INITIAL_RATING}, and only votes move the ratings. "
+            "Beat a higher-rated fish and you gain more; lose to a lower-rated one and you drop "
+            "more. Win = up, lose = down, and the bigger the gap, the bigger the swing."
         ),
         "example": (
-            "Angelfish (1800) vs Neon Tetra (1200): Angelfish is the heavy favorite. "
-            "If Angelfish wins as expected it gains only +3, but if Neon Tetra pulls the upset "
-            "it jumps +29 while Angelfish drops 29. The system rewards surprises."
+            f"Two fish both start at {INITIAL_RATING}. The first vote sends the winner to 1516 and "
+            "the loser to 1484. Once ratings have drifted apart - say 1800 against 1200 - an "
+            "expected win is worth only +3, but an upset by the 1200 fish is worth +29."
         ),
         "technical": (
             f"E_A is fish A's expected score. A 400-point gap means the stronger fish is 10x "
-            f"more likely to win. Newly added fish start at {INITIAL_RATING} and spend their first "
-            f"{PLACEMENT_GAMES} matches at a higher K ({K_PROVISIONAL}) so they converge quickly, "
-            f"then settle to K = {K_FACTOR}. Catalog fish are seeded from popularity into "
-            f"{SEED_MIN}-{SEED_MAX}."
+            f"more likely to win. Every fish - catalog or newly added - debuts at {INITIAL_RATING} "
+            f"and spends its first {PLACEMENT_GAMES} matches at a higher K ({K_PROVISIONAL}) so it "
+            f"finds its level quickly, then settles to K = {K_FACTOR}."
         ),
     }

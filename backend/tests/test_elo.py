@@ -1,4 +1,4 @@
-"""Elo math, placement K, snapshot recording, and popularity seeding."""
+"""Elo math, placement K, snapshot recording, and the flat starting rating."""
 
 from backend.app import elo, storage
 
@@ -29,13 +29,11 @@ def test_provisional_k_during_placement():
     assert elo.k_for(50) == elo.K_FACTOR
 
 
-def test_seed_rating_monotonic_and_bounded():
-    fish = elo.load_fish()
-    ratings = [elo.seed_rating(f) for f in fish]
-    assert all(elo.SEED_MIN <= r <= elo.SEED_MAX for r in ratings)
-    lo = elo.seed_rating({"popularity": 10})
-    hi = elo.seed_rating({"popularity": 90})
-    assert hi > lo  # more popular -> higher seed
+def test_every_fish_starts_at_the_same_base_rating():
+    ratings = {f["id"]: elo._default_record(f["id"])["rating"] for f in elo.load_fish()}
+    assert set(ratings.values()) == {elo.INITIAL_RATING}
+    # An unknown id (only ever seen in the match log) also debuts at the base.
+    assert elo._default_record("not-in-catalog")["rating"] == elo.INITIAL_RATING
 
 
 def test_record_match_persists_snapshot_fields():
@@ -61,15 +59,10 @@ def test_record_match_persists_snapshot_fields():
 
 def test_first_match_uses_provisional_k():
     # A fresh pair's first match should swing by the provisional K, not the settled K.
-    fish = elo.load_fish()
-    # Pick two fish with equal seed so the expected score is 0.5 and the swing is K/2.
-    a = {"id": "test-a", "name": "A", "popularity": 50}
-    b = {"id": "test-b", "name": "B", "popularity": 50}
-    # Seed identical ratings directly.
-    ra = elo.seed_rating(a)
+    # Equal starting ratings make the expected score 0.5, so the swing is exactly K/2.
     storage.write_ratings({
-        "test-a": {"rating": ra, "wins": 0, "losses": 0},
-        "test-b": {"rating": ra, "wins": 0, "losses": 0},
+        "test-a": {"rating": elo.INITIAL_RATING, "wins": 0, "losses": 0},
+        "test-b": {"rating": elo.INITIAL_RATING, "wins": 0, "losses": 0},
     })
     # Only present in ratings, not catalog — analytics/record handle unknown ids fine.
     result = elo.record_match("test-a", "test-b")
