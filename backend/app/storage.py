@@ -82,6 +82,37 @@ def _is_redis() -> bool:
     return _redis_env() is not None
 
 
+# Known REST credential names, by scheme, for the /health diagnostic (names only).
+REDIS_ENV_NAMES = {
+    "kv": ("KV_REST_API_URL", "KV_REST_API_TOKEN"),
+    "upstash": ("UPSTASH_REDIS_REST_URL", "UPSTASH_REDIS_REST_TOKEN"),
+}
+
+
+def storage_mode() -> str:
+    """'redis' when a REST URL+token pair is present, else 'local' (dev/ephemeral)."""
+    return "redis" if _is_redis() else "local"
+
+
+def present_env_names() -> list[str]:
+    """Which recognised credential var names are set. Names only — never values."""
+    seen = []
+    for names in REDIS_ENV_NAMES.values():
+        seen.extend(n for n in names if os.environ.get(n))
+    return seen
+
+
+def ping() -> tuple[bool, str | None]:
+    """Cheap Redis reachability check for /health. Returns (ok, error_type_name)."""
+    if not _is_redis():
+        return False, None
+    try:
+        _get_redis().set("health:ping", "1", ex=10)
+        return True, None
+    except Exception as exc:  # noqa: BLE001 - surfaced as a type name, not raised
+        return False, type(exc).__name__
+
+
 def _get_redis():
     from upstash_redis import Redis
 

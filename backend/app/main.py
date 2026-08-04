@@ -298,7 +298,24 @@ async def elo_info():
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "fish": len(load_fish())}
+    """Liveness + a storage diagnostic. ``storage: "local"`` in production means the
+    deploy isn't seeing Upstash credentials (wrong var names, wrong environment scope,
+    or no redeploy after connecting the store) — and on Vercel's read-only filesystem
+    the local fallback can't persist votes. ``env_present`` lists which recognised
+    credential var *names* are set (never their values); ``redis_ok`` pings Redis."""
+    mode = storage.storage_mode()
+    result = {
+        "status": "ok",
+        "fish": len(load_fish()),
+        "storage": mode,
+        "env_present": storage.present_env_names(),
+    }
+    if mode == "redis":
+        ok, err = storage.ping()
+        result["redis_ok"] = ok
+        if err:
+            result["redis_error"] = err
+    return result
 
 
 class FrontendFiles(StaticFiles):

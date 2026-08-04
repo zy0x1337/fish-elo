@@ -152,3 +152,10 @@ def test_compare_rejects_same_fish(client):
 def test_compare_rejects_unknown_fish(client):
     a = client.get("/api/rankings").json()["fish"][0]["id"]
     assert client.get(f"/api/compare?a={a}&b=not-a-fish").status_code == 404
+
+
+def test_health_reports_local_storage_without_credentials(client):
+    h = client.get("/api/health").json()
+    assert h["storage"] == "local"        # conftest strips all Redis env vars
+    assert h["env_present"] == []
+    assert "redis_ok" not in h
